@@ -17,10 +17,26 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-// Configure SEO Metadata (Title, Description)
+// Configure SEO Metadata (Title, Description, Social Sharing)
 export const metadata: Metadata = {
   title: "Washworld Coin Laundry | Premium Laundromat in Toronto",
   description: "Experience the cleanest, most modern laundromat. Free Wi-Fi, A/C, huge capacity washers, and flexible payment options.",
+  openGraph: {
+    title: "Washworld Coin Laundry | Premium Laundromat",
+    description: "Experience the cleanest, most modern laundromat in Toronto.",
+    url: "https://washworld-website.vercel.app",
+    siteName: "Washworld Coin Laundry",
+    locale: "en_CA",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Washworld Coin Laundry",
+    description: "Premium Laundromat in Toronto with huge capacity machines and free Wi-Fi.",
+  },
+  icons: {
+    icon: "/icon.png",
+  }
 };
 
 export default function RootLayout({
