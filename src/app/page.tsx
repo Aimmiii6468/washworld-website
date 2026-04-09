@@ -330,7 +330,7 @@ export default function Home() {
 
             {/* 1: Vertical Slot (Left) */}
             <div className="col-span-1 row-span-2 rounded-[2.5rem] overflow-hidden relative group shadow-xl border border-slate-200">
-               <LiteYouTube videoId="zwZer3kgVhI" title="Facility Tour 1" />
+               <LiteYouTube videoId="STKxtJVh450" title="Facility Tour 1" />
             </div>
 
             {/* 2: Vertical Slot (Center-Left) */}
