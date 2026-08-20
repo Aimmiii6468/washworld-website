@@ -47,7 +47,7 @@ export default function SelfServePage() {
                 "Hot, High-CFM Gas Dryers",
                 "Massive 80lb machines available",
                 "Ultra-clean, A/C cooled facility",
-                "Card, tap, and coin accepted",
+                "Cash, coin and Interac e-Transfer accepted",
                 "Free Gigabit Wi-Fi & Lounge seating"
               ].map((item, i) => (
                 <li key={i} className="flex items-start gap-3 text-slate-600 font-medium">
