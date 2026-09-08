@@ -8,7 +8,16 @@ import { blurIfPointer } from "@/lib/blurIfPointer";
 
 /** Card width plus the gap between cards, used for one step of the track. */
 const STEP = 364;
-const AUTO_MS = 4500;
+
+/**
+ * Gap between auto-scroll steps.
+ *
+ * 4500ms read as stalled: a card would land, sit still long enough to look
+ * broken, then jump. 2400ms keeps the track visibly moving while still leaving
+ * time to read a short review, and anyone who wants longer only has to put the
+ * cursor on a card.
+ */
+const AUTO_MS = 2400;
 
 /**
  * Horizontally scrolling review track.

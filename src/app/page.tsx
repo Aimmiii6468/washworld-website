@@ -361,24 +361,25 @@ export default function Home() {
             cleaned all day, not just at closing.
           </SectionHead>
 
-          <div className="grid auto-rows-[170px] grid-cols-2 gap-4 md:auto-rows-[200px] lg:grid-cols-4">
+          {/* Four columns by three rows. The feature photo is a 2x2 block and
+              every other tile is half-width, so the mosaic fills exactly with
+              no empty corner. See the note on GALLERY before adding a photo. */}
+          <div className="grid auto-rows-[180px] grid-cols-2 gap-4 md:auto-rows-[215px] lg:grid-cols-4">
             {GALLERY.map((photo) => (
               <div
                 key={photo.src}
-                className={`relative overflow-hidden rounded-[26px] ${
+                className={`group relative overflow-hidden rounded-[26px] ${
                   photo.span === "feature"
                     ? "col-span-2 row-span-2"
-                    : photo.span === "wide"
-                      ? "col-span-2"
-                      : ""
+                    : "col-span-2"
                 }`}
               >
                 <Image
                   src={photo.src}
                   alt={photo.alt}
                   fill
-                  sizes="(max-width: 1024px) 50vw, 25vw"
-                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
             ))}

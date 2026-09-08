@@ -232,6 +232,16 @@ export const VIDEOS = [
   { id: "mLi74tWtvv0", title: "Folding area", span: "wide" },
 ] as const;
 
+/**
+ * Photo gallery, ordered so the mosaic fills exactly.
+ *
+ * The grid is four columns by three rows, which is twelve cells. The feature
+ * photo takes a 2x2 block (four cells) and the other four are half-width
+ * (two cells each), so 4 + 2 + 2 + 2 + 2 lands on twelve with nothing left
+ * over. The earlier mix of full-size and half-size tiles left a hole in the
+ * bottom right corner, so keep this arithmetic in mind before adding a photo:
+ * six photos want a different shape, not one more tile bolted on.
+ */
 export const GALLERY = [
   {
     src: "/images/facility/facility-4.jpg",
@@ -241,12 +251,12 @@ export const GALLERY = [
   {
     src: "/images/facility/facility-1.jpg",
     alt: "Stainless washers beside framed floral paintings",
-    span: null,
+    span: "wide",
   },
   {
     src: "/images/facility/facility-2.jpg",
     alt: "Gallery wall of framed prints above the machines",
-    span: null,
+    span: "wide",
   },
   {
     src: "/images/facility/facility-3.jpg",
