@@ -1,4 +1,4 @@
-import { ArrowLeft, CheckCircle2, Wind, CreditCard, Coffee, Wifi, Tv, ShieldCheck, ChevronDown, Clock, ParkingCircle, HelpCircle } from "lucide-react";
+import { ArrowLeft, CheckCircle2, Wind, CreditCard, Coffee, Wifi, Coins, ShieldCheck, ChevronDown, Clock, ParkingCircle, HelpCircle } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -135,8 +135,8 @@ export default function SelfServePage() {
                 <span className="font-bold text-slate-700">Vending</span>
               </div>
               <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex flex-col items-center">
-                <Tv className="w-8 h-8 text-primary mb-3" />
-                <span className="font-bold text-slate-700">Live TV</span>
+                <Coins className="w-8 h-8 text-primary mb-3" />
+                <span className="font-bold text-slate-700">Change Machine</span>
               </div>
               <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex flex-col items-center">
                 <Wind className="w-8 h-8 text-primary mb-3" />

@@ -69,7 +69,7 @@ src/
   lib/
     site.ts                 single source of truth for business details
 public/
-  logo.png
+  logo.webp
   images/facility/          facility photography
   images/services/          service photography
 ```
@@ -95,10 +95,16 @@ Only add reviews that actually exist on the Google profile, and update
 
 ### Videos
 
-`components/LiteYouTube.tsx` renders a thumbnail plus a play button and only
-loads the YouTube iframe after the visitor clicks it. Do not switch it back to
-auto-loading: the homepage shows seven clips and each embed pulls roughly a
-megabyte of player code.
+`components/LiteYouTube.tsx` paints the YouTube poster frame first, then mounts
+the real iframe only while the tile is on screen. Starts are staggered by the
+`index` prop, and the iframe is unmounted once the tile scrolls away, which caps
+the number of live players to whatever fits in the viewport.
+
+Do not change it back to mounting every embed at page load: the homepage shows
+seven clips and each YouTube embed pulls roughly a megabyte of player code.
+
+Visitors on `prefers-reduced-motion` or Data Saver keep the thumbnail plus a
+play button. Pass `autoplay={false}` to force that behaviour on any tile.
 
 ## Deployment
 

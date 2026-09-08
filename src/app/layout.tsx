@@ -66,7 +66,7 @@ export default function RootLayout({
     telephone: BUSINESS.phoneE164,
     email: BUSINESS.email,
     image: `${SITE_URL}/images/facility/facility-4.jpg`,
-    logo: `${SITE_URL}/logo.png`,
+    logo: `${SITE_URL}/logo.webp`,
     priceRange: "$",
     currenciesAccepted: "CAD",
     paymentAccepted: "Cash, Coin, Interac e-Transfer",

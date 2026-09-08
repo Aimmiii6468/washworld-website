@@ -54,7 +54,7 @@ export default function Navbar() {
         {/* Brand */}
         <Link href="/" className="flex items-center gap-3 group">
           <Image
-            src="/logo.png"
+            src="/logo.webp"
             alt="Washworld Coin Laundry"
             width={82}
             height={82}

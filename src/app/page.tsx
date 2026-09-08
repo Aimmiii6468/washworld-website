@@ -9,7 +9,7 @@ import {
   Star,
   Wind,
   Wifi,
-  Tv,
+  Coins,
   Coffee,
   Droplets,
   ArrowRight,
@@ -581,22 +581,22 @@ export default function Home() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 auto-rows-[240px] md:auto-rows-[300px]">
             <div className="col-span-1 row-span-2 rounded-[2.5rem] overflow-hidden relative shadow-xl border border-slate-200">
-              <LiteYouTube videoId="STKxtJVh450" title="Facility tour" />
+              <LiteYouTube videoId="STKxtJVh450" title="Facility tour" index={0} />
             </div>
             <div className="col-span-1 row-span-2 rounded-[2.5rem] overflow-hidden relative shadow-xl border border-slate-200">
-              <LiteYouTube videoId="49O-fVRTqMQ" title="Walkthrough" />
+              <LiteYouTube videoId="49O-fVRTqMQ" title="Walkthrough" index={1} />
             </div>
             <div className="col-span-1 sm:col-span-2 row-span-1 rounded-[2.5rem] overflow-hidden relative shadow-xl border border-slate-200">
-              <LiteYouTube videoId="t5evX43MyrA" title="Our washers" />
+              <LiteYouTube videoId="t5evX43MyrA" title="Our washers" index={2} />
             </div>
             <div className="col-span-1 sm:col-span-2 row-span-1 rounded-[2.5rem] overflow-hidden relative shadow-xl border border-slate-200">
-              <LiteYouTube videoId="YQuj_B09Kg0" title="Our dryers" />
+              <LiteYouTube videoId="YQuj_B09Kg0" title="Our dryers" index={3} />
             </div>
             <div className="col-span-1 sm:col-span-2 row-span-1 rounded-[2.5rem] overflow-hidden relative shadow-xl border border-slate-200">
-              <LiteYouTube videoId="WWVlMvxkn2k" title="Inside the shop" />
+              <LiteYouTube videoId="WWVlMvxkn2k" title="Inside the shop" index={4} />
             </div>
             <div className="col-span-1 sm:col-span-2 row-span-1 rounded-[2.5rem] overflow-hidden relative shadow-xl border border-slate-200">
-              <LiteYouTube videoId="mLi74tWtvv0" title="Folding area" />
+              <LiteYouTube videoId="mLi74tWtvv0" title="Folding area" index={5} />
             </div>
           </div>
         </motion.div>
@@ -692,7 +692,7 @@ export default function Home() {
                 { icon: Wifi, title: "Free High-Speed Wi-Fi" },
                 { icon: Wind, title: "Climate-Controlled (A/C)" },
                 { icon: Coffee, title: "Snack & Drink Vending" },
-                { icon: Tv, title: "Flat Screen TVs" },
+                { icon: Coins, title: "Change Machine On Site" },
               ].map((item) => (
                 <div
                   key={item.title}
