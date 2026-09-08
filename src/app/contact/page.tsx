@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import ContactForm from "@/components/ContactForm";
 import Icon from "@/components/ui/Icon";
-import { Eyebrow, ButtonLink } from "@/components/sections/Shared";
+import {
+  Eyebrow,
+  ButtonLink,
+  CurbsideBand,
+} from "@/components/sections/Shared";
 import { SITE_URL, BUSINESS } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -51,10 +55,8 @@ export default function ContactPage() {
                     Visit the shop
                   </b>
                   <span className="block text-muted-foreground">
-                    {BUSINESS.streetAddress}
-                    <br />
-                    {BUSINESS.addressLocality}, {BUSINESS.addressRegion}{" "}
-                    {BUSINESS.postalCode}
+                    {BUSINESS.streetAddress}, {BUSINESS.addressLocality},{" "}
+                    {BUSINESS.addressRegion} {BUSINESS.postalCode}
                   </span>
                   <span className="mt-3 flex items-center gap-2 text-sm font-semibold text-primary">
                     Open in Google Maps <Icon name="arrow" size={15} />
@@ -132,12 +134,16 @@ export default function ContactPage() {
             </div>
           </div>
 
-          <div className="mt-12 flex flex-wrap gap-3">
+          <div className="mt-12">
+            <CurbsideBand title="Want it collected instead?" />
+          </div>
+
+          <div className="mt-8 flex flex-wrap gap-3">
             <ButtonLink href="/prices" variant="soft">
               See laundry prices
             </ButtonLink>
             <ButtonLink href="/commercial" variant="soft">
-              Commercial enquiries
+              Laundry for business
             </ButtonLink>
             <ButtonLink href="/faq" variant="soft">
               Read the FAQ

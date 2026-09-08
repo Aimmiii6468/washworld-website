@@ -6,6 +6,7 @@ import {
   PriceTable,
   PageHero,
   ClosingCta,
+  CurbsideBand,
   ArrowIcon,
 } from "@/components/sections/Shared";
 import {
@@ -75,6 +76,7 @@ export default function PricesPage() {
       <section className="px-5 py-16 md:px-8 md:py-24 lg:px-12">
         <div className="mx-auto max-w-[1200px]">
           <SectionHead
+            icon="washer"
             eyebrow="Self-serve"
             title="Coin laundry prices"
           >
@@ -98,6 +100,7 @@ export default function PricesPage() {
       <section className="border-y border-border bg-secondary px-5 py-16 md:px-8 md:py-24 lg:px-12">
         <div className="mx-auto max-w-[1200px]">
           <SectionHead
+            icon="basket"
             eyebrow="Drop-off"
             title="Wash and fold prices"
           >
@@ -119,7 +122,7 @@ export default function PricesPage() {
 
       <section className="px-5 py-16 md:px-8 md:py-24 lg:px-12">
         <div className="mx-auto max-w-[1200px]">
-          <SectionHead eyebrow="Garment care" title="Dry cleaning prices">
+          <SectionHead icon="hanger" eyebrow="Garment care" title="Dry cleaning prices">
             Each item is priced on its own so you know the cost before you hand it
             over. Shirts with stain removal are $7 instead of $4.
           </SectionHead>
@@ -133,8 +136,18 @@ export default function PricesPage() {
 
       <section className="border-y border-border bg-secondary px-5 py-16 md:px-8 md:py-24 lg:px-12">
         <div className="mx-auto max-w-[1200px]">
-          <SectionHead eyebrow="Pricing questions" title="What it actually costs" />
+          <SectionHead icon="tag" eyebrow="Pricing questions" title="What it actually costs" />
           <Faq items={PRICES_FAQ} />
+        </div>
+      </section>
+
+      <section className="px-5 py-16 md:px-8 md:py-20 lg:px-12">
+        <div className="mx-auto max-w-[1200px]">
+          <CurbsideBand title="Rather not come in at all?">
+            Curbside Laundry is our own pickup and delivery service in Toronto.
+            Book a window online and we collect, wash and return your laundry
+            folded, priced on the Curbside site.
+          </CurbsideBand>
         </div>
       </section>
 

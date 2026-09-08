@@ -7,6 +7,7 @@ import {
   PriceTable,
   PageHero,
   ClosingCta,
+  CurbsideBand,
   ArrowIcon,
 } from "@/components/sections/Shared";
 import {
@@ -31,18 +32,18 @@ export const metadata: Metadata = {
 };
 
 const CARE = [
-  { title: "Shirts and blouses", desc: "Washed, pressed and returned on hangers" },
-  { title: "Suits and blazers", desc: "Cleaned as a set so the pieces still match" },
-  { title: "Dresses", desc: "Short and long, priced by length and lining" },
-  { title: "Winter coats", desc: "Light jackets through to full down parkas" },
-] as const;
+  { icon: "hanger" as const, title: "Shirts and blouses", desc: "Washed, pressed and returned on hangers" },
+  { icon: "hanger" as const, title: "Suits and blazers", desc: "Cleaned as a set so the pieces still match" },
+  { icon: "sparkle" as const, title: "Dresses", desc: "Short and long, priced by length and lining" },
+  { icon: "shield" as const, title: "Winter coats", desc: "Light jackets through to full down parkas" },
+];
 
 const PROMISE = [
-  { title: "Priced before you leave", desc: "You know the total when you hand it over" },
-  { title: "Stain treatment", desc: "Point it out and tell us what caused it" },
-  { title: "Nothing added later", desc: "No handling fee, no surprise line at pickup" },
-  { title: "One counter", desc: "Same visit as your wash and fold if you like" },
-] as const;
+  { icon: "tag" as const, title: "Priced before you leave", desc: "You know the total when you hand it over" },
+  { icon: "sparkle" as const, title: "Stain treatment", desc: "Point it out and tell us what caused it" },
+  { icon: "check" as const, title: "Nothing added later", desc: "No handling fee, no surprise line at pickup" },
+  { icon: "basket" as const, title: "One counter", desc: "Same visit as your wash and fold if you like" },
+];
 
 export default function DryCleaningPage() {
   const faqJsonLd = {
@@ -116,6 +117,12 @@ export default function DryCleaningPage() {
         <div className="mx-auto max-w-[1200px]">
           <SectionHead eyebrow="Questions" title="Dry cleaning, answered" />
           <Faq items={DRY_CLEAN_FAQ} />
+        </div>
+      </section>
+
+      <section className="border-t border-border px-5 py-16 md:px-8 md:py-20 lg:px-12">
+        <div className="mx-auto max-w-[1200px]">
+          <CurbsideBand />
         </div>
       </section>
 

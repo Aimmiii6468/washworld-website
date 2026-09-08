@@ -1,11 +1,12 @@
 import Link from "next/link";
+import Icon from "@/components/ui/Icon";
 import { BUSINESS } from "@/lib/site";
 
 const SERVICES = [
   { href: "/services/self-serve", label: "Self-serve laundry" },
   { href: "/services/wash-and-fold", label: "Wash, dry & fold" },
   { href: "/services/dry-cleaning", label: "Dry cleaning" },
-  { href: "/commercial", label: "Commercial laundry" },
+  { href: "/commercial", label: "Laundry for business" },
 ];
 
 const INFO = [
@@ -26,27 +27,50 @@ export default function Footer() {
               Washworld
             </h2>
             <p className="wordmark-sub mb-4 text-[#8f8db8]">Coin Laundry</p>
-            <address className="text-[0.95rem] not-italic leading-relaxed">
-              {BUSINESS.streetAddress}
-              <br />
-              {BUSINESS.addressLocality}, {BUSINESS.addressRegion}{" "}
-              {BUSINESS.postalCode}
-              <br />
-              <a className="hover:text-white" href={BUSINESS.phoneHref}>
+            {/* One row per detail, each led by its own icon. The street, city,
+                province and postcode sit on a single line so the address reads
+                the way it would on an envelope rather than as a stacked list. */}
+            <address className="grid gap-3 text-[0.95rem] not-italic">
+              <span className="flex items-start gap-3">
+                <span className="mt-0.5 shrink-0 text-[#8f8db8]">
+                  <Icon name="pin" size={18} />
+                </span>
+                <span>
+                  {BUSINESS.streetAddress}, {BUSINESS.addressLocality},{" "}
+                  {BUSINESS.addressRegion} {BUSINESS.postalCode}
+                </span>
+              </span>
+              <a
+                className="flex items-center gap-3 hover:text-white"
+                href={BUSINESS.phoneHref}
+              >
+                <span className="shrink-0 text-[#8f8db8]">
+                  <Icon name="phone" size={18} />
+                </span>
                 {BUSINESS.phoneDisplay}
               </a>
-              <br />
-              <a className="break-all hover:text-white" href={BUSINESS.emailHref}>
-                {BUSINESS.email}
+              <a
+                className="flex items-start gap-3 hover:text-white"
+                href={BUSINESS.emailHref}
+              >
+                <span className="mt-0.5 shrink-0 text-[#8f8db8]">
+                  <Icon name="mail" size={18} />
+                </span>
+                <span className="break-all">{BUSINESS.email}</span>
               </a>
-            </address>
-            <p className="mt-4 text-[0.95rem]">
-              Open every day {BUSINESS.hoursDisplay}
-              <br />
-              <span className="text-[#a09dcc]">
-                Last wash {BUSINESS.lastWashDisplay}
+              <span className="flex items-start gap-3">
+                <span className="mt-0.5 shrink-0 text-[#8f8db8]">
+                  <Icon name="clock" size={18} />
+                </span>
+                <span>
+                  Open every day {BUSINESS.hoursDisplay}
+                  <br />
+                  <span className="text-[#a09dcc]">
+                    Last wash {BUSINESS.lastWashDisplay}
+                  </span>
+                </span>
               </span>
-            </p>
+            </address>
           </div>
 
           <div>
@@ -66,8 +90,9 @@ export default function Footer() {
               href={BUSINESS.curbsideUrl}
               target="_blank"
               rel="noreferrer"
-              className="block py-1 text-[0.95rem] hover:text-white"
+              className="flex items-center gap-2 py-1 text-[0.95rem] hover:text-white"
             >
+              <Icon name="truck" size={16} />
               Pickup &amp; delivery
             </a>
           </div>

@@ -7,6 +7,7 @@ import {
   PriceTable,
   PageHero,
   ClosingCta,
+  CurbsideBand,
   ArrowIcon,
 } from "@/components/sections/Shared";
 import {
@@ -38,11 +39,11 @@ const STEPS = [
 ] as const;
 
 const INCLUDED = [
-  { title: "No minimum order", desc: "One bag or ten, the rate is the same" },
-  { title: "Sorted for you", desc: "By colour and fabric, before anything goes in" },
-  { title: "Free and clear option", desc: "Ask at the counter for sensitive skin" },
-  { title: "Bedding welcome", desc: "Duvets, blankets and toppers priced per item" },
-] as const;
+  { icon: "tag" as const, title: "No minimum order", desc: "One bag or ten, the rate is the same" },
+  { icon: "basket" as const, title: "Sorted for you", desc: "By colour and fabric, before anything goes in" },
+  { icon: "detergent" as const, title: "Free and clear option", desc: "Ask at the counter for sensitive skin" },
+  { icon: "washer" as const, title: "Bedding welcome", desc: "Duvets, blankets and toppers priced per item" },
+];
 
 export default function WashAndFoldPage() {
   const faqJsonLd = {
@@ -124,6 +125,16 @@ export default function WashAndFoldPage() {
             title="Wash and fold, answered"
           />
           <Faq items={WASH_FOLD_FAQ} />
+        </div>
+      </section>
+
+      <section className="border-t border-border px-5 py-16 md:px-8 md:py-20 lg:px-12">
+        <div className="mx-auto max-w-[1200px]">
+          <CurbsideBand title="Never even leave the house">
+            Wash and fold is the same service either way. Curbside Laundry, which we
+            own, collects your bag from your door in Toronto, washes it here and
+            brings it back folded.
+          </CurbsideBand>
         </div>
       </section>
 

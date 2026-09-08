@@ -5,6 +5,7 @@ import {
   Faq,
   PageHero,
   ClosingCta,
+  CurbsideBand,
   ArrowIcon,
 } from "@/components/sections/Shared";
 import { SITE_URL, BUSINESS, FAQ_CATEGORIES } from "@/lib/site";
@@ -77,11 +78,18 @@ export default function FaqPage() {
             <SectionHead
               eyebrow={`Section ${index + 1}`}
               title={category.title}
+              icon={category.icon}
             />
             <Faq items={category.items} />
           </div>
         </section>
       ))}
+
+      <section className="px-5 py-16 md:px-8 md:py-20 lg:px-12">
+        <div className="mx-auto max-w-[1200px]">
+          <CurbsideBand />
+        </div>
+      </section>
 
       <ClosingCta
         title="Still not sure? Just ask"

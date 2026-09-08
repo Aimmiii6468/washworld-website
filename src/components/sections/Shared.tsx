@@ -1,6 +1,26 @@
 import Link from "next/link";
 import NextImage from "next/image";
-import Icon from "@/components/ui/Icon";
+import Icon, { type IconName } from "@/components/ui/Icon";
+import { BUSINESS } from "@/lib/site";
+
+/** Rounded icon tile used above card titles and beside section headings. */
+export function IconTile({
+  name,
+  tone = "light",
+}: {
+  name: IconName;
+  tone?: "light" | "dark";
+}) {
+  return (
+    <span
+      className={`grid h-11 w-11 shrink-0 place-items-center rounded-xl ${
+        tone === "dark" ? "bg-white/10 text-white" : "bg-secondary text-primary"
+      }`}
+    >
+      <Icon name={name} />
+    </span>
+  );
+}
 
 /** Small pill used above every section heading. */
 export function Eyebrow({
@@ -33,18 +53,21 @@ export function SectionHead({
   title,
   children,
   tone = "light",
+  icon,
 }: {
   eyebrow: string;
   title: string;
   children?: React.ReactNode;
   tone?: "light" | "dark";
+  icon?: IconName;
 }) {
   return (
     <div className="mb-11 max-w-3xl">
       <Eyebrow tone={tone}>{eyebrow}</Eyebrow>
       <h2
-        className={`mt-4 text-[clamp(1.9rem,3.6vw,2.7rem)] ${tone === "dark" ? "text-white" : ""}`}
+        className={`mt-4 flex items-center gap-3 text-[clamp(1.9rem,3.6vw,2.7rem)] ${tone === "dark" ? "text-white" : ""}`}
       >
+        {icon && <IconTile name={icon} tone={tone} />}
         {title}
       </h2>
       {children && (
@@ -310,6 +333,7 @@ export function CardGrid({
     readonly title: string;
     readonly desc: string;
     readonly lead?: string;
+    readonly icon?: IconName;
   }[];
   columns?: 3 | 4;
 }) {
@@ -322,10 +346,18 @@ export function CardGrid({
           key={item.title}
           className="rounded-[18px] border border-border bg-white p-6"
         >
-          {item.lead && (
+          {/* A step number wins over an icon: numbered cards are a sequence and
+              swapping in pictures would lose the order. */}
+          {item.lead ? (
             <span className="mb-4 grid h-11 w-11 place-items-center rounded-xl bg-secondary font-heading text-[1.05rem] font-extrabold text-primary">
               {item.lead}
             </span>
+          ) : (
+            item.icon && (
+              <span className="mb-4 block">
+                <IconTile name={item.icon} />
+              </span>
+            )
           )}
           <b className="block font-heading text-base">{item.title}</b>
           <span className="text-[0.86rem] text-muted-foreground">
@@ -333,6 +365,47 @@ export function CardGrid({
           </span>
         </div>
       ))}
+    </div>
+  );
+}
+
+/**
+ * Pickup and delivery band.
+ *
+ * Washworld owns Curbside Laundry, so anyone who lands here wanting laundry
+ * done without leaving the house has somewhere to go. The old site said the
+ * same thing on the homepage only; this component puts it on every service and
+ * pricing page, since that is where a "can you just come and get it" visitor
+ * actually ends up.
+ */
+export function CurbsideBand({
+  title = "Too busy? We collect it from your door",
+  children,
+}: {
+  title?: string;
+  children?: React.ReactNode;
+}) {
+  return (
+    <div className="bg-aurora shadow-aurora grid items-center gap-7 rounded-[34px] p-7 text-white md:grid-cols-[1fr_auto] md:p-10">
+      <div>
+        <Eyebrow tone="dark">Laundry pickup &amp; delivery</Eyebrow>
+        <h2 className="mt-4 flex items-center gap-3 text-[clamp(1.6rem,3vw,2.2rem)] text-white">
+          <IconTile name="truck" tone="dark" />
+          {title}
+        </h2>
+        <p className="mt-3 max-w-[54ch] text-white/85">
+          {children ??
+            "Washworld also runs Curbside Laundry, our own pickup and delivery service across Toronto. Book a window online and get it back clean and folded."}
+        </p>
+      </div>
+      <a
+        href={BUSINESS.curbsideUrl}
+        target="_blank"
+        rel="noreferrer"
+        className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3.5 font-heading text-[0.94rem] font-bold text-primary shadow-card-lg transition-transform hover:-translate-y-0.5"
+      >
+        Schedule a pickup <ArrowIcon />
+      </a>
     </div>
   );
 }

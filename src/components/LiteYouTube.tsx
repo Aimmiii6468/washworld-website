@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Icon from "@/components/ui/Icon";
+import { blurIfPointer } from "@/lib/blurIfPointer";
 
 interface LiteYouTubeProps {
   videoId: string;
@@ -63,7 +64,10 @@ export default function LiteYouTube({
 
       <button
         type="button"
-        onClick={() => setIsPlaying((playing) => !playing)}
+        onClick={(event) => {
+          setIsPlaying((playing) => !playing);
+          blurIfPointer(event.currentTarget);
+        }}
         aria-pressed={isPlaying}
         aria-label={
           isPlaying ? `Stop video: ${title}` : `Play video: ${title}`

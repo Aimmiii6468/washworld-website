@@ -5,6 +5,10 @@
  * change only has to be made once instead of hunting through JSX.
  */
 
+// Type-only import: erased at build time, so this stays a data module with no
+// runtime dependency on the component layer.
+import type { IconName } from "@/components/ui/Icon";
+
 /** Production origin. Never point this at a preview deployment. */
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://washworld-website.vercel.app";
@@ -22,7 +26,7 @@ export const IS_PRODUCTION = process.env.VERCEL_ENV
 
 export const BUSINESS = {
   name: "Washworld Coin Laundry",
-  streetAddress: "150 Kenwood Ave.",
+  streetAddress: "150 Kenwood Ave",
   addressLocality: "Toronto",
   addressRegion: "ON",
   postalCode: "M6C 2S3",
@@ -55,6 +59,13 @@ export const BUSINESS = {
 
   hoursDisplay: "8:00 AM - 10:00 PM",
   lastWashDisplay: "9:00 PM",
+
+  /**
+   * Decade the shop opened. The previous site said "since the 1980s" and
+   * "43 years in business". The decade is used instead of a year count so the
+   * copy does not go stale every January.
+   */
+  sinceDisplay: "the 1980s",
 } as const;
 
 /**
@@ -368,23 +379,33 @@ export const PRICES_FAQ = [
   },
 ] as const;
 
-/** Commercial page FAQ, aimed at "commercial laundry service". */
+/**
+ * Business page FAQ.
+ *
+ * IMPORTANT, read before editing: the previous washworld site had no business
+ * or commercial page at all, and curbsidelaundry.ca sells a consumer pickup
+ * service only. So nothing here may state that a business account already
+ * exists, name a client type we "work with", or quote a commercial rate.
+ * Every answer is written as an enquiry: what we have, and an invitation to
+ * ask. Once the owner confirms which trades he wants and what he charges, this
+ * can be rewritten to sell properly.
+ */
 export const COMMERCIAL_FAQ = [
   {
-    q: "Do you offer commercial laundry service in Toronto?",
-    a: "Yes. We handle towels, linen and uniforms for small businesses around Wychwood-Humewood and Central Toronto, with pickup and delivery available through Curbside Laundry.",
+    q: "Can a business use Washworld for its laundry?",
+    a: "Yes. Anyone can drop a bag at the counter, business or not, and our wash, dry and fold service is $1.65 per pound with no minimum order. If you need towels or linen washed every week, call us and we will talk through what you need.",
   },
   {
-    q: "What kinds of businesses do you work with?",
-    a: "Hair and beauty salons, gyms and studios, short-term rental hosts, restaurants and cafes, and small clinics. If you go through towels or linen every week, we can take it off your hands.",
+    q: "How much laundry can you take at once?",
+    a: "Our largest washers hold king-size duvets and comforters, so bulk towels, sheets and aprons are no problem. Tell us your rough weekly volume when you call so we can plan the machines around it.",
   },
   {
-    q: "How is commercial laundry priced?",
-    a: "Regular commercial work is quoted per account based on volume and frequency, which usually works out cheaper than the standard $1.65 per pound. Get in touch and we will put a number together.",
+    q: "Do you quote a separate price for regular business volume?",
+    a: "Get in touch and ask. Standard wash, dry and fold pricing is published on our prices page, and anything beyond that is worth a short conversation rather than a number on a web page.",
   },
   {
     q: "Can you collect and deliver?",
-    a: "Yes, through Curbside Laundry, which we own and operate. We can set up a fixed weekly collection so you never have to think about it.",
+    a: "We also run Curbside Laundry, our own pickup and delivery service in Toronto. It is built for household laundry, so for a regular business collection call us first and we will tell you honestly whether we can cover it.",
   },
 ] as const;
 
@@ -392,11 +413,13 @@ export const COMMERCIAL_FAQ = [
 export const FAQ_CATEGORIES: readonly {
   id: string;
   title: string;
+  icon: IconName;
   items: readonly FaqItem[];
 }[] = [
   {
     id: "general",
     title: "General information",
+    icon: "info",
     items: [
       {
         q: "What are your hours of operation?",
@@ -414,11 +437,16 @@ export const FAQ_CATEGORIES: readonly {
         q: "What payment methods do you accept?",
         a: "Cash, coin and Interac e-Transfer. There is a change machine on site so you can turn bills into quarters.",
       },
+      {
+        q: "Do you pick up and deliver laundry?",
+        a: "Yes, through Curbside Laundry, which we own and operate. Book a pickup window online and we collect your laundry, wash it and bring it back folded to your door anywhere in Toronto.",
+      },
     ],
   },
   {
     id: "machines",
     title: "Using the machines",
+    icon: "machine",
     items: [
       {
         q: "What should I do before starting a load?",
@@ -445,6 +473,7 @@ export const FAQ_CATEGORIES: readonly {
   {
     id: "health",
     title: "Health, safety and hygiene",
+    icon: "shield",
     items: [
       {
         q: "What items are prohibited for health reasons?",
@@ -463,6 +492,7 @@ export const FAQ_CATEGORIES: readonly {
   {
     id: "policies",
     title: "Policies and liability",
+    icon: "doc",
     items: [
       {
         q: "What happens if I forget my laundry?",
@@ -485,6 +515,7 @@ export const FAQ_CATEGORIES: readonly {
   {
     id: "community",
     title: "Community",
+    icon: "users",
     items: [
       {
         q: "What areas do you serve?",

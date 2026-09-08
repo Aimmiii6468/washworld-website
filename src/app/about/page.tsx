@@ -7,6 +7,7 @@ import {
   ButtonLink,
   PageHero,
   ClosingCta,
+  CurbsideBand,
   ArrowIcon,
 } from "@/components/sections/Shared";
 import {
@@ -36,8 +37,8 @@ export default function AboutPage() {
     <>
       <PageHero
         eyebrow={`${GOOGLE_RATING.score} stars from ${GOOGLE_RATING.count} reviews`}
-        title="The neighbourhood laundromat on"
-        highlight="Kenwood Ave"
+        title="On Kenwood Ave since"
+        highlight={BUSINESS.sinceDisplay}
         image="/images/facility/facility-2.jpg"
         imageAlt="The gallery wall above the machines at Washworld Coin Laundry Toronto"
         badge={{ value: "7 days", label: "Open every week" }}
@@ -52,9 +53,10 @@ export default function AboutPage() {
           </>
         }
       >
-        Washworld sits in {BUSINESS.neighbourhood}, a short walk from{" "}
-        {BUSINESS.nearby}. Most of our customers live on the surrounding streets,
-        and a lot of them have been coming for years.
+        Washworld has been washing this neighbourhood&rsquo;s laundry for over
+        four decades. We sit in {BUSINESS.neighbourhood}, a short walk from{" "}
+        {BUSINESS.nearby}, and most of our customers live on the surrounding
+        streets.
       </PageHero>
 
       <section className="px-5 py-16 md:px-8 md:py-24 lg:px-12">
@@ -69,6 +71,14 @@ export default function AboutPage() {
               view.
             </SectionHead>
             <div className="grid gap-4 text-muted-foreground">
+              <p>
+                Washworld opened here in {BUSINESS.sinceDisplay} and has been a
+                fixture of {BUSINESS.neighbourhood} ever since. Toronto has
+                changed a great deal in that time. What we are trying to do has
+                not: keep a clean, safe, genuinely welcoming room where doing
+                the laundry feels like part of the neighbourhood rather than a
+                chore you dread.
+              </p>
               <p>
                 The floor gets cleaned all day rather than once at closing. The
                 air conditioning runs through the summer. The Wi-Fi is fast
@@ -112,6 +122,7 @@ export default function AboutPage() {
           <SectionHead
             eyebrow="On the floor"
             title="What you get every single visit"
+            icon="sparkle"
           />
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {AMENITIES.map((item) => (
@@ -139,6 +150,12 @@ export default function AboutPage() {
             title="The neighbourhood's verdict"
           />
           <ReviewsCarousel />
+        </div>
+      </section>
+
+      <section className="border-t border-border px-5 py-16 md:px-8 md:py-20 lg:px-12">
+        <div className="mx-auto max-w-[1200px]">
+          <CurbsideBand />
         </div>
       </section>
 

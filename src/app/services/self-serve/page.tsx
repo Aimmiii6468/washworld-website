@@ -6,6 +6,7 @@ import {
   SectionHead,
   ButtonLink,
   Faq,
+  CurbsideBand,
   ArrowIcon,
 } from "@/components/sections/Shared";
 import {
@@ -293,6 +294,7 @@ export default function SelfServePage() {
       <section className="border-y border-border bg-secondary px-5 py-16 md:px-8 md:py-24 lg:px-12">
         <div className="mx-auto max-w-[1200px]">
           <SectionHead
+            icon="shield"
             eyebrow="Before you start"
             title="Self-serve rules, in plain language"
           >
@@ -300,6 +302,17 @@ export default function SelfServePage() {
             cycle ends, and do not dye anything in our machines.
           </SectionHead>
           <Faq items={SELF_SERVE_RULES} />
+        </div>
+      </section>
+
+      {/* ---------------- PICKUP ---------------- */}
+      <section className="px-5 py-16 md:px-8 md:py-20 lg:px-12">
+        <div className="mx-auto max-w-[1200px]">
+          <CurbsideBand title="No time to run the machines yourself?">
+            Curbside Laundry is our own pickup and delivery service in Toronto.
+            Book a window online and your laundry comes back washed, dried and
+            folded, without you setting foot in the shop.
+          </CurbsideBand>
         </div>
       </section>
 

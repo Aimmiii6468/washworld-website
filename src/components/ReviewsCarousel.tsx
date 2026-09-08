@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
 import { Stars } from "@/components/sections/Shared";
 import { GOOGLE_REVIEWS, SHOW_REVIEW_DATES } from "@/lib/site";
+import { blurIfPointer } from "@/lib/blurIfPointer";
 
 /** Card width plus the gap between cards, used for one step of the track. */
 const STEP = 364;
@@ -12,25 +13,39 @@ const AUTO_MS = 4500;
 /**
  * Horizontally scrolling review track.
  *
- * It auto-scrolls, but a visitor can stop it: the track pauses on hover and on
- * keyboard focus, there is an explicit pause control, and it never starts at
- * all under prefers-reduced-motion. WCAG 2.2.2 requires a way to stop anything
- * that moves on its own for more than five seconds.
+ * Two separate hover states, on purpose:
+ *
+ * - isReading is set by the card track only. The reason to stop scrolling is
+ *   that someone is reading a review, so hovering the arrows or the pause
+ *   button no longer freezes the carousel the way it used to.
+ * - isNear is set by the whole block and only controls whether the chrome is
+ *   visible. Arrows and the pause row fade in when the cursor is anywhere near
+ *   the carousel and fade out again when it leaves, so the section is clean
+ *   when nobody is interacting with it.
+ *
+ * Keyboard users get both through focus-within: focus reveals the controls and
+ * holds the track still. WCAG 2.2.2 needs a way to stop anything that moves on
+ * its own for more than five seconds, and the pause button is that mechanism.
  */
 export default function ReviewsCarousel() {
   const trackRef = useRef<HTMLDivElement>(null);
   const [isPlaying, setIsPlaying] = useState(true);
-  const [isHeld, setIsHeld] = useState(false);
+  const [isReading, setIsReading] = useState(false);
+  const [isNear, setIsNear] = useState(false);
 
-  const step = useCallback((direction: "left" | "right") => {
-    trackRef.current?.scrollBy({
-      left: direction === "left" ? -STEP : STEP,
-      behavior: "smooth",
-    });
-  }, []);
+  const step = useCallback(
+    (direction: "left" | "right", trigger: HTMLElement) => {
+      trackRef.current?.scrollBy({
+        left: direction === "left" ? -STEP : STEP,
+        behavior: "smooth",
+      });
+      blurIfPointer(trigger);
+    },
+    [],
+  );
 
   useEffect(() => {
-    if (!isPlaying || isHeld) return;
+    if (!isPlaying || isReading) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const timer = window.setInterval(() => {
@@ -45,44 +60,58 @@ export default function ReviewsCarousel() {
     }, AUTO_MS);
 
     return () => window.clearInterval(timer);
-  }, [isPlaying, isHeld]);
+  }, [isPlaying, isReading]);
+
+  // Chrome is hidden until the cursor is near the carousel or something inside
+  // it takes keyboard focus. focus-within covers the arrows, the pause button
+  // and the scrollable track itself.
+  const chrome = `transition-opacity duration-200 ${
+    isNear ? "opacity-100" : "opacity-0 focus-within:opacity-100"
+  }`;
 
   return (
     <div
-      className="relative"
-      onMouseEnter={() => setIsHeld(true)}
-      onMouseLeave={() => setIsHeld(false)}
-      onFocus={() => setIsHeld(true)}
-      onBlur={() => setIsHeld(false)}
+      className="group relative"
+      onMouseEnter={() => setIsNear(true)}
+      onMouseLeave={() => setIsNear(false)}
     >
-      <button
-        type="button"
-        onClick={() => step("left")}
-        aria-label="Previous reviews"
-        className="absolute -left-3 top-1/2 z-20 hidden h-12 w-12 -translate-y-1/2 place-items-center rounded-full border border-border bg-white text-muted-foreground shadow-card-lg transition-colors hover:text-primary sm:grid lg:-left-5"
-      >
-        <ChevronLeft className="h-6 w-6" aria-hidden="true" />
-      </button>
-      <button
-        type="button"
-        onClick={() => step("right")}
-        aria-label="Next reviews"
-        className="absolute -right-3 top-1/2 z-20 hidden h-12 w-12 -translate-y-1/2 place-items-center rounded-full border border-border bg-white text-muted-foreground shadow-card-lg transition-colors hover:text-primary sm:grid lg:-right-5"
-      >
-        <ChevronRight className="h-6 w-6" aria-hidden="true" />
-      </button>
+      <div className={`${chrome} focus-within:opacity-100`}>
+        <button
+          type="button"
+          onClick={(event) => step("left", event.currentTarget)}
+          aria-label="Previous reviews"
+          className="absolute -left-3 top-1/2 z-20 hidden h-12 w-12 -translate-y-1/2 place-items-center rounded-full border border-border bg-white text-muted-foreground shadow-card-lg transition-colors hover:text-primary focus-visible:opacity-100 sm:grid lg:-left-5"
+        >
+          <ChevronLeft className="h-6 w-6" aria-hidden="true" />
+        </button>
+        <button
+          type="button"
+          onClick={(event) => step("right", event.currentTarget)}
+          aria-label="Next reviews"
+          className="absolute -right-3 top-1/2 z-20 hidden h-12 w-12 -translate-y-1/2 place-items-center rounded-full border border-border bg-white text-muted-foreground shadow-card-lg transition-colors hover:text-primary focus-visible:opacity-100 sm:grid lg:-right-5"
+        >
+          <ChevronRight className="h-6 w-6" aria-hidden="true" />
+        </button>
+      </div>
 
       <div
         ref={trackRef}
         tabIndex={0}
         role="group"
         aria-label="Customer reviews, scrollable"
+        onMouseEnter={() => setIsReading(true)}
+        onMouseLeave={() => setIsReading(false)}
+        onFocus={() => {
+          setIsReading(true);
+          setIsNear(true);
+        }}
+        onBlur={() => setIsReading(false)}
         className="scrollbar-hide -mx-1 flex snap-x snap-mandatory gap-6 overflow-x-auto px-1 pb-2"
       >
         {GOOGLE_REVIEWS.map((review) => (
           <figure
             key={review.name}
-            className="m-0 flex w-[85vw] max-w-[340px] shrink-0 snap-center flex-col gap-4 rounded-[26px] border border-border bg-white p-7 shadow-card sm:w-[340px]"
+            className="m-0 flex w-[85vw] max-w-[340px] shrink-0 snap-center flex-col gap-4 rounded-[26px] border border-border bg-white p-7 shadow-card"
           >
             <div className="flex items-start justify-between gap-3">
               <Stars count={review.rating} />
@@ -103,10 +132,13 @@ export default function ReviewsCarousel() {
         ))}
       </div>
 
-      <div className="mt-5 flex items-center gap-4">
+      <div className={`mt-5 flex items-center gap-4 ${chrome}`}>
         <button
           type="button"
-          onClick={() => setIsPlaying((playing) => !playing)}
+          onClick={(event) => {
+            setIsPlaying((playing) => !playing);
+            blurIfPointer(event.currentTarget);
+          }}
           aria-pressed={!isPlaying}
           className="inline-flex items-center gap-2 rounded-full border border-border bg-white px-4 py-2 text-sm font-semibold text-muted-foreground shadow-card transition-colors hover:text-primary"
         >

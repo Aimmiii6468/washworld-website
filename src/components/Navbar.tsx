@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { Menu, X, ChevronDown, MapPin } from "lucide-react";
+import Icon from "@/components/ui/Icon";
 import { BUSINESS } from "@/lib/site";
 
 const SERVICE_LINKS = [
@@ -53,11 +54,11 @@ export default function Navbar() {
           <Image
             src="/logo.webp"
             alt=""
-            width={40}
-            height={40}
-            className="h-10 w-10 object-contain"
+            width={56}
+            height={56}
+            className="h-12 w-12 object-contain md:h-14 md:w-14"
             priority
-            sizes="40px"
+            sizes="56px"
           />
           <span className="leading-tight">
             <span className="wordmark block text-[1.24rem] text-foreground">
@@ -104,6 +105,18 @@ export default function Navbar() {
                   {link.label}
                 </Link>
               ))}
+              {/* Curbside Laundry is the same owner, so pickup belongs in the
+                  services menu even though it lives on another domain. */}
+              <a
+                href={BUSINESS.curbsideUrl}
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => setServicesOpen(false)}
+                className="mt-1 flex items-center gap-2 rounded-xl border-t border-border px-4 py-2.5 pt-3.5 text-sm font-semibold text-foreground hover:bg-secondary"
+              >
+                <Icon name="truck" size={17} className="text-primary" />
+                Pickup &amp; delivery
+              </a>
             </div>
           </div>
 
@@ -163,6 +176,16 @@ export default function Navbar() {
             {link.label}
           </Link>
         ))}
+        <a
+          href={BUSINESS.curbsideUrl}
+          target="_blank"
+          rel="noreferrer"
+          onClick={() => setMobileOpen(false)}
+          className="flex items-center gap-2 border-b border-border py-3 text-[17px] font-semibold"
+        >
+          <Icon name="truck" size={18} className="text-primary" />
+          Pickup &amp; delivery
+        </a>
         {MAIN_LINKS.map((link) => (
           <Link
             key={link.href}

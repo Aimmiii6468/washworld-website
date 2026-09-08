@@ -11,6 +11,7 @@ import {
   Faq,
   PriceList,
   Stars,
+  CurbsideBand,
   ArrowIcon,
 } from "@/components/sections/Shared";
 import {
@@ -34,6 +35,7 @@ export const metadata: Metadata = {
 
 const SERVICES = [
   {
+    icon: "washer" as const,
     title: "Self-serve laundry",
     href: "/services/self-serve",
     img: "/images/services/service-1.jpg",
@@ -43,6 +45,7 @@ const SERVICES = [
     from: "$2.25",
   },
   {
+    icon: "basket" as const,
     title: "Wash, dry & fold",
     href: "/services/wash-and-fold",
     img: "/images/services/service-2.jpg",
@@ -52,6 +55,7 @@ const SERVICES = [
     from: "$1.65",
   },
   {
+    icon: "hanger" as const,
     title: "Dry cleaning",
     href: "/services/dry-cleaning",
     img: "/images/facility/facility-5.jpg",
@@ -186,7 +190,12 @@ export default function Home() {
                   className="aspect-[16/11] w-full object-cover"
                 />
                 <div className="flex flex-1 flex-col gap-3 p-6">
-                  <h3 className="text-[1.3rem]">{service.title}</h3>
+                  <h3 className="flex items-center gap-3 text-[1.3rem]">
+                    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-secondary text-primary">
+                      <Icon name={service.icon} />
+                    </span>
+                    {service.title}
+                  </h3>
                   <p className="text-[0.96rem] text-muted-foreground">
                     {service.copy}
                   </p>
@@ -203,26 +212,8 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="bg-aurora shadow-aurora mt-5 grid items-center gap-7 rounded-[34px] p-7 text-white md:grid-cols-[1fr_auto] md:p-10">
-            <div>
-              <Eyebrow tone="dark">Laundry pickup &amp; delivery</Eyebrow>
-              <h2 className="mt-4 text-[clamp(1.6rem,3vw,2.2rem)] text-white">
-                Too busy? We collect it from your door
-              </h2>
-              <p className="mt-3 max-w-[54ch] text-white/85">
-                Washworld also runs Curbside Laundry, our own pickup and delivery
-                service across Central Toronto. Book a window online and get it
-                back clean and folded.
-              </p>
-            </div>
-            <a
-              href={BUSINESS.curbsideUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3.5 font-heading text-[0.94rem] font-bold text-primary shadow-card-lg transition-transform hover:-translate-y-0.5"
-            >
-              Schedule a pickup <ArrowIcon />
-            </a>
+          <div className="mt-5">
+            <CurbsideBand />
           </div>
         </div>
       </section>
