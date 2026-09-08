@@ -3,6 +3,51 @@ import NextImage from "next/image";
 import Icon, { type IconName } from "@/components/ui/Icon";
 import { BUSINESS } from "@/lib/site";
 
+/**
+ * Visible breadcrumb trail.
+ *
+ * Paired with breadcrumbSchema, which builds the identical trail as JSON-LD.
+ * Google replaces the raw URL in a result with the breadcrumb when both agree,
+ * so the two must always be generated from the same array, and the last crumb
+ * is plain text because a link to the page you are already on is noise.
+ */
+export function Breadcrumbs({
+  trail,
+}: {
+  trail: readonly { name: string; path: string }[];
+}) {
+  return (
+    <nav aria-label="Breadcrumb" className="mb-6">
+      <ol className="m-0 flex list-none flex-wrap items-center gap-1.5 p-0 text-[0.82rem] text-muted-foreground">
+        <li>
+          <Link href="/" className="hover:text-primary">
+            Home
+          </Link>
+        </li>
+        {trail.map((crumb, index) => {
+          const isLast = index === trail.length - 1;
+          return (
+            <li key={crumb.path} className="flex items-center gap-1.5">
+              <span aria-hidden="true" className="opacity-50">
+                /
+              </span>
+              {isLast ? (
+                <span aria-current="page" className="text-foreground">
+                  {crumb.name}
+                </span>
+              ) : (
+                <Link href={crumb.path} className="hover:text-primary">
+                  {crumb.name}
+                </Link>
+              )}
+            </li>
+          );
+        })}
+      </ol>
+    </nav>
+  );
+}
+
 /** Rounded icon tile used above card titles and beside section headings. */
 export function IconTile({
   name,
@@ -211,6 +256,7 @@ export function PageHero({
   imageAlt,
   badge,
   actions,
+  breadcrumbs,
 }: {
   eyebrow: string;
   title: string;
@@ -220,11 +266,13 @@ export function PageHero({
   imageAlt: string;
   badge?: { value: string; label: string };
   actions: React.ReactNode;
+  breadcrumbs?: readonly { name: string; path: string }[];
 }) {
   return (
-    <section className="bg-aurora-hero relative overflow-hidden pt-12 md:pt-20">
+    <section className="bg-aurora-hero relative overflow-hidden pt-8 md:pt-14">
       <div className="mx-auto grid max-w-[1200px] items-center gap-10 px-5 pb-16 md:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:px-12">
         <div>
+          {breadcrumbs && <Breadcrumbs trail={breadcrumbs} />}
           <Eyebrow dot>{eyebrow}</Eyebrow>
           <h1 className="mt-6 text-[clamp(2.1rem,4.4vw,3.3rem)]">
             {title}
@@ -407,6 +455,70 @@ export function CurbsideBand({
         Schedule a pickup <ArrowIcon />
       </a>
     </div>
+  );
+}
+
+/**
+ * The other services, linked from whichever service page you are on.
+ *
+ * This exists for internal linking as much as for the visitor. Every service
+ * page otherwise only received links from the header and the homepage, which
+ * left the three of them isolated from each other; a crawler following one
+ * should be able to reach the other two and the price list without going back
+ * to the top of the site.
+ */
+const ALL_SERVICES = [
+  {
+    href: "/services/self-serve",
+    icon: "washer" as IconName,
+    title: "Self-serve coin laundry",
+    desc: "Washers in three sizes from $2.25, pay at the machine",
+  },
+  {
+    href: "/services/wash-and-fold",
+    icon: "basket" as IconName,
+    title: "Wash, dry & fold",
+    desc: "Drop the bag at the counter, $1.65 per pound",
+  },
+  {
+    href: "/services/dry-cleaning",
+    icon: "hanger" as IconName,
+    title: "Dry cleaning",
+    desc: "Shirts from $4, suits and winter coats priced per item",
+  },
+  {
+    href: "/prices",
+    icon: "tag" as IconName,
+    title: "All prices",
+    desc: "Every machine, every service, on one page",
+  },
+];
+
+export function RelatedServices({ exclude }: { exclude: string }) {
+  const items = ALL_SERVICES.filter((service) => service.href !== exclude);
+  return (
+    <section className="border-t border-border px-5 py-16 md:px-8 md:py-20 lg:px-12">
+      <div className="mx-auto max-w-[1200px]">
+        <SectionHead eyebrow="Also at Washworld" title="The other services" />
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {items.map((service) => (
+            <Link
+              key={service.href}
+              href={service.href}
+              className="rounded-[18px] border border-border bg-white p-6 shadow-card transition-all hover:-translate-y-1 hover:border-primary hover:shadow-card-lg"
+            >
+              <span className="mb-4 block">
+                <IconTile name={service.icon} />
+              </span>
+              <b className="block font-heading text-base">{service.title}</b>
+              <span className="text-[0.86rem] text-muted-foreground">
+                {service.desc}
+              </span>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
 

@@ -17,11 +17,12 @@ import {
   GOOGLE_RATING,
   GALLERY,
 } from "@/lib/site";
+import { breadcrumbSchema, jsonLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: "About Our Toronto Laundromat",
+  title: "Our Toronto Laundromat, Open Since the 1980s",
   description:
-    "Washworld Coin Laundry has served Wychwood-Humewood and St. Clair West for years. Clean machines, framed artwork on the walls, free parking and 4.4 stars from 128 Google reviews.",
+    "Washworld has washed Wychwood-Humewood's laundry since the 1980s. Clean machines, art on every wall, free parking, 4.4 stars from 128 Google reviews.",
   alternates: { canonical: "/about" },
   openGraph: {
     title: "About Washworld Coin Laundry, Toronto",
@@ -32,12 +33,29 @@ export const metadata: Metadata = {
   },
 };
 
+const CRUMBS = [
+  { name: "About", path: "/about" },
+] as const;
+
 export default function AboutPage() {
+  const schema = [
+    breadcrumbSchema(CRUMBS),
+  ];
+
   return (
     <>
+      {schema.map((node, index) => (
+        <script
+          key={index}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: jsonLd(node) }}
+        />
+      ))}
+
       <PageHero
+        breadcrumbs={CRUMBS}
         eyebrow={`${GOOGLE_RATING.score} stars from ${GOOGLE_RATING.count} reviews`}
-        title="On Kenwood Ave since"
+        title="A Toronto laundromat since"
         highlight={BUSINESS.sinceDisplay}
         image="/images/facility/facility-2.jpg"
         imageAlt="The gallery wall above the machines at Washworld Coin Laundry Toronto"

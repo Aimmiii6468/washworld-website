@@ -8,6 +8,7 @@ import {
   PageHero,
   ClosingCta,
   CurbsideBand,
+  RelatedServices,
   ArrowIcon,
 } from "@/components/sections/Shared";
 import {
@@ -16,11 +17,12 @@ import {
   DRY_CLEAN_PRICES,
   DRY_CLEAN_FAQ,
 } from "@/lib/site";
+import { breadcrumbSchema, faqSchema, jsonLd, serviceSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Dry Cleaning in Toronto: Shirts from $4",
   description:
-    "Dry cleaning at 150 Kenwood Ave, Toronto. Shirts $4, blouses $8, pants $9, suits $12 to $18, dresses $19 to $24, winter parkas up to $55. Every item priced individually.",
+    "Dry cleaning in Toronto: shirts $4, blouses $8, pants $9, suits $12 to $18, dresses $19 to $24, parkas to $55. Every item priced on its own.",
   alternates: { canonical: "/services/dry-cleaning" },
   openGraph: {
     title: "Dry Cleaning in Toronto | Washworld Coin Laundry",
@@ -45,25 +47,43 @@ const PROMISE = [
   { icon: "basket" as const, title: "One counter", desc: "Same visit as your wash and fold if you like" },
 ];
 
+const CRUMBS = [
+  { name: "Dry cleaning", path: "/services/dry-cleaning" },
+] as const;
+
 export default function DryCleaningPage() {
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: DRY_CLEAN_FAQ.map((item) => ({
-      "@type": "Question",
-      name: item.q,
-      acceptedAnswer: { "@type": "Answer", text: item.a },
-    })),
-  };
+  const schema = [
+    breadcrumbSchema(CRUMBS),
+    faqSchema(DRY_CLEAN_FAQ),
+    serviceSchema({
+      name: "Dry cleaning",
+      description:
+        "Dry cleaning and pressing in Toronto. Shirts, blouses, suits, dresses and winter coats, each priced per item with nothing added at the counter.",
+      path: "/services/dry-cleaning",
+      offers: [
+        { name: "Shirts, wash and press", price: "4.00" },
+        { name: "Blouses", price: "8.00" },
+        { name: "Pants", price: "9.00" },
+        { name: "Blazers and suits", price: "12.00", note: "From, to $18 by piece" },
+        { name: "Dresses", price: "19.00", note: "From, to $24 by length" },
+        { name: "Winter jackets", price: "30.00", note: "From, to $55 for a full parka" },
+      ],
+    }),
+  ];
+
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-      />
+      {schema.map((node, index) => (
+        <script
+          key={index}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: jsonLd(node) }}
+        />
+      ))}
 
       <PageHero
+        breadcrumbs={CRUMBS}
         eyebrow="Garment care"
         title="Dry cleaning in"
         highlight="Toronto"
@@ -125,6 +145,8 @@ export default function DryCleaningPage() {
           <CurbsideBand />
         </div>
       </section>
+
+      <RelatedServices exclude="/services/dry-cleaning" />
 
       <ClosingCta
         title="Bring the suit in on your way past"

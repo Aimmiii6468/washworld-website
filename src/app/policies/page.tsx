@@ -7,11 +7,12 @@ import {
   ArrowIcon,
 } from "@/components/sections/Shared";
 import { SITE_URL, BUSINESS, POLICY_SECTIONS } from "@/lib/site";
+import { breadcrumbSchema, jsonLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: "Store Policies",
+  title: "Laundromat Rules & Store Policies",
   description:
-    "Store policies for Washworld Coin Laundry: machine use, hygiene, hours and conduct, parking, unattended laundry, and our liability limits.",
+    "Laundromat rules at Washworld Coin Laundry, Toronto: machine use, hygiene, hours and conduct, parking, unattended laundry, and our liability limits.",
   alternates: { canonical: "/policies" },
   openGraph: {
     title: "Store Policies | Washworld Coin Laundry",
@@ -22,12 +23,29 @@ export const metadata: Metadata = {
   },
 };
 
+const CRUMBS = [
+  { name: "Store policies", path: "/policies" },
+] as const;
+
 export default function PoliciesPage() {
+  const schema = [
+    breadcrumbSchema(CRUMBS),
+  ];
+
   return (
     <>
+      {schema.map((node, index) => (
+        <script
+          key={index}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: jsonLd(node) }}
+        />
+      ))}
+
       <PageHero
+        breadcrumbs={CRUMBS}
         eyebrow="The house rules"
-        title="Store"
+        title="Laundromat rules and store"
         highlight="policies"
         image="/images/facility/facility-3.jpg"
         imageAlt="The main aisle at Washworld Coin Laundry Toronto"

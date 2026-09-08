@@ -25,11 +25,12 @@ import {
   GALLERY,
   HOME_FAQ,
 } from "@/lib/site";
+import { faqSchema, jsonLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: "Coin Laundry in Toronto | Washworld, 150 Kenwood Ave",
+  title: "Coin Laundry & Laundromat in Toronto | Washworld",
   description:
-    "Self-serve laundry, wash and fold, and dry cleaning at 150 Kenwood Ave near St. Clair West. Open every day 8AM to 10PM with free parking and free Wi-Fi.",
+    "Coin laundry, wash and fold from $1.65/lb and dry cleaning at 150 Kenwood Ave near St. Clair West. Open every day 8AM to 10PM, free parking and Wi-Fi.",
   alternates: { canonical: "/" },
 };
 
@@ -67,21 +68,12 @@ const SERVICES = [
 ] as const;
 
 export default function Home() {
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: HOME_FAQ.map((item) => ({
-      "@type": "Question",
-      name: item.q,
-      acceptedAnswer: { "@type": "Answer", text: item.a },
-    })),
-  };
 
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLd(faqSchema(HOME_FAQ)) }}
       />
 
       {/* ---------------- HERO ---------------- */}

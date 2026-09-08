@@ -3,7 +3,8 @@ import { Plus_Jakarta_Sans, Public_Sans, Outfit } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { SITE_URL, IS_PRODUCTION, BUSINESS } from "@/lib/site";
+import { SITE_URL, IS_PRODUCTION } from "@/lib/site";
+import { businessSchema, websiteSchema, jsonLd } from "@/lib/schema";
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -31,11 +32,11 @@ const outfit = Outfit({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Coin Laundry in Toronto | Washworld, 150 Kenwood Ave",
+    default: "Coin Laundry & Laundromat in Toronto | Washworld",
     template: "%s | Washworld Coin Laundry",
   },
   description:
-    "Self-serve laundry, wash and fold, and dry cleaning at 150 Kenwood Ave near St. Clair West. Open every day 8AM to 10PM with free parking and free Wi-Fi.",
+    "Coin laundry, wash and fold from $1.65/lb and dry cleaning at 150 Kenwood Ave near St. Clair West. Open every day 8AM to 10PM, free parking and Wi-Fi.",
   alternates: { canonical: "/" },
   openGraph: {
     title: "Coin Laundry in Toronto | Washworld Coin Laundry",
@@ -52,6 +53,16 @@ export const metadata: Metadata = {
     description:
       "Self-serve laundry, wash and fold and dry cleaning near St. Clair West.",
   },
+  // Google Search Console site verification. Set GOOGLE_SITE_VERIFICATION in
+  // Vercel and the meta tag appears; leave it unset and nothing is rendered,
+  // so the tag can never end up pointing at the wrong property.
+  ...(process.env.GOOGLE_SITE_VERIFICATION
+    ? {
+        verification: {
+          google: process.env.GOOGLE_SITE_VERIFICATION,
+        },
+      }
+    : {}),
   // Preview deployments must never compete with the live site in search.
   robots: IS_PRODUCTION
     ? { index: true, follow: true }
@@ -61,59 +72,10 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  // LocalBusiness schema.
-  //
-  // aggregateRating is deliberately omitted: Google treats self-serving review
-  // markup as a structured data violation, so the rating lives in the page UI
-  // only, sourced from the live Google Business Profile.
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "LaundryStore",
-    "@id": `${SITE_URL}/#laundrystore`,
-    name: BUSINESS.name,
-    url: SITE_URL,
-    telephone: BUSINESS.phoneE164,
-    email: BUSINESS.email,
-    image: `${SITE_URL}/images/facility/facility-4.jpg`,
-    logo: `${SITE_URL}/logo.webp`,
-    priceRange: "$",
-    currenciesAccepted: "CAD",
-    paymentAccepted: "Cash, Coin, Interac e-Transfer",
-    hasMap: BUSINESS.mapsUrl,
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: BUSINESS.streetAddress,
-      addressLocality: BUSINESS.addressLocality,
-      addressRegion: BUSINESS.addressRegion,
-      postalCode: BUSINESS.postalCode,
-      addressCountry: BUSINESS.addressCountry,
-    },
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: BUSINESS.latitude,
-      longitude: BUSINESS.longitude,
-    },
-    areaServed: [
-      { "@type": "Place", name: "Wychwood-Humewood, Toronto" },
-      { "@type": "Place", name: "St. Clair West, Toronto" },
-      { "@type": "Place", name: "Forest Hill, Toronto" },
-      { "@type": "Place", name: "Central Toronto" },
-    ],
-    openingHoursSpecification: {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-        "Sunday",
-      ],
-      opens: "08:00",
-      closes: "22:00",
-    },
-  };
+  // The whole entity graph in one node list: the business, and the website
+  // that publishes it. Service and FAQ nodes on inner pages reference the
+  // business by @id rather than repeating it. See src/lib/schema.ts.
+  const graph = [businessSchema(), websiteSchema()];
 
   return (
     // suppressHydrationWarning stays on <html> only. Browser extensions inject
@@ -123,10 +85,13 @@ export default function RootLayout({
       <body
         className={`${publicSans.variable} ${jakarta.variable} ${outfit.variable} flex min-h-screen flex-col font-sans text-[1rem] leading-[1.68]`}
       >
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+        {graph.map((node) => (
+          <script
+            key={node["@id"]}
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: jsonLd(node) }}
+          />
+        ))}
 
         <a href="#main-content" className="skip-link">
           Skip to main content

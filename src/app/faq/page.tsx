@@ -9,11 +9,12 @@ import {
   ArrowIcon,
 } from "@/components/sections/Shared";
 import { SITE_URL, BUSINESS, FAQ_CATEGORIES } from "@/lib/site";
+import { breadcrumbSchema, faqSchema, jsonLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: "Laundry FAQ: Hours, Prices, Parking & Rules",
+  title: "Laundromat FAQ: Hours, Prices & Rules",
   description:
-    "Answers about Washworld Coin Laundry in Toronto: opening hours, last wash time, prices, payment methods, parking, WiFi, and the rules for using our machines.",
+    "Toronto laundromat questions answered: opening hours, last wash time, prices, payment, parking, Wi-Fi, and the rules for using our machines.",
   alternates: { canonical: "/faq" },
   openGraph: {
     title: "Laundromat FAQ | Washworld Coin Laundry Toronto",
@@ -24,28 +25,32 @@ export const metadata: Metadata = {
   },
 };
 
+const CRUMBS = [
+  { name: "FAQ", path: "/faq" },
+] as const;
+
 export default function FaqPage() {
   const allItems = FAQ_CATEGORIES.flatMap((category) => category.items);
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: allItems.map((item) => ({
-      "@type": "Question",
-      name: item.q,
-      acceptedAnswer: { "@type": "Answer", text: item.a },
-    })),
-  };
+  const schema = [
+    breadcrumbSchema(CRUMBS),
+    faqSchema(allItems),
+  ];
+
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-      />
+      {schema.map((node, index) => (
+        <script
+          key={index}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: jsonLd(node) }}
+        />
+      ))}
 
       <PageHero
+        breadcrumbs={CRUMBS}
         eyebrow="Good to know"
-        title="Frequently asked"
+        title="Toronto laundromat"
         highlight="questions"
         image="/images/facility/facility-1.jpg"
         imageAlt="Inside Washworld Coin Laundry at 150 Kenwood Ave Toronto"

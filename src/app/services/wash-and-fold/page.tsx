@@ -8,6 +8,7 @@ import {
   PageHero,
   ClosingCta,
   CurbsideBand,
+  RelatedServices,
   ArrowIcon,
 } from "@/components/sections/Shared";
 import {
@@ -16,11 +17,12 @@ import {
   WASH_FOLD_PRICES,
   WASH_FOLD_FAQ,
 } from "@/lib/site";
+import { breadcrumbSchema, faqSchema, jsonLd, serviceSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "Wash, Dry & Fold Service in Toronto",
   description:
-    "Drop-off wash and fold laundry service at 150 Kenwood Ave, Toronto. $1.65 per pound with no minimum order, bedding priced per item, most orders back the same day.",
+    "Drop-off wash and fold laundry in Toronto. $1.65 per pound, no minimum order, bedding priced per item, and most orders are back the same day.",
   alternates: { canonical: "/services/wash-and-fold" },
   openGraph: {
     title: "Wash, Dry & Fold Service in Toronto | Washworld",
@@ -45,25 +47,41 @@ const INCLUDED = [
   { icon: "washer" as const, title: "Bedding welcome", desc: "Duvets, blankets and toppers priced per item" },
 ];
 
+const CRUMBS = [
+  { name: "Wash, dry & fold", path: "/services/wash-and-fold" },
+] as const;
+
 export default function WashAndFoldPage() {
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: WASH_FOLD_FAQ.map((item) => ({
-      "@type": "Question",
-      name: item.q,
-      acceptedAnswer: { "@type": "Answer", text: item.a },
-    })),
-  };
+  const schema = [
+    breadcrumbSchema(CRUMBS),
+    faqSchema(WASH_FOLD_FAQ),
+    serviceSchema({
+      name: "Wash, dry and fold laundry service",
+      description:
+        "Drop-off laundry service in Toronto. Sorted, washed, dried and folded at $1.65 per pound with no minimum order, most orders back the same day.",
+      path: "/services/wash-and-fold",
+      offers: [
+        { name: "Clothes, per pound", price: "1.65", note: "No minimum order" },
+        { name: "Pillows", price: "5.00", note: "From, priced per item" },
+        { name: "Blankets and duvets", price: "20.00", note: "From, twin to California king" },
+        { name: "Mattress topper", price: "30.00", note: "From, priced per item" },
+      ],
+    }),
+  ];
+
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-      />
+      {schema.map((node, index) => (
+        <script
+          key={index}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: jsonLd(node) }}
+        />
+      ))}
 
       <PageHero
+        breadcrumbs={CRUMBS}
         eyebrow="Drop off, walk away"
         title="Wash, dry and fold service in"
         highlight="Toronto"
@@ -137,6 +155,8 @@ export default function WashAndFoldPage() {
           </CurbsideBand>
         </div>
       </section>
+
+      <RelatedServices exclude="/services/wash-and-fold" />
 
       <ClosingCta
         title="Drop the bag, get your evening back"

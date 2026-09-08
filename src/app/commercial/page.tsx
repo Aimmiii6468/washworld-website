@@ -10,6 +10,7 @@ import {
   ArrowIcon,
 } from "@/components/sections/Shared";
 import { SITE_URL, BUSINESS, COMMERCIAL_FAQ } from "@/lib/site";
+import { breadcrumbSchema, faqSchema, jsonLd } from "@/lib/schema";
 
 /**
  * Business page.
@@ -29,7 +30,7 @@ import { SITE_URL, BUSINESS, COMMERCIAL_FAQ } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Laundry for Toronto Businesses",
   description:
-    "Bulk towels, linen, aprons and uniforms washed at Washworld Coin Laundry, 150 Kenwood Ave Toronto. Large-capacity machines, wash and fold at $1.65 per pound, no minimum order. Call us about regular volume.",
+    "Bulk towels, linen, aprons and uniforms washed in Central Toronto. Large-capacity machines, $1.65 per pound, no minimum. Call us about regular volume.",
   alternates: { canonical: "/commercial" },
   openGraph: {
     title: "Laundry for Toronto Businesses | Washworld",
@@ -100,25 +101,29 @@ const STEPS = [
   },
 ];
 
+const CRUMBS = [
+  { name: "For business", path: "/commercial" },
+] as const;
+
 export default function CommercialPage() {
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: COMMERCIAL_FAQ.map((item) => ({
-      "@type": "Question",
-      name: item.q,
-      acceptedAnswer: { "@type": "Answer", text: item.a },
-    })),
-  };
+  const schema = [
+    breadcrumbSchema(CRUMBS),
+    faqSchema(COMMERCIAL_FAQ),
+  ];
+
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-      />
+      {schema.map((node, index) => (
+        <script
+          key={index}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: jsonLd(node) }}
+        />
+      ))}
 
       <PageHero
+        breadcrumbs={CRUMBS}
         eyebrow="For Toronto businesses"
         title="Bulk laundry for small businesses in"
         highlight="Toronto"

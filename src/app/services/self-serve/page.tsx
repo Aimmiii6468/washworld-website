@@ -3,10 +3,12 @@ import type { Metadata } from "next";
 import Icon from "@/components/ui/Icon";
 import {
   Eyebrow,
+  Breadcrumbs,
   SectionHead,
   ButtonLink,
   Faq,
   CurbsideBand,
+  RelatedServices,
   ArrowIcon,
 } from "@/components/sections/Shared";
 import {
@@ -16,11 +18,12 @@ import {
   SELF_SERVE_RULES,
   AMENITIES,
 } from "@/lib/site";
+import { breadcrumbSchema, faqSchema, jsonLd, serviceSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: "Self-Serve Laundry in Toronto",
+  title: "Self-Serve Coin Laundry in Toronto",
   description:
-    "Self-serve coin laundry at 150 Kenwood Ave, Toronto. Washers from $2.25 in three sizes, dryers $0.25, cash, coin and Interac e-Transfer. Open daily 8AM to 10PM.",
+    "Self-serve coin laundry at 150 Kenwood Ave, Toronto. Washers from $2.25 in three sizes, big enough for a king duvet. Open every day 8AM to 10PM.",
   alternates: { canonical: "/services/self-serve" },
   openGraph: {
     title: "Self-Serve Laundry in Toronto | Washworld Coin Laundry",
@@ -65,28 +68,44 @@ const MACHINE_CARDS = [
   },
 ] as const;
 
+const CRUMBS = [
+  { name: "Self-serve laundry", path: "/services/self-serve" },
+] as const;
+
 export default function SelfServePage() {
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: SELF_SERVE_RULES.map((item) => ({
-      "@type": "Question",
-      name: item.q,
-      acceptedAnswer: { "@type": "Answer", text: item.a },
-    })),
-  };
+  const schema = [
+    breadcrumbSchema(CRUMBS),
+    faqSchema(SELF_SERVE_RULES),
+    serviceSchema({
+      name: "Self-serve coin laundry",
+      description:
+        "Self-serve washers in three sizes and gas dryers at 150 Kenwood Ave, Toronto. Pay at the machine with cash, coin or Interac e-Transfer.",
+      path: "/services/self-serve",
+      offers: [
+        { name: "Standard washer", price: "2.25", note: "Everyday loads, about 28 minutes" },
+        { name: "Large washer", price: "5.00", note: "Bedding and towels, about 32 minutes" },
+        { name: "Extra large washer", price: "8.00", note: "King duvets and comforters, about 38 minutes" },
+        { name: "Dryer", price: "0.25", note: "Per three or four minute block" },
+      ],
+    }),
+  ];
+
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-      />
+      {schema.map((node, index) => (
+        <script
+          key={index}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: jsonLd(node) }}
+        />
+      ))}
 
       {/* ---------------- HERO ---------------- */}
-      <section className="bg-aurora-hero relative overflow-hidden pt-12 md:pt-20">
+      <section className="bg-aurora-hero relative overflow-hidden pt-8 md:pt-14">
         <div className="mx-auto grid max-w-[1200px] items-center gap-10 px-5 pb-16 md:px-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:px-12">
           <div>
+            <Breadcrumbs trail={CRUMBS} />
             <Eyebrow dot>No app, no account, no membership</Eyebrow>
             <h1 className="mt-6 text-[clamp(2.2rem,4.6vw,3.4rem)]">
               Self-serve laundry in <span className="text-aurora">Toronto</span>
@@ -315,6 +334,8 @@ export default function SelfServePage() {
           </CurbsideBand>
         </div>
       </section>
+
+      <RelatedServices exclude="/services/self-serve" />
 
       {/* ---------------- CTA ---------------- */}
       <section className="px-5 py-16 md:px-8 md:py-24 lg:px-12">

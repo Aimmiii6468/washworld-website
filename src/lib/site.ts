@@ -66,6 +66,22 @@ export const BUSINESS = {
    * copy does not go stale every January.
    */
   sinceDisplay: "the 1980s",
+
+  /**
+   * Directory listings that already carry the correct name, address and phone
+   * number. These go into sameAs so the site is tied to the same local entity
+   * Google is already cross-checking. Every one was confirmed to show
+   * "Washworld Coin Laundry, 150 Kenwood Ave" and (416) 652-9274.
+   *
+   * Only add a listing after checking the NAP on it matches this file exactly.
+   * A citation with a stale phone number does more harm than no citation.
+   */
+  citations: [
+    "https://www.yellowpages.ca/bus/Ontario/York/Washworld-Coin-Laundry/1690016.html",
+    "https://www.canpages.ca/page/ON/york/washworld-coin-laundry/1690016",
+    "https://www.cylex-canada.ca/company/washworld-coin-laundry-12180309.html",
+    "https://find-open.ca/york-toronto/washworld-coin-laundry-39293",
+  ],
 } as const;
 
 /**
@@ -301,8 +317,23 @@ export const HOME_FAQ = [
   },
 ] as const;
 
-/** Self-serve page rules, also used as that page's FAQ block. */
+/**
+ * Self-serve page FAQ.
+ *
+ * The first two answer searches ("how to use a laundromat machine", "wash a
+ * comforter at a laundromat"), the rest are the house rules. Both belong on
+ * this page: someone who has never used a laundromat is exactly the person
+ * who needs the rules spelled out too.
+ */
 export const SELF_SERVE_RULES = [
+  {
+    q: "How do you use a laundromat machine?",
+    a: "Pick a washer by load size, open it and check the drum is empty and clean, load your clothes without packing them tight, add detergent to the drawer, then select a cycle and pay at the machine with coin, cash or Interac e-Transfer. Note your machine number and come back when the cycle ends. Dryers work the same way: load, set the heat, and feed quarters for time.",
+  },
+  {
+    q: "Can I wash a duvet or comforter here?",
+    a: "Yes, and this is the main reason people come. A home washer cannot take a king duvet without straining the drum. Our extra large washers are built for them at $8.00 a load, and they spin fast enough to cut the drying time roughly in half. Sleeping bags, mattress toppers and heavy blankets are fine too.",
+  },
   {
     q: "Check the machine before you load",
     a: "Give the washer or dryer a quick look first. We are not liable for damage caused by pens, crayons or bleach left behind by a previous customer, so please check your own pockets too.",
@@ -321,8 +352,32 @@ export const SELF_SERVE_RULES = [
   },
 ] as const;
 
-/** Wash, dry and fold service page FAQ. */
+/**
+ * Wash, dry and fold service page FAQ.
+ *
+ * The first three questions are phrased to match real searches rather than to
+ * sound tidy: "what is wash and fold service", "does wash and fold include
+ * ironing" and "is wash and fold worth it" are all queries people actually
+ * type. Answering them in the exact words they were asked is what earns the
+ * FAQ rich result and, increasingly, the AI summary citation.
+ */
 export const WASH_FOLD_FAQ = [
+  {
+    q: "What is wash and fold service?",
+    a: "You hand over a bag of laundry and get it back clean and folded. Our staff sort it by colour and fabric, wash it, dry it at the right heat for each load, then fold and stack it. There is no appointment and nothing to book, you just walk in with the bag.",
+  },
+  {
+    q: "How does wash and fold work at Washworld?",
+    a: "Drop the bag at the counter in any bag or basket, we weigh it and give you a pickup time, and we text you when it is ready. Most orders dropped in the morning are done the same day.",
+  },
+  {
+    q: "Does wash and fold include ironing?",
+    a: "No. Wash and fold is washed, dried and folded flat. If you want something pressed, our dry cleaning service handles shirts, blouses and suits, and you can drop both at the same counter on the same visit.",
+  },
+  {
+    q: "Is wash and fold worth it?",
+    a: "Self-serve is cheaper per load, so it comes down to your hour. At $1.65 per pound a normal week of clothes for one person lands around $15 to $25, which is what most people decide their evening is worth. Bulky items like duvets are often worth it either way, because our machines take them and a home washer does not.",
+  },
   {
     q: "How much does wash and fold cost in Toronto?",
     a: "Clothes are $1.65 per pound with no minimum order. Bulky items are priced individually: pillows $5 to $9, blankets $20 to $40, mattress toppers $30 to $50, sleeping bags $25 to $30 and bags $5 to $15.",
@@ -345,8 +400,19 @@ export const WASH_FOLD_FAQ = [
   },
 ] as const;
 
-/** Dry cleaning service page FAQ. */
+/**
+ * Dry cleaning service page FAQ.
+ *
+ * "How does dry cleaning work", "how much does dry cleaning cost" and "how
+ * long does dry cleaning take" are the three highest-volume dry cleaning
+ * questions in Canada and none of them are hard to rank for. Answering them
+ * properly on a service page is worth more than another paragraph of copy.
+ */
 export const DRY_CLEAN_FAQ = [
+  {
+    q: "How does dry cleaning work?",
+    a: "Despite the name it is not dry. Garments go into a machine with a liquid solvent instead of water, which lifts oil and grease without soaking the fibres, so wool, silk and structured tailoring keep their shape and do not shrink. Stains are treated by hand first, then everything is steamed and pressed before it goes back on the hanger.",
+  },
   {
     q: "How much is dry cleaning in Toronto?",
     a: "Shirts are $4 for wash and press, blouses $8, pants $9, blazers and suits $12 to $18, dresses $19 to $24 and winter jackets $30 to $55. Every item is priced on its own with nothing added at the counter.",
@@ -488,6 +554,14 @@ export const FAQ_CATEGORIES: readonly {
       {
         q: "What items are prohibited for health reasons?",
         a: "Items contaminated with feces, bodily fluids, or bed bugs and similar infestations are strictly prohibited.",
+      },
+      {
+        q: "Can you get bed bugs from a laundromat?",
+        a: "It is the question people ask most and the honest answer is that the risk is small and it is on us to keep it that way. Bed bugs do not survive a hot wash or a hot dryer cycle, so the machines themselves are not the problem. We ban infested items outright, clean throughout the day rather than once at closing, and ask that laundry is carried in a sealed bag rather than tipped onto a folding table. If you are treating an infestation at home, bag everything and dry it on high heat first.",
+      },
+      {
+        q: "Is the laundromat clean?",
+        a: "We clean the floor and the folding tables through the day, not just at close. Machines are wiped between the busy stretches and taken out of service the moment something is wrong with one rather than left running. If you find a machine that has been left dirty by the previous customer, tell the person at the counter and it gets dealt with straight away.",
       },
       {
         q: "Are pets allowed?",

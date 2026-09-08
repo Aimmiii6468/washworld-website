@@ -3,15 +3,17 @@ import ContactForm from "@/components/ContactForm";
 import Icon from "@/components/ui/Icon";
 import {
   Eyebrow,
+  Breadcrumbs,
   ButtonLink,
   CurbsideBand,
 } from "@/components/sections/Shared";
 import { SITE_URL, BUSINESS } from "@/lib/site";
+import { breadcrumbSchema, jsonLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: "Contact Us at 150 Kenwood Ave, Toronto",
+  title: "Contact & Directions, 150 Kenwood Ave",
   description:
-    "Contact Washworld Coin Laundry in Toronto. Call (416) 652-9274, email us, or drop by 150 Kenwood Ave near St. Clair West. Open every day 8AM to 10PM.",
+    "Contact Washworld Coin Laundry in Toronto. Call (416) 652-9274, email us, or drop by 150 Kenwood Ave near St. Clair West. Open daily 8AM to 10PM.",
   alternates: { canonical: "/contact" },
   openGraph: {
     title: "Contact Washworld Coin Laundry, Toronto",
@@ -22,12 +24,27 @@ export const metadata: Metadata = {
   },
 };
 
+const CRUMBS = [{ name: "Contact", path: "/contact" }] as const;
+
 export default function ContactPage() {
+  const schema = [
+    breadcrumbSchema(CRUMBS),
+  ];
+
   return (
     <>
-      <section className="bg-aurora-hero px-5 pb-16 pt-12 md:px-8 md:pt-20 lg:px-12">
+      {schema.map((node, index) => (
+        <script
+          key={index}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: jsonLd(node) }}
+        />
+      ))}
+
+      <section className="bg-aurora-hero px-5 pb-16 pt-8 md:px-8 md:pt-14 lg:px-12">
         <div className="mx-auto max-w-[1200px]">
           <div className="max-w-3xl">
+            <Breadcrumbs trail={CRUMBS} />
             <Eyebrow dot>Open today until 10:00 PM</Eyebrow>
             <h1 className="mt-6 text-[clamp(2.1rem,4.4vw,3.3rem)]">
               Contact <span className="text-aurora">Washworld</span>

@@ -7,6 +7,7 @@ import {
   PageHero,
   ClosingCta,
   CurbsideBand,
+  RelatedServices,
   ArrowIcon,
 } from "@/components/sections/Shared";
 import {
@@ -17,11 +18,12 @@ import {
   DRY_CLEAN_PRICES,
   PRICES_FAQ,
 } from "@/lib/site";
+import { breadcrumbSchema, faqSchema, jsonLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: "Laundromat Prices in Toronto: Coin Laundry & Wash and Fold",
+  title: "Laundromat Prices in Toronto",
   description:
-    "Full price list for Washworld Coin Laundry, Toronto. Self-serve washers from $2.25, dryers $0.25, wash and fold $1.65 per pound, dry cleaning from $4. No membership.",
+    "Laundromat prices in Toronto: self-serve washers from $2.25, dryers $0.25, wash and fold $1.65 per pound, dry cleaning from $4. No membership, no minimum.",
   alternates: { canonical: "/prices" },
   openGraph: {
     title: "Laundromat Prices in Toronto | Washworld Coin Laundry",
@@ -32,25 +34,29 @@ export const metadata: Metadata = {
   },
 };
 
+const CRUMBS = [
+  { name: "Prices", path: "/prices" },
+] as const;
+
 export default function PricesPage() {
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: PRICES_FAQ.map((item) => ({
-      "@type": "Question",
-      name: item.q,
-      acceptedAnswer: { "@type": "Answer", text: item.a },
-    })),
-  };
+  const schema = [
+    breadcrumbSchema(CRUMBS),
+    faqSchema(PRICES_FAQ),
+  ];
+
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-      />
+      {schema.map((node, index) => (
+        <script
+          key={index}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: jsonLd(node) }}
+        />
+      ))}
 
       <PageHero
+        breadcrumbs={CRUMBS}
         eyebrow="Updated for 2026"
         title="Laundromat prices in"
         highlight="Toronto"
@@ -150,6 +156,8 @@ export default function PricesPage() {
           </CurbsideBand>
         </div>
       </section>
+
+      <RelatedServices exclude="/prices" />
 
       <ClosingCta
         title="Bring the basket, we handle the rest"
