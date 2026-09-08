@@ -126,10 +126,11 @@ signals below decide the ranking.
 
 - **Is there a change machine?** It is listed in amenities and in the price
   table on the strength of three Google reviews. It was never on the old site.
-- **What business laundry does he actually want?** `/commercial` is written as
-  an enquiry page precisely because nothing sourced the trades, rates or
-  collection schedule the earlier draft claimed. Once he confirms, that page can
-  be rewritten to sell and start earning "commercial laundry service toronto".
+- ~~What business laundry does he actually want?~~ **Answered 2026-09-08:**
+  none. There is no commercial service, no business account, no fixed weekly
+  collection and no separate rate. A business pays the published price at the
+  same counter as everyone else. `/commercial` now sells that fact rather than
+  a service tier, and nothing on it may imply otherwise.
 - **The logo artwork reads "COIN LAUINDRY".** The typo is in the source image,
   not the code.
 

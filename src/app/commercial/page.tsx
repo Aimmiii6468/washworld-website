@@ -15,27 +15,28 @@ import { breadcrumbSchema, faqSchema, jsonLd } from "@/lib/schema";
 /**
  * Business page.
  *
- * Deliberately written as an enquiry page, not a sales page. The previous
- * washworld site had no business or commercial section at all, and
- * curbsidelaundry.ca sells a consumer pickup service only, so there is no
- * source for "we already serve salons and gyms", for a commercial rate, or for
- * a weekly collection contract. Everything below is limited to what is
- * verifiably true: the machines, the counter service, the published price, and
- * an invitation to call.
+ * The owner has confirmed there is no commercial service here. No business
+ * accounts, no fixed weekly collection, no separate rate. A restaurant or a
+ * salon pays $1.65 a pound at the same counter as everyone else.
  *
- * When the owner confirms which trades he wants and what he charges, this page
- * can be rewritten to sell. Until then, do not add a claim here that is not
- * already true of the walk-in shop.
+ * So this page does not sell a service that does not exist. It sells the
+ * absence of one, which is the real advantage over an industrial contractor:
+ * nothing to set up, nothing to negotiate, no minimum, walk in today. That is
+ * a genuine reason for a small business to choose a laundromat, and it is all
+ * verifiably true.
+ *
+ * Do not add a client list, a quote process, an account, a contract or a
+ * volume discount to this page. None of them exist.
  */
 export const metadata: Metadata = {
-  title: "Laundry for Toronto Businesses",
+  title: "Bulk & Business Laundry in Toronto",
   description:
-    "Bulk towels, linen, aprons and uniforms washed in Central Toronto. Large-capacity machines, $1.65 per pound, no minimum. Call us about regular volume.",
+    "Bulk towels, linen, aprons and uniforms washed in Central Toronto. $1.65 per pound, the same rate as everyone. No account, no contract, no minimum.",
   alternates: { canonical: "/commercial" },
   openGraph: {
-    title: "Laundry for Toronto Businesses | Washworld",
+    title: "Bulk & Business Laundry in Toronto | Washworld",
     description:
-      "Bulk towels, linen and uniforms washed in Central Toronto. Ask us about regular volume.",
+      "Bulk towels, linen and uniforms washed in Central Toronto. Same counter, same price, no account needed.",
     url: `${SITE_URL}/commercial`,
     type: "website",
     images: [OG_IMAGE],
@@ -43,8 +44,8 @@ export const metadata: Metadata = {
 };
 
 /**
- * What the shop can physically do. Note these describe equipment and service,
- * never an existing client list.
+ * What the shop can physically do. Equipment, published price, hours and
+ * parking. Never a client list, and never a service tier.
  */
 const CAPABILITIES = [
   {
@@ -55,7 +56,7 @@ const CAPABILITIES = [
   {
     icon: "basket" as const,
     title: "Wash, dry and fold",
-    desc: "$1.65 per pound with no minimum order, sorted and folded by our staff",
+    desc: "$1.65 per pound, the same rate we charge everyone, sorted and folded by our staff",
   },
   {
     icon: "hanger" as const,
@@ -73,32 +74,32 @@ const CAPABILITIES = [
     desc: "Free customer parking at 150 Kenwood Ave, which matters when you arrive with bags",
   },
   {
-    icon: "truck" as const,
-    title: "Pickup and delivery",
-    desc: "We run Curbside Laundry ourselves, so collection is worth asking about",
+    icon: "tag" as const,
+    title: "Nothing to set up",
+    desc: "No account, no contract, no minimum order and no invoice to chase",
   },
 ];
 
 const STEPS = [
   {
     lead: "1",
-    title: "Call or send a message",
-    desc: "Tell us what you need washed and roughly how often",
+    title: "Bring the bag in",
+    desc: "Any bag or basket, no appointment and no call ahead",
   },
   {
     lead: "2",
-    title: "We tell you straight",
-    desc: "Whether we can cover it, and what it would cost you",
+    title: "We weigh it",
+    desc: "You know the price before you leave the counter",
   },
   {
     lead: "3",
-    title: "Drop it at the counter",
-    desc: "Any bag or basket, no appointment, no account to open",
+    title: "Washed, dried, folded",
+    desc: "Sorted by colour and fabric, dried at the right heat",
   },
   {
     lead: "4",
-    title: "Back clean and folded",
-    desc: "Ready to go straight back into service",
+    title: "Collect the same day",
+    desc: "Most morning drop-offs are ready by the evening",
   },
 ];
 
@@ -126,37 +127,37 @@ export default function CommercialPage() {
       <PageHero
         breadcrumbs={CRUMBS}
         eyebrow="For Toronto businesses"
-        title="Bulk laundry for small businesses in"
+        title="Bulk and business laundry in"
         highlight="Toronto"
         image="/images/facility/facility-5.jpg"
         imageAlt="Wall of large commercial dryers at Washworld Coin Laundry Toronto"
-        badge={{ value: "$1.65", label: "Per pound, no minimum" }}
+        badge={{ value: "$1.65", label: "Per pound, one rate" }}
         actions={
           <>
-            <ButtonLink href={BUSINESS.phoneHref}>
-              Call {BUSINESS.phoneDisplay} <ArrowIcon />
+            <ButtonLink href={BUSINESS.mapsUrl} external>
+              Get directions <ArrowIcon />
             </ButtonLink>
-            <ButtonLink href="/contact" variant="soft">
-              Send us a message
+            <ButtonLink href="/prices" variant="soft">
+              See the price list
             </ButtonLink>
           </>
         }
       >
         Towels, sheets, aprons and uniforms washed on the same large-capacity
-        machines the neighbourhood uses every day. If your shop goes through
-        laundry every week, call us and we will tell you honestly what we can
-        take on.
+        machines the neighbourhood uses every day. You pay the same $1.65 a
+        pound as everyone else, with no account to open and no contract to sign.
       </PageHero>
 
       <section className="px-5 py-16 md:px-8 md:py-24 lg:px-12">
         <div className="mx-auto max-w-[1200px]">
           <SectionHead
             eyebrow="What we have"
-            title="A working laundromat, not a sales pitch"
+            title="A working laundromat, not a contract"
           >
             We are a neighbourhood laundromat on {BUSINESS.streetAddress}, not an
-            industrial contractor. That is the point: no account minimum, no
-            long-term contract, and you can walk in today.
+            industrial supplier. That is exactly the point. There is no account
+            to open, no minimum to hit and nobody to negotiate with, so you can
+            walk in this afternoon and have it back tonight.
           </SectionHead>
           <CardGrid items={CAPABILITIES} columns={3} />
         </div>
@@ -165,8 +166,8 @@ export default function CommercialPage() {
       <section className="border-y border-border bg-secondary px-5 py-16 md:px-8 md:py-24 lg:px-12">
         <div className="mx-auto max-w-[1200px]">
           <SectionHead
-            eyebrow="How to start"
-            title="Four steps, and the first one is a phone call"
+            eyebrow="How it works"
+            title="Four steps, and none of them is paperwork"
           />
           <CardGrid items={STEPS} />
         </div>
@@ -176,9 +177,8 @@ export default function CommercialPage() {
         <div className="mx-auto max-w-[1200px]">
           <CurbsideBand title="Would rather we came to you?">
             Curbside Laundry is our own pickup and delivery service in Toronto.
-            It is built for household laundry, so for a regular business
-            collection call the shop first and we will tell you whether we can
-            cover your address and volume.
+            Book a window online and your laundry is collected, washed and
+            returned folded to your door. It is priced on the Curbside site.
           </CurbsideBand>
         </div>
       </section>
@@ -186,7 +186,7 @@ export default function CommercialPage() {
       <section className="border-t border-border px-5 pb-16 md:px-8 md:pb-24 lg:px-12">
         <div className="mx-auto max-w-[1200px] pt-16 md:pt-24">
           <SectionHead
-            eyebrow="Before you call"
+            eyebrow="Good to know"
             title="What businesses ask us"
             icon="building"
           />
@@ -195,21 +195,21 @@ export default function CommercialPage() {
       </section>
 
       <ClosingCta
-        title="Tell us what you need washed"
+        title="Bring the bag in today"
         actions={
           <>
-            <ButtonLink href={BUSINESS.phoneHref}>
-              Call {BUSINESS.phoneDisplay} <ArrowIcon />
+            <ButtonLink href={BUSINESS.mapsUrl} external>
+              Get directions <ArrowIcon />
             </ButtonLink>
-            <ButtonLink href="/contact" variant="soft">
-              Send a message
+            <ButtonLink href={BUSINESS.phoneHref} variant="soft">
+              Call {BUSINESS.phoneDisplay}
             </ButtonLink>
           </>
         }
       >
         We are at {BUSINESS.streetAddress}, {BUSINESS.addressLocality}, open every
-        day {BUSINESS.hoursDisplay}. Bring a bag in and see the machines for
-        yourself.
+        day {BUSINESS.hoursDisplay}. Nothing to arrange first, just walk in and
+        see the machines for yourself.
       </ClosingCta>
     </>
   );
