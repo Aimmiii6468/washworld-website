@@ -475,32 +475,34 @@ export const PRICES_FAQ = [
 /**
  * Business page FAQ.
  *
- * IMPORTANT, read before editing. The owner has confirmed in his own words
- * that there is no commercial service here: no business accounts, no fixed
- * weekly collection, and no separate rate. A business pays exactly the
- * published price, the same as anyone walking in off the street.
+ * IMPORTANT, read before editing. The previous washworld site had no business
+ * or commercial page at all, so there is no source for a client list, and the
+ * owner has confirmed there is no fixed weekly collection and no separate
+ * commercial rate: a business pays the published price. Nothing here may state
+ * that a business account exists, name a trade we "work with", or suggest a
+ * rate is negotiable.
  *
- * So nothing on this page may imply a quote, a contract, an account, a volume
- * discount, or a client list. The honest version turns out to be the better
- * sell anyway: nothing to set up, nothing to negotiate, walk in today. Do not
- * "improve" these answers by adding a service the shop does not run.
+ * What it may do is invite a business to call about volume and timing, which is
+ * a real conversation, and point at Curbside Laundry for pickup and delivery,
+ * which is the same owner's business. Once he says which trades he wants, these
+ * answers can be sharpened to speak to them by name.
  */
 export const COMMERCIAL_FAQ = [
   {
     q: "Can a business use Washworld for its laundry?",
-    a: "Yes, and there is nothing to set up first. Bring the bag to the counter like any other customer. Wash, dry and fold is $1.65 per pound with no minimum order, and dry cleaning is priced per item. No account to open, no contract to sign, no minimum commitment.",
-  },
-  {
-    q: "Do you charge businesses a different rate?",
-    a: "No. The prices on our prices page are the prices, whether you bring one bag a month or a bag every day. There is no commercial rate to negotiate and no volume discount to ask about, which also means there is nothing to wait for. You can walk in today.",
+    a: "Yes. Anyone can drop a bag at the counter, business or not, and our wash, dry and fold service is $1.65 per pound with no minimum order. If you need towels or linen washed every week, call us and we will talk through what you need.",
   },
   {
     q: "How much laundry can you take at once?",
-    a: "Our largest washers hold king-size duvets, so bulk towels, sheets and aprons are no trouble. We are a neighbourhood laundromat rather than an industrial plant, so if you are bringing an unusually large load, call ahead and we will tell you honestly whether we can turn it around that day.",
+    a: "Our largest washers hold king-size duvets and comforters, so bulk towels, sheets and aprons are no problem. Tell us your rough weekly volume when you call so we can plan the machines around it.",
   },
   {
-    q: "Do you collect and deliver?",
-    a: "We also run Curbside Laundry, our own pickup and delivery service in Toronto. Book a window online and your laundry is collected, washed and returned folded. Curbside is priced on its own site.",
+    q: "Do you charge businesses a different rate?",
+    a: "No. The prices on our prices page are the prices, whether you bring one bag a month or a bag every week. There is no separate commercial rate and no volume discount, which also means there is nothing to negotiate before you start. Call us about timing and how much we can turn around in a day, not about price.",
+  },
+  {
+    q: "Can you collect and deliver?",
+    a: "We also run Curbside Laundry, our own pickup and delivery service in Toronto. It is built for household laundry, so for a regular business collection call us first and we will tell you honestly whether we can cover it.",
   },
 ] as const;
 

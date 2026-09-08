@@ -161,7 +161,7 @@ export default function ContactPage() {
               See laundry prices
             </ButtonLink>
             <ButtonLink href="/commercial" variant="soft">
-              Bulk & business laundry
+              Laundry for business
             </ButtonLink>
             <ButtonLink href="/faq" variant="soft">
               Read the FAQ

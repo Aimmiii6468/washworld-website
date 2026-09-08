@@ -126,11 +126,14 @@ signals below decide the ranking.
 
 - **Is there a change machine?** It is listed in amenities and in the price
   table on the strength of three Google reviews. It was never on the old site.
-- ~~What business laundry does he actually want?~~ **Answered 2026-09-08:**
-  none. There is no commercial service, no business account, no fixed weekly
-  collection and no separate rate. A business pays the published price at the
-  same counter as everyone else. `/commercial` now sells that fact rather than
-  a service tier, and nothing on it may imply otherwise.
+- **Which trades does he want to take on?** Still open. What he has confirmed
+  is narrower: the shop does laundry and nothing else, there is no fixed weekly
+  collection, and there is no separate commercial rate. A business pays the
+  published price. `/commercial` is written as an enquiry page on that basis and
+  must not imply an account, a contract or a negotiated rate. Curbside Laundry
+  is the same owner's business, so linking it for pickup and delivery is
+  accurate. Once he says which trades he wants, the page can be sharpened to
+  sell to them by name.
 - **The logo artwork reads "COIN LAUINDRY".** The typo is in the source image,
   not the code.
 
