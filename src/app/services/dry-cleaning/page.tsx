@@ -16,6 +16,7 @@ import {
   BUSINESS,
   DRY_CLEAN_PRICES,
   DRY_CLEAN_FAQ,
+  OG_IMAGE,
 } from "@/lib/site";
 import { breadcrumbSchema, faqSchema, jsonLd, serviceSchema } from "@/lib/schema";
 
@@ -30,6 +31,7 @@ export const metadata: Metadata = {
       "Shirts, suits, dresses and winter coats cleaned and pressed. Twelve item types, each priced on its own.",
     url: `${SITE_URL}/services/dry-cleaning`,
     type: "website",
+    images: [OG_IMAGE],
   },
 };
 

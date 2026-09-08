@@ -85,6 +85,23 @@ export const BUSINESS = {
 } as const;
 
 /**
+ * Share card image, used for Open Graph and Twitter on every page.
+ *
+ * Next's opengraph-image file convention only applies to pages that do not
+ * declare an openGraph object of their own. Every page here declares one for
+ * its own title and description, which silently replaced the parent and left
+ * the whole site with no og:image at all: every WhatsApp, Facebook and
+ * LinkedIn share was a bare grey box. So the image is spread into each page's
+ * openGraph explicitly.
+ */
+export const OG_IMAGE = {
+  url: "/opengraph-image.png",
+  width: 1200,
+  height: 630,
+  alt: "Washworld Coin Laundry, 150 Kenwood Ave, Toronto",
+} as const;
+
+/**
  * Google rating shown on the site.
  * Pulled manually from the Google Business Profile on 2026-09-08.
  * Update both numbers together whenever the profile is re-checked.

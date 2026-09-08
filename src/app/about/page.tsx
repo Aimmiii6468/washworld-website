@@ -16,6 +16,7 @@ import {
   AMENITIES,
   GOOGLE_RATING,
   GALLERY,
+  OG_IMAGE,
 } from "@/lib/site";
 import { breadcrumbSchema, jsonLd } from "@/lib/schema";
 
@@ -30,6 +31,7 @@ export const metadata: Metadata = {
       "A neighbourhood laundromat in Wychwood-Humewood with clean machines, free parking and art on the walls.",
     url: `${SITE_URL}/about`,
     type: "website",
+    images: [OG_IMAGE],
   },
 };
 

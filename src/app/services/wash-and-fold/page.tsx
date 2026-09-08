@@ -16,6 +16,7 @@ import {
   BUSINESS,
   WASH_FOLD_PRICES,
   WASH_FOLD_FAQ,
+  OG_IMAGE,
 } from "@/lib/site";
 import { breadcrumbSchema, faqSchema, jsonLd, serviceSchema } from "@/lib/schema";
 
@@ -30,6 +31,7 @@ export const metadata: Metadata = {
       "Drop the bag at the counter and collect it sorted, washed, dried and folded. $1.65 per pound, no minimum.",
     url: `${SITE_URL}/services/wash-and-fold`,
     type: "website",
+    images: [OG_IMAGE],
   },
 };
 

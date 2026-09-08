@@ -3,7 +3,7 @@ import { Plus_Jakarta_Sans, Public_Sans, Outfit } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { SITE_URL, IS_PRODUCTION } from "@/lib/site";
+import { SITE_URL, IS_PRODUCTION, OG_IMAGE } from "@/lib/site";
 import { businessSchema, websiteSchema, jsonLd } from "@/lib/schema";
 
 const jakarta = Plus_Jakarta_Sans({
@@ -46,12 +46,15 @@ export const metadata: Metadata = {
     siteName: "Washworld Coin Laundry",
     locale: "en_CA",
     type: "website",
+    images: [OG_IMAGE],
   },
+  // Only the card type and the image. Leaving title and description out means
+  // Next fills each page's Twitter card from that page's own title and
+  // description; setting them here pinned every inner page's card to the
+  // homepage copy.
   twitter: {
     card: "summary_large_image",
-    title: "Coin Laundry in Toronto | Washworld",
-    description:
-      "Self-serve laundry, wash and fold and dry cleaning near St. Clair West.",
+    images: [OG_IMAGE.url],
   },
   // Google Search Console site verification. Set GOOGLE_SITE_VERIFICATION in
   // Vercel and the meta tag appears; leave it unset and nothing is rendered,

@@ -9,7 +9,7 @@ import {
   CurbsideBand,
   ArrowIcon,
 } from "@/components/sections/Shared";
-import { SITE_URL, BUSINESS, COMMERCIAL_FAQ } from "@/lib/site";
+import { SITE_URL, BUSINESS, COMMERCIAL_FAQ, OG_IMAGE } from "@/lib/site";
 import { breadcrumbSchema, faqSchema, jsonLd } from "@/lib/schema";
 
 /**
@@ -38,6 +38,7 @@ export const metadata: Metadata = {
       "Bulk towels, linen and uniforms washed in Central Toronto. Ask us about regular volume.",
     url: `${SITE_URL}/commercial`,
     type: "website",
+    images: [OG_IMAGE],
   },
 };
 

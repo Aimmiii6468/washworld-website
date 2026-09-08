@@ -7,7 +7,7 @@ import {
   ButtonLink,
   CurbsideBand,
 } from "@/components/sections/Shared";
-import { SITE_URL, BUSINESS } from "@/lib/site";
+import { SITE_URL, BUSINESS, OG_IMAGE } from "@/lib/site";
 import { breadcrumbSchema, jsonLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
@@ -21,6 +21,7 @@ export const metadata: Metadata = {
       "Call, email or visit us at 150 Kenwood Ave near St. Clair West. Open daily 8AM to 10PM.",
     url: `${SITE_URL}/contact`,
     type: "website",
+    images: [OG_IMAGE],
   },
 };
 

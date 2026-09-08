@@ -17,6 +17,7 @@ import {
   WASH_FOLD_PRICES,
   DRY_CLEAN_PRICES,
   PRICES_FAQ,
+  OG_IMAGE,
 } from "@/lib/site";
 import { breadcrumbSchema, faqSchema, jsonLd } from "@/lib/schema";
 
@@ -31,6 +32,7 @@ export const metadata: Metadata = {
       "Self-serve, wash and fold, and dry cleaning prices in one place. No membership and no minimum order.",
     url: `${SITE_URL}/prices`,
     type: "website",
+    images: [OG_IMAGE],
   },
 };
 

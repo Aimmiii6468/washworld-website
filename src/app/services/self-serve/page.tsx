@@ -17,6 +17,7 @@ import {
   SELF_SERVE_PRICES,
   SELF_SERVE_RULES,
   AMENITIES,
+  OG_IMAGE,
 } from "@/lib/site";
 import { breadcrumbSchema, faqSchema, jsonLd, serviceSchema } from "@/lib/schema";
 
@@ -31,6 +32,7 @@ export const metadata: Metadata = {
       "Washers in three sizes from $2.25, hot gas dryers, free Wi-Fi and free parking near St. Clair West.",
     url: `${SITE_URL}/services/self-serve`,
     type: "website",
+    images: [OG_IMAGE],
   },
 };
 

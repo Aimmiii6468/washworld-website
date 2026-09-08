@@ -8,7 +8,7 @@ import {
   CurbsideBand,
   ArrowIcon,
 } from "@/components/sections/Shared";
-import { SITE_URL, BUSINESS, FAQ_CATEGORIES } from "@/lib/site";
+import { SITE_URL, BUSINESS, FAQ_CATEGORIES, OG_IMAGE } from "@/lib/site";
 import { breadcrumbSchema, faqSchema, jsonLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
@@ -22,6 +22,7 @@ export const metadata: Metadata = {
       "Hours, prices, parking, payment and machine rules, all in one place.",
     url: `${SITE_URL}/faq`,
     type: "website",
+    images: [OG_IMAGE],
   },
 };
 

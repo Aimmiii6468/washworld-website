@@ -6,7 +6,7 @@ import {
   ClosingCta,
   ArrowIcon,
 } from "@/components/sections/Shared";
-import { SITE_URL, BUSINESS, POLICY_SECTIONS } from "@/lib/site";
+import { SITE_URL, BUSINESS, POLICY_SECTIONS, OG_IMAGE } from "@/lib/site";
 import { breadcrumbSchema, jsonLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
@@ -20,6 +20,7 @@ export const metadata: Metadata = {
       "Machine use, hygiene, hours, parking, abandoned laundry and liability limits.",
     url: `${SITE_URL}/policies`,
     type: "website",
+    images: [OG_IMAGE],
   },
 };
 
