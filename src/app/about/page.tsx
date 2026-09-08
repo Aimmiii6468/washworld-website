@@ -14,13 +14,13 @@ export default function AboutPage() {
   const amenities = [
     {
       icon: ParkingCircle,
-      title: "Complementary Parking",
+      title: "Complimentary Parking",
       desc: "Forget the stress of downtown street parking. We provide plenty of free, dedicated customer-only parking right at 150 Kenwood Ave so you can load and unload with ease."
     },
     {
       icon: Wifi,
       title: "High-Speed WiFi",
-      desc: "Stay connected! Whether you need to catch up on emails, stream your favorite show, or finish some homework, our complementary WiFi has you covered."
+      desc: "Stay connected! Whether you need to catch up on emails, stream your favorite show, or finish some homework, our complimentary WiFi has you covered."
     },
     {
       icon: Palette,
@@ -35,7 +35,7 @@ export default function AboutPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-slate-50 pt-32 pb-24">
+    <div className="min-h-screen bg-slate-50 pt-32 pb-24">
       <div className="max-w-4xl mx-auto px-6">
         
         {/* Header Section */}
@@ -141,6 +141,6 @@ export default function AboutPage() {
         </div>
 
       </div>
-    </main>
+    </div>
   );
 }

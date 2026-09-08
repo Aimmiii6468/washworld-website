@@ -27,7 +27,7 @@
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-border: var(--border);
-  
+
   --color-trust: hsl(220, 40%, 25%);
   --color-warning: hsl(35, 95%, 58%);
   --color-destructive: hsl(0, 84%, 60%);
@@ -44,14 +44,6 @@
 
   html {
     scroll-behavior: smooth;
-    /* Hide scrollbar for IE, Edge and Firefox */
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-
-  /* Hide scrollbar for Chrome, Safari and Opera globally */
-  ::-webkit-scrollbar {
-    display: none;
   }
 
   body {
@@ -61,15 +53,35 @@
     -moz-osx-font-smoothing: grayscale;
     margin: 0;
     padding: 0;
-    /* Hide scrollbar on body as well just in case */
-    -ms-overflow-style: none;
-    scrollbar-width: none;
   }
 
   /* Wrapped in base layer so standard text-white utilities successfully override it */
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
     color: var(--color-foreground);
+  }
+
+  /* Visible, consistent keyboard focus ring across the whole site */
+  :focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Respect the visitor's OS-level reduced motion setting */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }
 
@@ -81,6 +93,38 @@
   .bg-card-gradient {
     /* 145deg White -> Secondary */
     background: linear-gradient(145deg, #ffffff, var(--color-secondary));
+  }
+
+  /*
+   * Scoped scrollbar hiding. Previously this was global, which removed the
+   * page scrollbar everywhere and hid the fact that pages were scrollable.
+   * Now only opt-in horizontal tracks (the reviews carousel) use it.
+   */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Skip link: visually hidden until it receives keyboard focus */
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 100;
+  }
+  .skip-link:focus {
+    left: 1rem;
+    top: 1rem;
+    width: auto;
+    height: auto;
+    padding: 0.75rem 1.25rem;
+    background: var(--color-primary);
+    color: #ffffff;
+    font-weight: 700;
+    border-radius: 9999px;
   }
 }
 

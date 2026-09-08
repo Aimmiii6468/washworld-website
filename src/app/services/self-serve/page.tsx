@@ -9,8 +9,8 @@ export default function SelfServePage() {
       {/* Header / Hero */}
       <div className="relative w-full h-[40vh] md:h-[50vh] flex items-center justify-center bg-slate-900 overflow-hidden">
         <Image 
-          src="/images/services/machines-row-hero.jpg" 
-          alt="Self Serve Wash and Dry Facility" 
+          src="/images/facility/facility-4.jpg" 
+          alt="Row of self-serve washers at Washworld" 
           fill 
           className="object-cover opacity-40 mix-blend-overlay" 
           priority
@@ -31,7 +31,7 @@ export default function SelfServePage() {
         </div>
       </div>
 
-      <main className="flex-grow max-w-6xl mx-auto px-6 py-16 md:py-24 w-full">
+      <div className="flex-grow max-w-6xl mx-auto px-6 py-16 md:py-24 w-full">
         {/* Main Content Split */}
         <div className="flex flex-col lg:flex-row gap-16">
           
@@ -93,7 +93,7 @@ export default function SelfServePage() {
         <section className="mt-24 pt-20 border-t border-slate-200">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-black text-slate-800 mb-4">Why Washworld Self-Serve?</h2>
-            <p className="text-lg text-slate-500 max-w-2xl mx-auto">We've thought of everything to make your laundry day as comfortable and efficient as possible.</p>
+            <p className="text-lg text-slate-500 max-w-2xl mx-auto">We&apos;ve thought of everything to make your laundry day as comfortable and efficient as possible.</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -108,8 +108,8 @@ export default function SelfServePage() {
               <div className="w-14 h-14 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-6">
                 <CreditCard className="w-7 h-7" />
               </div>
-              <h3 className="text-xl font-bold text-slate-800 mb-3">Flexible Payments</h3>
-              <p className="text-slate-500">No quarters? No problem! All of our machines accept credit cards, mobile tap-to-pay, and traditional coins.</p>
+              <h3 className="text-xl font-bold text-slate-800 mb-3">Simple Payments</h3>
+              <p className="text-slate-500">We accept cash, coin and Interac e-Transfer. A change machine on site turns your bills into quarters, so you are never stuck mid-load.</p>
             </div>
             <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 text-center">
               <div className="w-14 h-14 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-6">
@@ -166,7 +166,7 @@ export default function SelfServePage() {
                   <p><strong>1. Pre-Use Inspection:</strong> Customers are responsible for inspecting the inside of washers and dryers before use. We are not liable for damage to your laundry caused by items (pens, crayons, bleach, etc.) left behind by a previous user.</p>
                   <p><strong>2. Biohazards & Infestations:</strong> For the health and safety of all patrons, items contaminated with feces, bodily fluids, or bed bugs (and similar infestations) are strictly prohibited.</p>
                   <p><strong>3. No Pets Allowed:</strong> Pets are not permitted inside the facility. Service animals specifically trained to aid individuals with disabilities are the only exception.</p>
-                  <p><strong>4. Pet Hair Policy:</strong> Please shake off and remove excessive animal hair from items before washing. This prevents drainage clogs and protects other customers' laundry.</p>
+                  <p><strong>4. Pet Hair Policy:</strong> Please shake off and remove excessive animal hair from items before washing. This prevents drainage clogs and protects other customers&apos; laundry.</p>
                   <p><strong>5. Dryer Use:</strong> Our dryers are reserved exclusively for customers who have washed their laundry on-site at Washworld. Management and staff reserve the right to check items to verify they were washed here.</p>
                   <p><strong>6. Machine Loading:</strong> Do not overload machines. Overloading prevents proper cleaning and can cause mechanical failure.</p>
                   <p><strong>7. Chemicals & Dyeing:</strong> Use detergent and bleach responsibly. Dyeing or tinting clothes in our machines is strictly prohibited.</p>
@@ -196,9 +196,9 @@ export default function SelfServePage() {
                   <ChevronDown className="w-5 h-5 text-slate-400 transition group-open:rotate-180" />
                 </summary>
                 <div className="px-6 pb-6 text-slate-600 text-sm space-y-4 pt-2 border-t border-slate-50 bg-slate-50/50">
-                  <p><strong>1. Customer Parking Only:</strong> We provide plenty of complementary customer-only parking right at 150 Kenwood Ave while you are actively using the laundromat.</p>
+                  <p><strong>1. Customer Parking Only:</strong> We provide plenty of complimentary customer-only parking right at 150 Kenwood Ave while you are actively using the laundromat.</p>
                   <p><strong>2. Time Limit:</strong> There is a strictly enforced 2.5-hour parking limit.</p>
-                  <p><strong>3. Enforcement:</strong> Unauthorized vehicles, or those exceeding the time limit, will be tagged or towed at the owner's expense.</p>
+                  <p><strong>3. Enforcement:</strong> Unauthorized vehicles, or those exceeding the time limit, will be tagged or towed at the owner&apos;s expense.</p>
                 </div>
               </details>
 
@@ -220,7 +220,7 @@ export default function SelfServePage() {
           </div>
         </section>
 
-      </main>
+      </div>
     </div>
   );
 }

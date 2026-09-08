@@ -9,8 +9,8 @@ export default function DryCleaningPage() {
       {/* Header / Hero */}
       <div className="relative w-full h-[40vh] md:h-[50vh] flex items-center justify-center bg-slate-900 overflow-hidden">
         <Image 
-          src="/images/services/shop-wide-hero.jpg" 
-          alt="Dry Cleaning Facility" 
+          src="/images/facility/facility-5.jpg" 
+          alt="Wall of dryers inside the Washworld shop" 
           fill 
           className="object-cover opacity-40 mix-blend-overlay" 
           priority
@@ -31,7 +31,7 @@ export default function DryCleaningPage() {
         </div>
       </div>
 
-      <main className="flex-grow max-w-6xl mx-auto px-6 py-16 md:py-24 w-full">
+      <div className="flex-grow max-w-6xl mx-auto px-6 py-16 md:py-24 w-full">
         {/* Main Content Split */}
         <div className="flex flex-col lg:flex-row gap-16">
           
@@ -61,7 +61,7 @@ export default function DryCleaningPage() {
             <div className="hidden lg:block w-full h-[380px] rounded-[2rem] overflow-hidden shadow-sm border border-slate-100 relative">
               <Image 
                 src="/images/facility/facility-4.jpg" 
-                alt="Professional Facility View" 
+                alt="Numbered washers along the Washworld main aisle" 
                 fill 
                 className="object-cover hover:scale-105 transition-transform duration-700" 
                 sizes="(max-width: 1024px) 0vw, 33vw"
@@ -78,15 +78,15 @@ export default function DryCleaningPage() {
               
               <div className="space-y-0.5">
                 <div className="flex justify-between items-center border-b border-slate-100 py-2.5">
-                  <span className="font-bold text-slate-700 text-[15px]">Men's Shirts - Wash & Press</span>
+                  <span className="font-bold text-slate-700 text-[15px]">Men&apos;s Shirts - Wash &amp; Press</span>
                   <span className="font-bold text-primary text-lg">$4.00</span>
                 </div>
                 <div className="flex justify-between items-center border-b border-slate-100 py-2.5">
-                  <span className="font-bold text-slate-700 text-[15px]">Men's Shirts - Stain removal</span>
+                  <span className="font-bold text-slate-700 text-[15px]">Men&apos;s Shirts - Stain removal</span>
                   <span className="font-bold text-primary text-lg">$7.00</span>
                 </div>
                 <div className="flex justify-between items-center border-b border-slate-100 py-2.5">
-                  <span className="font-bold text-slate-700 text-[15px]">Blouses & Women's Shirts</span>
+                  <span className="font-bold text-slate-700 text-[15px]">Blouses &amp; Women&apos;s Shirts</span>
                   <span className="font-bold text-primary text-lg">$8.00</span>
                 </div>
                 <div className="flex justify-between items-center border-b border-slate-100 py-2.5">
@@ -208,7 +208,7 @@ export default function DryCleaningPage() {
           </div>
         </section>
 
-      </main>
+      </div>
     </div>
   );
 }

@@ -8,7 +8,7 @@ export const metadata = {
 
 export default function StorePoliciesPage() {
   return (
-    <main className="min-h-screen bg-slate-50 pt-32 pb-24">
+    <div className="min-h-screen bg-slate-50 pt-32 pb-24">
       <div className="max-w-4xl mx-auto px-6">
         
         {/* Header */}
@@ -46,7 +46,7 @@ export default function StorePoliciesPage() {
               </div>
               <div>
                 <h3 className="font-bold text-slate-800 text-lg mb-1">4. Pet Hair Policy</h3>
-                <p>Please shake off and remove excessive animal hair from items before washing. This prevents drainage clogs and protects other customers' laundry.</p>
+                <p>Please shake off and remove excessive animal hair from items before washing. This prevents drainage clogs and protects other customers&apos; laundry.</p>
               </div>
               <div>
                 <h3 className="font-bold text-slate-800 text-lg mb-1">5. Dryer Use</h3>
@@ -98,7 +98,7 @@ export default function StorePoliciesPage() {
             <div className="space-y-6 text-slate-600 leading-relaxed">
               <div>
                 <h3 className="font-bold text-slate-800 text-lg mb-1">1. Customer Parking Only</h3>
-                <p>We provide plenty of complementary customer-only parking right at 150 Kenwood Ave while you are actively using the laundromat.</p>
+                <p>We provide plenty of complimentary customer-only parking right at 150 Kenwood Ave while you are actively using the laundromat.</p>
               </div>
               <div>
                 <h3 className="font-bold text-slate-800 text-lg mb-1">2. Time Limit</h3>
@@ -106,7 +106,7 @@ export default function StorePoliciesPage() {
               </div>
               <div>
                 <h3 className="font-bold text-slate-800 text-lg mb-1">3. Enforcement</h3>
-                <p>Unauthorized vehicles, or those exceeding the time limit, will be tagged or towed at the owner's expense.</p>
+                <p>Unauthorized vehicles, or those exceeding the time limit, will be tagged or towed at the owner&apos;s expense.</p>
               </div>
             </div>
           </section>
@@ -167,6 +167,6 @@ export default function StorePoliciesPage() {
         </div>
 
       </div>
-    </main>
+    </div>
   );
 }

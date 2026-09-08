@@ -9,8 +9,8 @@ export default function WashFoldPage() {
       {/* Header / Hero */}
       <div className="relative w-full h-[40vh] md:h-[50vh] flex items-center justify-center bg-slate-900 overflow-hidden">
         <Image 
-          src="/images/services/blue-machines-hero.jpg" 
-          alt="Wash, Dry & Fold Service Facility" 
+          src="/images/facility/facility-3.jpg" 
+          alt="Large capacity washers used for the wash and fold service" 
           fill 
           className="object-cover opacity-40 mix-blend-overlay" 
           priority
@@ -31,7 +31,7 @@ export default function WashFoldPage() {
         </div>
       </div>
 
-      <main className="flex-grow max-w-6xl mx-auto px-6 py-16 md:py-24 w-full">
+      <div className="flex-grow max-w-6xl mx-auto px-6 py-16 md:py-24 w-full">
         {/* Main Content Split */}
         <div className="flex flex-col lg:flex-row gap-16">
           
@@ -61,7 +61,7 @@ export default function WashFoldPage() {
             <div className="hidden lg:block w-full h-[280px] rounded-[2rem] overflow-hidden shadow-sm border border-slate-100 relative">
               <Image 
                 src="/images/facility/facility-1.jpg" 
-                alt="Premium Wash & Fold Machines" 
+                alt="Washworld washers beside the gallery wall" 
                 fill 
                 className="object-cover hover:scale-105 transition-transform duration-700" 
                 sizes="(max-width: 1024px) 0vw, 33vw"
@@ -143,7 +143,7 @@ export default function WashFoldPage() {
             <div className="relative z-10 bg-slate-50 text-center px-4">
               <div className="w-16 h-16 bg-white border-4 border-slate-50 text-primary font-black text-xl rounded-full flex items-center justify-center mx-auto mb-6 shadow-md shadow-blue-500/10">3</div>
               <h3 className="text-xl font-bold text-slate-800 mb-3">Pick It Up Fresh</h3>
-              <p className="text-slate-500">We'll text you the moment your clothes are ready. Pick them up perfectly stacked, wrapped, and ready to go right into your drawers.</p>
+              <p className="text-slate-500">We&apos;ll text you the moment your clothes are ready. Pick them up perfectly stacked, wrapped, and ready to go right into your drawers.</p>
             </div>
           </div>
         </section>
@@ -152,7 +152,7 @@ export default function WashFoldPage() {
         <section className="mt-24 pt-20 border-t border-slate-200">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl font-black text-slate-800 mb-6">Premium Soaps & Softeners</h2>
-            <p className="text-slate-500 mb-10 max-w-2xl mx-auto leading-relaxed">We never cut corners on quality. Your clothes are washed using the industry's highest-rated commercial detergents, ensuring maximum stain removal while protecting the life of your fabrics. Hypoallergenic options are always in stock!</p>
+            <p className="text-slate-500 mb-10 max-w-2xl mx-auto leading-relaxed">We never cut corners on quality. Your clothes are washed using the industry&apos;s highest-rated commercial detergents, ensuring maximum stain removal while protecting the life of your fabrics. Hypoallergenic options are always in stock!</p>
             <div className="flex flex-wrap justify-center gap-4">
                <span className="px-6 py-3 bg-white border border-slate-200 rounded-full font-bold text-slate-700 shadow-sm">Tide Professional</span>
                <span className="px-6 py-3 bg-white border border-slate-200 rounded-full font-bold text-slate-700 shadow-sm">OxiClean</span>
@@ -180,7 +180,7 @@ export default function WashFoldPage() {
           </div>
         </section>
 
-      </main>
+      </div>
     </div>
   );
 }
