@@ -1,80 +1,75 @@
 "use client";
 
 import Image from "next/image";
-import { MapPin, Menu, X, ChevronDown } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+import { Menu, X, ChevronDown, MapPin } from "lucide-react";
 import { BUSINESS } from "@/lib/site";
 
 const SERVICE_LINKS = [
-  { href: "/services/self-serve", label: "Self-serve Wash and Dry" },
-  { href: "/services/wash-and-fold", label: "Drop-off Wash, Dry, & Fold" },
-  { href: "/services/dry-cleaning", label: "Dry Cleaning Services" },
+  { href: "/services/self-serve", label: "Self-serve laundry" },
+  { href: "/services/wash-and-fold", label: "Wash, dry & fold" },
+  { href: "/services/dry-cleaning", label: "Dry cleaning" },
 ] as const;
 
 const MAIN_LINKS = [
-  { href: "/policies", label: "Store Policies" },
-  { href: "/faq", label: "FAQ" },
-  { href: "/about", label: "About Us" },
+  { href: "/#prices", label: "Prices" },
+  { href: "/#gallery", label: "Gallery" },
+  { href: "/#reviews", label: "Reviews" },
+  { href: "/#faq", label: "FAQ" },
   { href: "/contact", label: "Contact" },
 ] as const;
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const servicesRef = useRef<HTMLDivElement>(null);
 
-  // Close the desktop dropdown when focus or a click leaves it, and on Escape.
   useEffect(() => {
     if (!servicesOpen) return;
-
-    const handlePointerDown = (event: MouseEvent) => {
+    const onPointerDown = (event: MouseEvent) => {
       if (!servicesRef.current?.contains(event.target as Node)) {
         setServicesOpen(false);
       }
     };
-    const handleKeyDown = (event: KeyboardEvent) => {
+    const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") setServicesOpen(false);
     };
-
-    document.addEventListener("mousedown", handlePointerDown);
-    document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener("mousedown", onPointerDown);
+    document.addEventListener("keydown", onKeyDown);
     return () => {
-      document.removeEventListener("mousedown", handlePointerDown);
-      document.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener("mousedown", onPointerDown);
+      document.removeEventListener("keydown", onKeyDown);
     };
   }, [servicesOpen]);
 
   return (
-    <nav
-      className="fixed top-0 left-0 w-full z-50 bg-white shadow-sm border-b border-gray-100"
-      aria-label="Main navigation"
+    <header
+      className="sticky top-0 z-50 border-b border-border bg-white/80 backdrop-blur-xl"
+      aria-label="Main"
     >
-      <div className="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
-        {/* Brand */}
-        <Link href="/" className="flex items-center gap-3 group">
+      <nav className="mx-auto flex h-[78px] max-w-[1200px] items-center justify-between gap-6 px-5 md:px-8 lg:px-12">
+        <Link href="/" className="flex items-center gap-3">
           <Image
             src="/logo.webp"
-            alt="Washworld Coin Laundry"
-            width={82}
-            height={82}
-            className="h-[82px] w-[82px] object-contain"
+            alt=""
+            width={40}
+            height={40}
+            className="h-10 w-10 object-contain"
             priority
-            sizes="82px"
+            sizes="40px"
           />
-          <span className="sr-only">Washworld Coin Laundry home</span>
+          <span className="leading-tight">
+            <span className="block font-heading text-[1.02rem] font-extrabold">
+              Washworld
+            </span>
+            <span className="block text-xs text-muted-foreground">
+              Coin Laundry &middot; Toronto
+            </span>
+          </span>
         </Link>
 
-        {/* Desktop Nav */}
-        <div className="hidden lg:flex items-center gap-7">
-          <Link
-            href="/"
-            className="text-sm font-semibold text-slate-700 hover:text-primary transition-colors"
-          >
-            Home
-          </Link>
-
-          {/* Services Dropdown: opens on hover AND on keyboard activation */}
+        <div className="hidden items-center gap-7 lg:flex">
           <div
             ref={servicesRef}
             className="relative"
@@ -86,25 +81,25 @@ export default function Navbar() {
               aria-expanded={servicesOpen}
               aria-controls="services-menu"
               onClick={() => setServicesOpen((open) => !open)}
-              className="text-sm font-semibold text-slate-700 hover:text-primary transition-colors flex items-center gap-1 py-6"
+              className="flex items-center gap-1 py-6 text-[0.92rem] font-medium text-muted-foreground transition-colors hover:text-foreground"
             >
               Services
               <ChevronDown
-                className={`w-4 h-4 transition-transform ${servicesOpen ? "rotate-180" : ""}`}
+                className={`h-4 w-4 transition-transform ${servicesOpen ? "rotate-180" : ""}`}
                 aria-hidden="true"
               />
             </button>
             <div
               id="services-menu"
               hidden={!servicesOpen}
-              className="absolute top-[80%] left-0 w-64 bg-white rounded-xl shadow-xl border border-slate-100 flex flex-col p-2"
+              className="absolute left-0 top-[78%] flex w-64 flex-col rounded-2xl border border-border bg-white p-2 shadow-card-lg"
             >
               {SERVICE_LINKS.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
                   onClick={() => setServicesOpen(false)}
-                  className="px-4 py-2 hover:bg-slate-50 text-sm font-bold text-slate-800 rounded-lg"
+                  className="rounded-xl px-4 py-2.5 text-sm font-semibold text-foreground hover:bg-secondary"
                 >
                   {link.label}
                 </Link>
@@ -116,7 +111,7 @@ export default function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm font-semibold text-slate-700 hover:text-primary transition-colors"
+              className="text-[0.92rem] font-medium text-muted-foreground transition-colors hover:text-foreground"
             >
               {link.label}
             </Link>
@@ -126,83 +121,68 @@ export default function Navbar() {
             href={BUSINESS.mapsUrl}
             target="_blank"
             rel="noreferrer"
-            className="bg-primary text-white px-6 py-2.5 rounded-full font-semibold text-sm hover:bg-accent hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/40 active:scale-95 transition-all duration-300 flex items-center gap-2 shadow-sm ml-2"
+            className="bg-aurora inline-flex items-center gap-2 rounded-full px-6 py-3 font-heading text-[0.94rem] font-bold text-white shadow-[0_12px_26px_-12px_rgb(79_70_229/0.75)] transition-transform hover:-translate-y-0.5"
           >
-            <MapPin className="w-4 h-4" aria-hidden="true" />
-            Get Directions
+            <MapPin className="h-4 w-4" aria-hidden="true" />
+            Get directions
           </a>
         </div>
 
-        {/* Mobile Toggle */}
         <button
           type="button"
-          className="lg:hidden text-slate-800 p-2"
-          onClick={() => setIsOpen((open) => !open)}
-          aria-expanded={isOpen}
+          onClick={() => setMobileOpen((open) => !open)}
+          aria-expanded={mobileOpen}
           aria-controls="mobile-menu"
-          aria-label={isOpen ? "Close menu" : "Open menu"}
+          aria-label={mobileOpen ? "Close menu" : "Open menu"}
+          className="p-2 text-foreground lg:hidden"
         >
-          {isOpen ? (
-            <X className="w-6 h-6" aria-hidden="true" />
+          {mobileOpen ? (
+            <X className="h-6 w-6" aria-hidden="true" />
           ) : (
-            <Menu className="w-6 h-6" aria-hidden="true" />
+            <Menu className="h-6 w-6" aria-hidden="true" />
           )}
         </button>
-      </div>
+      </nav>
 
-      {/* Mobile Menu */}
       <div
         id="mobile-menu"
-        hidden={!isOpen}
-        className="lg:hidden bg-white border-b border-border absolute w-full px-6 py-4 flex-col gap-3 shadow-xl max-h-[85vh] overflow-y-auto flex"
+        hidden={!mobileOpen}
+        className="absolute w-full flex-col gap-1 border-b border-border bg-white px-5 pb-5 shadow-card-lg lg:hidden"
+        style={{ display: mobileOpen ? "flex" : undefined }}
       >
-        <Link
-          href="/"
-          onClick={() => setIsOpen(false)}
-          className="text-lg font-semibold text-slate-800 py-2 border-b border-gray-100"
-        >
-          Home
-        </Link>
-
-        <div className="py-2 border-b border-gray-100">
-          <span className="text-sm font-black text-slate-400 uppercase tracking-wider mb-2 block">
-            Services
-          </span>
-          <div className="flex flex-col gap-3 pl-4">
-            {SERVICE_LINKS.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setIsOpen(false)}
-                className="text-[17px] font-bold text-slate-700"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
-        </div>
-
-        {MAIN_LINKS.map((link) => (
+        <span className="pt-3 text-xs font-bold uppercase tracking-widest text-muted-foreground">
+          Services
+        </span>
+        {SERVICE_LINKS.map((link) => (
           <Link
             key={link.href}
             href={link.href}
-            onClick={() => setIsOpen(false)}
-            className="text-lg font-semibold text-slate-800 py-2 border-b border-gray-100"
+            onClick={() => setMobileOpen(false)}
+            className="border-b border-border py-3 text-[17px] font-semibold"
           >
             {link.label}
           </Link>
         ))}
-
+        {MAIN_LINKS.map((link) => (
+          <Link
+            key={link.href}
+            href={link.href}
+            onClick={() => setMobileOpen(false)}
+            className="border-b border-border py-3 text-[17px] font-semibold"
+          >
+            {link.label}
+          </Link>
+        ))}
         <a
           href={BUSINESS.mapsUrl}
           target="_blank"
           rel="noreferrer"
-          className="bg-primary text-white px-6 py-3 rounded-xl font-semibold text-center mt-2 flex justify-center items-center gap-2 shadow-md hover:bg-accent hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/40 active:scale-95 transition-all duration-300"
+          className="bg-aurora mt-4 flex items-center justify-center gap-2 rounded-full px-6 py-3.5 font-heading font-bold text-white"
         >
-          <MapPin className="w-5 h-5" aria-hidden="true" />
-          Get Directions
+          <MapPin className="h-5 w-5" aria-hidden="true" />
+          Get directions
         </a>
       </div>
-    </nav>
+    </header>
   );
 }

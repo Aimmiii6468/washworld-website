@@ -1,38 +1,37 @@
 import type { Metadata } from "next";
-import { Poppins, Inter } from "next/font/google";
+import { Plus_Jakarta_Sans, Public_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { SITE_URL, BUSINESS } from "@/lib/site";
+import { SITE_URL, IS_PRODUCTION, BUSINESS } from "@/lib/site";
 
-// Configure Poppins font with the specific weights we need for a premium look
-const poppins = Poppins({
+const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
-  variable: "--font-poppins",
+  weight: ["500", "600", "700", "800"],
+  variable: "--font-jakarta",
   display: "swap",
 });
 
-// Configure Inter font for Body text hierarchy
-const inter = Inter({
+const publicSans = Public_Sans({
   subsets: ["latin"],
-  variable: "--font-inter",
+  weight: ["400", "500", "600"],
+  variable: "--font-public-sans",
   display: "swap",
 });
 
-// Configure SEO Metadata (Title, Description, Social Sharing)
 export const metadata: Metadata = {
-  // metadataBase lets Next resolve relative OG/Twitter image paths to absolute URLs
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Washworld Coin Laundry | Premium Laundromat in Toronto",
+    default: "Coin Laundry in Toronto | Washworld, 150 Kenwood Ave",
     template: "%s | Washworld Coin Laundry",
   },
   description:
-    "Experience the cleanest, most modern laundromat. Free Wi-Fi, A/C, huge capacity washers, and flexible payment options.",
+    "Self-serve laundry, wash and fold, and dry cleaning at 150 Kenwood Ave near St. Clair West. Open every day 8AM to 10PM with free parking and free Wi-Fi.",
+  alternates: { canonical: "/" },
   openGraph: {
-    title: "Washworld Coin Laundry | Premium Laundromat",
-    description: "Experience the cleanest, most modern laundromat in Toronto.",
+    title: "Coin Laundry in Toronto | Washworld Coin Laundry",
+    description:
+      "Self-serve laundry, wash and fold, and dry cleaning in Wychwood-Humewood. Open every day, 8AM to 10PM.",
     url: SITE_URL,
     siteName: "Washworld Coin Laundry",
     locale: "en_CA",
@@ -40,23 +39,24 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Washworld Coin Laundry",
+    title: "Coin Laundry in Toronto | Washworld",
     description:
-      "Premium Laundromat in Toronto with huge capacity machines and free Wi-Fi.",
+      "Self-serve laundry, wash and fold and dry cleaning near St. Clair West.",
   },
+  // Preview deployments must never compete with the live site in search.
+  robots: IS_PRODUCTION
+    ? { index: true, follow: true }
+    : { index: false, follow: false },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  // JSON-LD Schema for Local Business (SEO Boost)
+}: Readonly<{ children: React.ReactNode }>) {
+  // LocalBusiness schema.
   //
-  // Note: aggregateRating is deliberately NOT included. Google treats
-  // self-serving review markup (a business marking up its own rating) as a
-  // structured data violation for LocalBusiness, so the rating lives in the
-  // page UI only and is sourced from the live Google Business Profile.
+  // aggregateRating is deliberately omitted: Google treats self-serving review
+  // markup as a structured data violation, so the rating lives in the page UI
+  // only, sourced from the live Google Business Profile.
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "LaundryStore",
@@ -87,6 +87,7 @@ export default function RootLayout({
     areaServed: [
       { "@type": "Place", name: "Wychwood-Humewood, Toronto" },
       { "@type": "Place", name: "St. Clair West, Toronto" },
+      { "@type": "Place", name: "Forest Hill, Toronto" },
       { "@type": "Place", name: "Central Toronto" },
     ],
     openingHoursSpecification: {
@@ -106,14 +107,13 @@ export default function RootLayout({
   };
 
   return (
-    // suppressHydrationWarning is kept on <html> only. Browser extensions
-    // commonly inject attributes on the root element; keeping it on <body>
-    // as well was masking genuine hydration mismatches in page content.
+    // suppressHydrationWarning stays on <html> only. Browser extensions inject
+    // attributes on the root element; keeping it on <body> masked real
+    // hydration mismatches in page content.
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${poppins.variable} font-sans pt-24 flex flex-col min-h-screen`}
+        className={`${publicSans.variable} ${jakarta.variable} flex min-h-screen flex-col font-sans text-[1rem] leading-[1.68]`}
       >
-        {/* Injecting Local SEO Schema */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

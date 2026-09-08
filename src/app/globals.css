@@ -1,39 +1,66 @@
 @import "tailwindcss";
 
+/* ==========================================================
+   AURORA GRADIENT
+   Soft gradient / SaaS polish, indigo to violet.
+   The legacy token names are kept and re-pointed at the new
+   palette so pages that have not been rebuilt yet still render
+   in the new brand colours instead of breaking.
+   ========================================================== */
 :root {
-  --background: hsl(210, 20%, 98%);
-  --foreground: hsl(216, 18%, 16%);
-  --primary: hsl(210, 85%, 54%);
+  --background: #ffffff;
+  --foreground: #14152b;
+
+  --primary: #4f46e5;
   --primary-foreground: #ffffff;
-  --secondary: hsl(210, 20%, 98%);
-  --secondary-foreground: hsl(216, 18%, 16%);
-  --accent: hsl(165, 75%, 52%);
+  --violet: #7c3aed;
+
+  --secondary: #f5f3ff;
+  --secondary-foreground: #14152b;
+
+  --accent: #7c3aed;
   --accent-foreground: #ffffff;
-  --muted: hsl(210, 15%, 94%);
-  --muted-foreground: hsl(216, 10%, 45%);
-  --border: hsl(210, 15%, 90%);
+
+  --muted: #f5f3ff;
+  --muted-foreground: #64678c;
+
+  --border: #e8e5f8;
+  --ink-dark: #0f1021;
+  --ok: #10b981;
+
+  --radius-md: 18px;
+  --radius-lg: 26px;
+  --radius-xl: 34px;
+
+  --shadow-sm: 0 2px 8px -2px rgb(20 21 43 / 0.08);
+  --shadow-md: 0 18px 40px -24px rgb(20 21 43 / 0.35);
+  --shadow-lg: 0 40px 80px -40px rgb(79 70 229 / 0.45);
 }
 
 @theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
-  --color-primary-light: hsl(210, 85%, 64%);
-  --color-primary-dark: hsl(210, 85%, 44%);
+  --color-primary-light: #6d66ea;
+  --color-primary-dark: #3f37c9;
   --color-primary-foreground: var(--primary-foreground);
+  --color-violet: var(--violet);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-accent: var(--accent);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-border: var(--border);
+  --color-ink-dark: var(--ink-dark);
 
-  --color-trust: hsl(220, 40%, 25%);
-  --color-warning: hsl(35, 95%, 58%);
-  --color-destructive: hsl(0, 84%, 60%);
+  --color-trust: #0f1021;
+  --color-warning: #f5a623;
+  --color-destructive: #dc2626;
 
-  --font-sans: var(--font-inter), system-ui, sans-serif;
-  --font-heading: var(--font-poppins), var(--font-inter), system-ui, sans-serif;
+  --font-sans: var(--font-public-sans), system-ui, sans-serif;
+  --font-heading: var(--font-jakarta), var(--font-public-sans), system-ui, sans-serif;
+
+  --radius-card: var(--radius-lg);
 }
 
 @layer base {
@@ -44,6 +71,8 @@
 
   html {
     scroll-behavior: smooth;
+    /* Offset for the sticky header when jumping to an anchor */
+    scroll-padding-top: 6rem;
   }
 
   body {
@@ -55,25 +84,30 @@
     padding: 0;
   }
 
-  /* Wrapped in base layer so standard text-white utilities successfully override it */
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-heading);
+    font-weight: 800;
+    letter-spacing: -0.033em;
+    line-height: 1.1;
+    text-wrap: balance;
     color: var(--color-foreground);
   }
 
-  /* Visible, consistent keyboard focus ring across the whole site */
   :focus-visible {
-    outline: 3px solid var(--color-primary);
-    outline-offset: 2px;
+    outline: 2px solid var(--primary);
+    outline-offset: 3px;
     border-radius: 4px;
   }
 
-  /* Respect the visitor's OS-level reduced motion setting */
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
     }
-
     *,
     *::before,
     *::after {
@@ -86,20 +120,38 @@
 }
 
 @layer utilities {
-  .bg-hero-gradient {
-    /* 135deg Primary Blue -> Mint Green */
-    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
-  }
-  .bg-card-gradient {
-    /* 145deg White -> Secondary */
-    background: linear-gradient(145deg, #ffffff, var(--color-secondary));
+  /* Indigo to violet, used on primary buttons and the delivery band */
+  .bg-aurora {
+    background-image: linear-gradient(120deg, var(--primary), var(--violet));
   }
 
-  /*
-   * Scoped scrollbar hiding. Previously this was global, which removed the
-   * page scrollbar everywhere and hid the fact that pages were scrollable.
-   * Now only opt-in horizontal tracks (the reviews carousel) use it.
-   */
+  /* Gradient wash behind the hero */
+  .bg-aurora-hero {
+    background-image:
+      radial-gradient(48% 42% at 18% 22%, rgb(124 58 237 / 0.28), transparent 65%),
+      radial-gradient(44% 40% at 78% 12%, rgb(79 70 229 / 0.3), transparent 62%),
+      radial-gradient(40% 38% at 55% 62%, rgb(16 185 129 / 0.16), transparent 66%),
+      linear-gradient(180deg, var(--secondary), #ffffff 72%);
+  }
+
+  .text-aurora {
+    background-image: linear-gradient(100deg, var(--primary), var(--violet));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .shadow-card {
+    box-shadow: var(--shadow-sm);
+  }
+  .shadow-card-lg {
+    box-shadow: var(--shadow-md);
+  }
+  .shadow-aurora {
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* Opt-in horizontal scroll track, never applied to the page itself */
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -108,7 +160,6 @@
     display: none;
   }
 
-  /* Skip link: visually hidden until it receives keyboard focus */
   .skip-link {
     position: absolute;
     left: -9999px;
@@ -121,14 +172,13 @@
     width: auto;
     height: auto;
     padding: 0.75rem 1.25rem;
-    background: var(--color-primary);
+    background: var(--primary);
     color: #ffffff;
     font-weight: 700;
     border-radius: 9999px;
   }
-}
 
-/* Utility to balance text wraps */
-.text-balance {
-  text-wrap: balance;
+  .text-balance {
+    text-wrap: balance;
+  }
 }
