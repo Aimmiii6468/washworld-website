@@ -1,12 +1,12 @@
 import Image from "next/image";
 import type { Metadata } from "next";
 import Icon from "@/components/ui/Icon";
+import ReviewsCarousel from "@/components/ReviewsCarousel";
 import {
   SectionHead,
   ButtonLink,
   PageHero,
   ClosingCta,
-  Stars,
   ArrowIcon,
 } from "@/components/sections/Shared";
 import {
@@ -14,7 +14,6 @@ import {
   BUSINESS,
   AMENITIES,
   GOOGLE_RATING,
-  GOOGLE_REVIEWS,
   GALLERY,
 } from "@/lib/site";
 
@@ -139,25 +138,7 @@ export default function AboutPage() {
             eyebrow={`${GOOGLE_RATING.score} out of 5 · ${GOOGLE_RATING.count} Google reviews`}
             title="The neighbourhood's verdict"
           />
-          <div className="grid gap-5 lg:grid-cols-3">
-            {GOOGLE_REVIEWS.map((review) => (
-              <figure
-                key={review.name}
-                className="m-0 flex flex-col gap-4 rounded-[26px] border border-border bg-white p-7 shadow-card"
-              >
-                <Stars count={review.rating} />
-                <blockquote className="m-0 text-[1.02rem]">
-                  {review.text}
-                </blockquote>
-                <figcaption className="mt-auto border-t border-border pt-4 text-[0.86rem] text-muted-foreground">
-                  <b className="block font-heading text-foreground">
-                    {review.name}
-                  </b>
-                  {review.time} on Google
-                </figcaption>
-              </figure>
-            ))}
-          </div>
+          <ReviewsCarousel />
         </div>
       </section>
 

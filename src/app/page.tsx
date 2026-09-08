@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import LiteYouTube from "@/components/LiteYouTube";
+import ReviewsCarousel from "@/components/ReviewsCarousel";
 import Icon from "@/components/ui/Icon";
 import {
   Eyebrow,
@@ -15,7 +16,6 @@ import {
 import {
   BUSINESS,
   GOOGLE_RATING,
-  GOOGLE_REVIEWS,
   SELF_SERVE_PRICES,
   WASH_FOLD_PRICES,
   DRY_CLEAN_PRICES,
@@ -405,25 +405,8 @@ export default function Home() {
             eyebrow={`${GOOGLE_RATING.score} out of 5 · ${GOOGLE_RATING.count} Google reviews`}
             title="What our Toronto customers say"
           />
-          <div className="grid gap-5 lg:grid-cols-3">
-            {GOOGLE_REVIEWS.map((review) => (
-              <figure
-                key={review.name}
-                className="m-0 flex flex-col gap-4 rounded-[26px] border border-border bg-white p-7 shadow-card"
-              >
-                <Stars count={review.rating} />
-                <blockquote className="m-0 text-[1.02rem]">
-                  {review.text}
-                </blockquote>
-                <figcaption className="mt-auto border-t border-border pt-4 text-[0.86rem] text-muted-foreground">
-                  <b className="block font-heading text-foreground">
-                    {review.name}
-                  </b>
-                  {review.time} on Google
-                </figcaption>
-              </figure>
-            ))}
-          </div>
+          <ReviewsCarousel />
+
           <div className="mt-8">
             <ButtonLink href={BUSINESS.reviewsUrl} external variant="soft">
               Read all reviews on Google

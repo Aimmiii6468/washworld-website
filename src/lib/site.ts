@@ -69,27 +69,62 @@ export const GOOGLE_RATING = {
 } as const;
 
 /**
- * Reviews transcribed from the live Google Business Profile.
- * Only add reviews that actually exist on the profile.
+ * Reviews transcribed from the live Google Business Profile, newest first.
+ * Checked 2026-09-08 with the profile sorted by Newest.
+ *
+ * Only reviews that actually carry written text are listed. Several recent
+ * five-star ratings (Kyle C, Rohan Patel, Ray Victor Reynes) were left with no
+ * comment, so there is nothing to quote. Only add reviews that exist on the
+ * profile.
  */
 export const GOOGLE_REVIEWS = [
   {
-    name: "sonia silva",
-    time: "8 months ago",
+    name: "kevin",
+    time: "3 months ago",
     rating: 5,
-    text: "Definitely the best laundromat in the area. Very clean, great variety of washing machines and always friendly service. Really feels like a community.",
+    text: "Customer service is always excellent and friendly.",
+  },
+  {
+    name: "Rodrigo Miziara Yunes",
+    time: "5 months ago",
+    rating: 5,
+    text: "I left my clothes and they delivered them to my hotel door the same day. I recommend them 100%.",
   },
   {
     name: "Farhad Jalali",
     time: "8 months ago",
     rating: 5,
-    text: "Their wash and fold service is a life saver, and the few times I've used their dry cleaning it has been great. Good people, good services.",
+    text: "The new management has changed up the feel of the place. Their wash and fold service is a life saver and the few times I've used their dry cleaning services it has been great. Good people, good services.",
+  },
+  {
+    name: "mina h",
+    time: "8 months ago",
+    rating: 5,
+    text: "Clean, well-equipped laundromat with a very friendly atmosphere. The store manager is really friendly and welcoming, also the machines are easy to use.",
+  },
+  {
+    name: "sonia silva",
+    time: "8 months ago",
+    rating: 5,
+    text: "Definitely the best laundromat in the area. Very clean, great variety of washing machines and always friendly service. Really feels like a community. We recently started using the wash and fold service and we are extremely happy.",
   },
   {
     name: "C",
     time: "11 months ago",
     rating: 5,
-    text: "Coin machine, lots of washers and dryers, laundry carts, wifi while you wait, and this place has a wholesome community vibe to it.",
+    text: "The manager is friendly and the customers are also very nice. There are all the laundry amenities you need, coin machine, lots of washers and dryers, laundry carts, wifi while you wait, and this place has a wholesome community vibe to it.",
+  },
+  {
+    name: "Aleksandra Rutkowska",
+    time: "1 year ago",
+    rating: 5,
+    text: "Very clean space with mid and large size washing machines and drying machines. Changing machine available. You can also buy detergent or softener. People are really helpful if any problem occurred. Highly recommend.",
+  },
+  {
+    name: "Espe Rubio",
+    time: "3 years ago",
+    rating: 5,
+    text: "Nice and clean place to do your laundry. The staff is very friendly and helpful. They have 3 different sizes of machines and many dryers. My clothes are actually clean after I come here. Highly recommended.",
   },
 ] as const;
 
