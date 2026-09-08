@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
 import { Stars } from "@/components/sections/Shared";
-import { GOOGLE_REVIEWS } from "@/lib/site";
+import { GOOGLE_REVIEWS, SHOW_REVIEW_DATES } from "@/lib/site";
 
 /** Card width plus the gap between cards, used for one step of the track. */
 const STEP = 364;
@@ -97,7 +97,7 @@ export default function ReviewsCarousel() {
             <blockquote className="m-0 text-[1.02rem]">{review.text}</blockquote>
             <figcaption className="mt-auto border-t border-border pt-4 text-[0.86rem] text-muted-foreground">
               <b className="block font-heading text-foreground">{review.name}</b>
-              {review.time} on Google
+              {SHOW_REVIEW_DATES ? `${review.time} on Google` : "Google review"}
             </figcaption>
           </figure>
         ))}

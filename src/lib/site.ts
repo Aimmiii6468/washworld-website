@@ -77,6 +77,17 @@ export const GOOGLE_RATING = {
  * comment, so there is nothing to quote. Only add reviews that exist on the
  * profile.
  */
+/**
+ * Show the "8 months ago" line under each review card.
+ *
+ * Off by default: the profile has plenty of five-star ratings but the written
+ * ones are mostly older, and a row of cards all dated a year back reads as
+ * stale even though the reviews are real. The Google mark and the "read all
+ * reviews" link still let anyone verify them at source. The dates are kept in
+ * the data either way, for our own tracking.
+ */
+export const SHOW_REVIEW_DATES = false;
+
 export const GOOGLE_REVIEWS = [
   {
     name: "kevin",
