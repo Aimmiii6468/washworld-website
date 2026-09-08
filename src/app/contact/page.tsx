@@ -1,142 +1,150 @@
-import { Mail, MapPin, Phone, Clock, MoveRight } from "lucide-react";
 import type { Metadata } from "next";
 import ContactForm from "@/components/ContactForm";
-import { BUSINESS } from "@/lib/site";
+import Icon from "@/components/ui/Icon";
+import { Eyebrow, ButtonLink } from "@/components/sections/Shared";
+import { SITE_URL, BUSINESS } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Contact Us",
+  title: "Contact Us at 150 Kenwood Ave, Toronto",
   description:
-    "Get in touch with Washworld Coin Laundry in Toronto. Self-serve, wash and fold, and dry cleaning services at 150 Kenwood Ave.",
+    "Contact Washworld Coin Laundry in Toronto. Call (416) 652-9274, email us, or drop by 150 Kenwood Ave near St. Clair West. Open every day 8AM to 10PM.",
+  alternates: { canonical: "/contact" },
+  openGraph: {
+    title: "Contact Washworld Coin Laundry, Toronto",
+    description:
+      "Call, email or visit us at 150 Kenwood Ave near St. Clair West. Open daily 8AM to 10PM.",
+    url: `${SITE_URL}/contact`,
+    type: "website",
+  },
 };
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen bg-slate-50 pt-32 pb-24">
-      <div className="max-w-6xl mx-auto px-6">
-        {/* Header Block */}
-        <div className="mb-16 text-center max-w-2xl mx-auto">
-          <span className="bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded-full mb-4 uppercase tracking-wider inline-block">
-            Support &amp; Location
-          </span>
-          <h1 className="text-4xl md:text-5xl font-black text-slate-800 mb-6 tracking-tight">
-            Contact Washworld
-          </h1>
-          <p className="text-lg text-slate-500 leading-relaxed">
-            Have a question about our services or need help with a recent order?
-            Send us a message, give us a call, or drop by the shop.
-          </p>
-        </div>
+    <>
+      <section className="bg-aurora-hero px-5 pb-16 pt-12 md:px-8 md:pt-20 lg:px-12">
+        <div className="mx-auto max-w-[1200px]">
+          <div className="max-w-3xl">
+            <Eyebrow dot>Open today until 10:00 PM</Eyebrow>
+            <h1 className="mt-6 text-[clamp(2.1rem,4.4vw,3.3rem)]">
+              Contact <span className="text-aurora">Washworld</span>
+            </h1>
+            <p className="mt-6 max-w-[52ch] text-[1.13rem] text-muted-foreground">
+              Question about a service, a price or an order? Send a message, give
+              us a call, or just walk in. We are at {BUSINESS.streetAddress} near{" "}
+              {BUSINESS.nearby}, every day of the week.
+            </p>
+          </div>
 
-        {/* Layout Split: Contact Cards & Map */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start mt-8">
-          {/* Info Columns */}
-          <div className="space-y-6">
-            <a
-              href={BUSINESS.mapsUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="block bg-white p-8 rounded-[2rem] border border-slate-200 shadow-sm hover:shadow-md transition-shadow group"
-            >
-              <div className="flex items-start gap-5">
-                <div className="w-14 h-14 bg-blue-50 text-primary rounded-full flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
-                  <MapPin className="w-6 h-6" aria-hidden="true" />
-                </div>
-                <div>
-                  <h2 className="font-bold text-slate-800 text-xl mb-2">
-                    Visit the Store
-                  </h2>
-                  <p className="text-slate-500 mb-4 leading-relaxed">
+          <div className="mt-12 grid items-start gap-8 lg:grid-cols-2 lg:gap-12">
+            <div className="grid gap-5">
+              <a
+                href={BUSINESS.mapsUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="group flex items-start gap-5 rounded-[26px] border border-border bg-white p-7 shadow-card transition-shadow hover:shadow-card-lg"
+              >
+                <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-secondary text-primary transition-transform group-hover:scale-110">
+                  <Icon name="pin" size={22} />
+                </span>
+                <span>
+                  <b className="mb-2 block font-heading text-xl">
+                    Visit the shop
+                  </b>
+                  <span className="block text-muted-foreground">
                     {BUSINESS.streetAddress}
                     <br />
-                    {BUSINESS.addressLocality}, {BUSINESS.addressRegion},{" "}
+                    {BUSINESS.addressLocality}, {BUSINESS.addressRegion}{" "}
                     {BUSINESS.postalCode}
-                  </p>
-                  <span className="text-primary font-semibold text-sm flex items-center gap-2 group-hover:gap-3 transition-all">
-                    Get Google Maps Directions
-                    <MoveRight className="w-4 h-4" aria-hidden="true" />
                   </span>
-                </div>
+                  <span className="mt-3 flex items-center gap-2 text-sm font-semibold text-primary">
+                    Open in Google Maps <Icon name="arrow" size={15} />
+                  </span>
+                </span>
+              </a>
+
+              <div className="grid gap-5 sm:grid-cols-2">
+                <a
+                  href={BUSINESS.phoneHref}
+                  className="group rounded-[26px] border border-border bg-white p-6 shadow-card transition-shadow hover:shadow-card-lg"
+                >
+                  <span className="mb-4 grid h-11 w-11 place-items-center rounded-full bg-secondary text-primary transition-transform group-hover:scale-110">
+                    <Icon name="phone" size={20} />
+                  </span>
+                  <b className="block font-heading text-lg">Call us</b>
+                  <span className="text-muted-foreground">
+                    {BUSINESS.phoneDisplay}
+                  </span>
+                </a>
+                <a
+                  href={BUSINESS.emailHref}
+                  className="group rounded-[26px] border border-border bg-white p-6 shadow-card transition-shadow hover:shadow-card-lg"
+                >
+                  <span className="mb-4 grid h-11 w-11 place-items-center rounded-full bg-secondary text-primary transition-transform group-hover:scale-110">
+                    <Icon name="mail" size={20} />
+                  </span>
+                  <b className="block font-heading text-lg">Email us</b>
+                  <span className="break-all text-sm text-muted-foreground">
+                    {BUSINESS.email}
+                  </span>
+                </a>
               </div>
-            </a>
 
-            <div className="flex flex-col sm:flex-row gap-6">
-              <a
-                href={BUSINESS.phoneHref}
-                className="flex-1 bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow group"
-              >
-                <div className="w-12 h-12 bg-blue-50 text-primary rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                  <Phone className="w-5 h-5" aria-hidden="true" />
-                </div>
-                <h2 className="font-bold text-slate-800 text-lg mb-1">Call Us</h2>
-                <p className="text-slate-500">{BUSINESS.phoneDisplay}</p>
-              </a>
-
-              <a
-                href={BUSINESS.emailHref}
-                className="flex-1 bg-white p-6 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow group"
-              >
-                <div className="w-12 h-12 bg-blue-50 text-primary rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                  <Mail className="w-5 h-5" aria-hidden="true" />
-                </div>
-                <h2 className="font-bold text-slate-800 text-lg mb-1">
-                  Email Details
-                </h2>
-                <p className="text-slate-500 break-all text-sm">
-                  {BUSINESS.email}
-                </p>
-              </a>
-            </div>
-
-            <div className="bg-white p-8 rounded-[2rem] border border-slate-200 shadow-sm">
-              <div className="flex items-start gap-5">
-                <div className="w-14 h-14 bg-slate-50 text-slate-800 rounded-full flex items-center justify-center shrink-0">
-                  <Clock className="w-6 h-6" aria-hidden="true" />
-                </div>
-                <div className="w-full">
-                  <h2 className="font-bold text-slate-800 text-xl mb-4">
-                    Store Hours
-                  </h2>
-                  <div className="space-y-3 w-full">
-                    <div className="flex justify-between items-center border-b border-slate-100 pb-2">
-                      <span className="text-slate-500 font-medium">
-                        Monday - Sunday
+              <div className="rounded-[26px] border border-border bg-white p-7 shadow-card">
+                <div className="flex items-start gap-5">
+                  <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-secondary text-primary">
+                    <Icon name="clock" size={22} />
+                  </span>
+                  <div className="w-full">
+                    <b className="mb-4 block font-heading text-xl">
+                      Opening hours
+                    </b>
+                    <div className="flex justify-between border-b border-border pb-2">
+                      <span className="text-muted-foreground">
+                        Monday to Sunday
                       </span>
-                      <span className="text-slate-800 font-bold">
-                        {BUSINESS.hoursDisplay}
+                      <b className="tabular-nums">{BUSINESS.hoursDisplay}</b>
+                    </div>
+                    <div className="mt-4 flex items-center justify-between rounded-xl border border-red-100 bg-red-50 px-4 py-3 text-red-700">
+                      <span className="font-heading text-sm font-bold uppercase tracking-wide">
+                        Last wash
                       </span>
+                      <b className="tabular-nums">
+                        {BUSINESS.lastWashDisplay}
+                      </b>
                     </div>
                   </div>
-                  <div className="mt-4 bg-red-50 border border-red-100 px-4 py-3 rounded-xl flex justify-between items-center text-red-700">
-                    <span className="font-black text-sm uppercase tracking-wide">
-                      Last Wash Limit
-                    </span>
-                    <span className="font-black">
-                      {BUSINESS.lastWashDisplay}
-                    </span>
-                  </div>
                 </div>
+              </div>
+
+              <div className="h-[320px] overflow-hidden rounded-[26px] border-4 border-white shadow-card-lg">
+                <iframe
+                  src={BUSINESS.mapEmbedUrl}
+                  className="h-full w-full border-0"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title={`Map showing ${BUSINESS.name} at ${BUSINESS.streetAddress}, Toronto`}
+                />
               </div>
             </div>
 
-            {/* Interactive Map Block */}
-            <div className="h-[320px] bg-slate-200 rounded-[2.5rem] overflow-hidden border-4 border-white shadow-xl relative">
-              <iframe
-                src={BUSINESS.mapEmbedUrl}
-                className="absolute inset-0 w-full h-full border-0"
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Map showing Washworld Coin Laundry at 150 Kenwood Ave, Toronto"
-              />
+            <div className="lg:sticky lg:top-28">
+              <ContactForm />
             </div>
           </div>
 
-          {/* Contact Form */}
-          <div className="lg:sticky lg:top-28">
-            <ContactForm />
+          <div className="mt-12 flex flex-wrap gap-3">
+            <ButtonLink href="/prices" variant="soft">
+              See laundry prices
+            </ButtonLink>
+            <ButtonLink href="/commercial" variant="soft">
+              Commercial enquiries
+            </ButtonLink>
+            <ButtonLink href="/faq" variant="soft">
+              Read the FAQ
+            </ButtonLink>
           </div>
         </div>
-      </div>
-    </div>
+      </section>
+    </>
   );
 }

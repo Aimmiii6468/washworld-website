@@ -17,7 +17,7 @@ import {
 } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Self-Serve Laundry in Toronto | Coin Laundry Prices",
+  title: "Self-Serve Laundry in Toronto",
   description:
     "Self-serve coin laundry at 150 Kenwood Ave, Toronto. Washers from $2.25 in three sizes, dryers $0.25, cash, coin and Interac e-Transfer. Open daily 8AM to 10PM.",
   alternates: { canonical: "/services/self-serve" },

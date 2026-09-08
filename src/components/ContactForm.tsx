@@ -53,14 +53,14 @@ export default function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-white p-8 rounded-[2rem] border border-slate-200 shadow-sm space-y-5"
+      className="space-y-5 rounded-[26px] border border-border bg-white p-8 shadow-card"
       noValidate={false}
     >
       <div>
-        <h2 className="font-bold text-slate-800 text-xl mb-1">
+        <h2 className="mb-1 font-heading text-xl font-extrabold">
           Send us a message
         </h2>
-        <p className="text-slate-500 text-sm">
+        <p className="text-sm text-muted-foreground">
           We usually reply within one business day.
         </p>
       </div>
@@ -81,7 +81,7 @@ export default function ContactForm() {
         <div>
           <label
             htmlFor="name"
-            className="block text-sm font-bold text-slate-700 mb-2"
+            className="mb-2 block font-heading text-sm font-bold"
           >
             Your name
           </label>
@@ -92,7 +92,7 @@ export default function ContactForm() {
             required
             maxLength={100}
             autoComplete="name"
-            className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-800 placeholder:text-slate-400 focus:border-primary focus:bg-white transition-colors"
+            className="w-full rounded-xl border border-border bg-secondary px-4 py-3 transition-colors placeholder:text-muted-foreground focus:border-primary focus:bg-white"
             placeholder="Jane Doe"
           />
         </div>
@@ -100,7 +100,7 @@ export default function ContactForm() {
         <div>
           <label
             htmlFor="email"
-            className="block text-sm font-bold text-slate-700 mb-2"
+            className="mb-2 block font-heading text-sm font-bold"
           >
             Email
           </label>
@@ -111,7 +111,7 @@ export default function ContactForm() {
             required
             maxLength={200}
             autoComplete="email"
-            className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-800 placeholder:text-slate-400 focus:border-primary focus:bg-white transition-colors"
+            className="w-full rounded-xl border border-border bg-secondary px-4 py-3 transition-colors placeholder:text-muted-foreground focus:border-primary focus:bg-white"
             placeholder="jane@example.com"
           />
         </div>
@@ -121,9 +121,9 @@ export default function ContactForm() {
         <div>
           <label
             htmlFor="phone"
-            className="block text-sm font-bold text-slate-700 mb-2"
+            className="mb-2 block font-heading text-sm font-bold"
           >
-            Phone <span className="font-normal text-slate-400">(optional)</span>
+            Phone <span className="font-normal text-muted-foreground">(optional)</span>
           </label>
           <input
             id="phone"
@@ -131,7 +131,7 @@ export default function ContactForm() {
             type="tel"
             maxLength={40}
             autoComplete="tel"
-            className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-800 placeholder:text-slate-400 focus:border-primary focus:bg-white transition-colors"
+            className="w-full rounded-xl border border-border bg-secondary px-4 py-3 transition-colors placeholder:text-muted-foreground focus:border-primary focus:bg-white"
             placeholder="(416) 000-0000"
           />
         </div>
@@ -139,7 +139,7 @@ export default function ContactForm() {
         <div>
           <label
             htmlFor="service"
-            className="block text-sm font-bold text-slate-700 mb-2"
+            className="mb-2 block font-heading text-sm font-bold"
           >
             What is it about?
           </label>
@@ -147,7 +147,7 @@ export default function ContactForm() {
             id="service"
             name="service"
             defaultValue={SERVICES[0]}
-            className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-800 focus:border-primary focus:bg-white transition-colors"
+            className="w-full rounded-xl border border-border bg-secondary px-4 py-3 transition-colors focus:border-primary focus:bg-white"
           >
             {SERVICES.map((service) => (
               <option key={service} value={service}>
@@ -161,7 +161,7 @@ export default function ContactForm() {
       <div>
         <label
           htmlFor="message"
-          className="block text-sm font-bold text-slate-700 mb-2"
+          className="mb-2 block font-heading text-sm font-bold"
         >
           Message
         </label>
@@ -172,7 +172,7 @@ export default function ContactForm() {
           rows={5}
           minLength={10}
           maxLength={2000}
-          className="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-800 placeholder:text-slate-400 focus:border-primary focus:bg-white transition-colors resize-y"
+          className="w-full resize-y rounded-xl border border-border bg-secondary px-4 py-3 transition-colors placeholder:text-muted-foreground focus:border-primary focus:bg-white"
           placeholder="How can we help?"
         />
       </div>
@@ -180,7 +180,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={status === "sending"}
-        className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-primary text-white font-bold px-8 py-3.5 rounded-full shadow-md hover:bg-accent hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/40 active:scale-95 transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed disabled:translate-y-0"
+        className="bg-aurora inline-flex w-full items-center justify-center gap-2 rounded-full px-8 py-3.5 font-heading font-bold text-white shadow-[0_12px_26px_-12px_rgb(79_70_229/0.75)] transition-transform hover:-translate-y-0.5 disabled:translate-y-0 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
       >
         {status === "sending" ? (
           <>

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Public_Sans } from "next/font/google";
+import { Plus_Jakarta_Sans, Public_Sans, Outfit } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -16,6 +16,15 @@ const publicSans = Public_Sans({
   subsets: ["latin"],
   weight: ["400", "500", "600"],
   variable: "--font-public-sans",
+  display: "swap",
+});
+
+// Wordmark only. One weight, used for the Washworld logotype in the header
+// and footer, so the brand name does not read as body copy.
+const outfit = Outfit({
+  subsets: ["latin"],
+  weight: ["600"],
+  variable: "--font-wordmark",
   display: "swap",
 });
 
@@ -112,7 +121,7 @@ export default function RootLayout({
     // hydration mismatches in page content.
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${publicSans.variable} ${jakarta.variable} flex min-h-screen flex-col font-sans text-[1rem] leading-[1.68]`}
+        className={`${publicSans.variable} ${jakarta.variable} ${outfit.variable} flex min-h-screen flex-col font-sans text-[1rem] leading-[1.68]`}
       >
         <script
           type="application/ld+json"

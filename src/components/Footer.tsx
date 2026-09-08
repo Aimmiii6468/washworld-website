@@ -5,14 +5,15 @@ const SERVICES = [
   { href: "/services/self-serve", label: "Self-serve laundry" },
   { href: "/services/wash-and-fold", label: "Wash, dry & fold" },
   { href: "/services/dry-cleaning", label: "Dry cleaning" },
+  { href: "/commercial", label: "Commercial laundry" },
 ];
 
 const INFO = [
-  { href: "/#prices", label: "Prices" },
-  { href: "/policies", label: "Store policies" },
-  { href: "/faq", label: "FAQ" },
-  { href: "/contact", label: "Contact" },
+  { href: "/prices", label: "Prices" },
   { href: "/about", label: "About us" },
+  { href: "/faq", label: "FAQ" },
+  { href: "/policies", label: "Store policies" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export default function Footer() {
@@ -21,9 +22,10 @@ export default function Footer() {
       <div className="mx-auto max-w-[1200px] px-5 pb-8 pt-14 md:px-8 lg:px-12">
         <div className="grid gap-10 md:grid-cols-[1.5fr_1fr_1fr]">
           <div>
-            <h2 className="mb-3 font-heading text-base font-bold text-white">
-              Washworld Coin Laundry
+            <h2 className="mb-1 wordmark text-[1.35rem] text-white">
+              Washworld
             </h2>
+            <p className="wordmark-sub mb-4 text-[#8f8db8]">Coin Laundry</p>
             <address className="text-[0.95rem] not-italic leading-relaxed">
               {BUSINESS.streetAddress}
               <br />

@@ -3,6 +3,8 @@ import { SITE_URL } from "@/lib/site";
 
 const ROUTES = [
   { path: "", priority: 1.0, changeFrequency: "weekly" as const },
+  { path: "/prices", priority: 0.9, changeFrequency: "monthly" as const },
+  { path: "/commercial", priority: 0.8, changeFrequency: "monthly" as const },
   { path: "/services/self-serve", priority: 0.9, changeFrequency: "monthly" as const },
   { path: "/services/wash-and-fold", priority: 0.9, changeFrequency: "monthly" as const },
   { path: "/services/dry-cleaning", priority: 0.9, changeFrequency: "monthly" as const },

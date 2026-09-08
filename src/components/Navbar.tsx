@@ -13,10 +13,10 @@ const SERVICE_LINKS = [
 ] as const;
 
 const MAIN_LINKS = [
-  { href: "/#prices", label: "Prices" },
-  { href: "/#gallery", label: "Gallery" },
-  { href: "/#reviews", label: "Reviews" },
-  { href: "/#faq", label: "FAQ" },
+  { href: "/prices", label: "Prices" },
+  { href: "/commercial", label: "For business" },
+  { href: "/about", label: "About" },
+  { href: "/faq", label: "FAQ" },
   { href: "/contact", label: "Contact" },
 ] as const;
 
@@ -60,11 +60,11 @@ export default function Navbar() {
             sizes="40px"
           />
           <span className="leading-tight">
-            <span className="block font-heading text-[1.02rem] font-extrabold">
+            <span className="wordmark block text-[1.24rem] text-foreground">
               Washworld
             </span>
-            <span className="block text-xs text-muted-foreground">
-              Coin Laundry &middot; Toronto
+            <span className="wordmark-sub block text-muted-foreground">
+              Coin Laundry
             </span>
           </span>
         </Link>

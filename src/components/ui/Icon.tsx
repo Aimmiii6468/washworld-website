@@ -16,6 +16,7 @@ type IconName =
   | "check"
   | "arrow"
   | "play"
+  | "pause"
   | "pin"
   | "phone"
   | "mail"
@@ -68,6 +69,12 @@ const PATHS: Record<IconName, React.ReactNode> = {
     </>
   ),
   play: <path d="M8 5v14l11-7z" />,
+  pause: (
+    <>
+      <rect x="6.5" y="5" width="3.6" height="14" rx="1" />
+      <rect x="13.9" y="5" width="3.6" height="14" rx="1" />
+    </>
+  ),
   pin: (
     <>
       <path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11z" />

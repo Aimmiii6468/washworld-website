@@ -181,4 +181,20 @@
   .text-balance {
     text-wrap: balance;
   }
+
+  /* Brand logotype. Deliberately not the heading face, so the name reads as a
+     mark rather than as another headline. */
+  .wordmark {
+    font-family: var(--font-wordmark), var(--font-jakarta), system-ui, sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.028em;
+    line-height: 1.05;
+  }
+  .wordmark-sub {
+    font-family: var(--font-public-sans), system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 0.66rem;
+    letter-spacing: 0.17em;
+    text-transform: uppercase;
+  }
 }
