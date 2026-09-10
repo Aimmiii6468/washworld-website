@@ -6,7 +6,7 @@ const SERVICES = [
   { href: "/services/self-serve", label: "Self-serve laundry" },
   { href: "/services/wash-and-fold", label: "Wash, dry & fold" },
   { href: "/services/dry-cleaning", label: "Dry cleaning" },
-  { href: "/commercial", label: "Laundry for business" },
+  { href: "/commercial", label: "Commercial laundry" },
 ];
 
 const INFO = [

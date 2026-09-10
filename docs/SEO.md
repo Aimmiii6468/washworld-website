@@ -18,7 +18,7 @@ Semrush keyword difficulty out of 100.
 | `/services/wash-and-fold` | wash and fold toronto | 140 | 26 | wash and fold near me (880), what is wash and fold service, does wash and fold include ironing, is wash and fold worth it |
 | `/services/dry-cleaning` | dry cleaning toronto | 260 | 41 | how does dry cleaning work (1000, KD 32), how much does dry cleaning cost (320, KD 5), how long does dry cleaning take (320, KD 16) |
 | `/prices` | laundromat prices toronto | 20 | — | how much does it cost at a laundromat (110, KD 14), how much is wash and fold |
-| `/commercial` | commercial laundry service toronto | 30 | — | bulk laundry toronto |
+| `/commercial` | commercial laundry service toronto | 30 | — | commercial laundry toronto (50, CPC $5.80), linen service toronto (20, CPC $9.69), linen rental toronto (50), short term rental laundry service (30) |
 | `/faq` | laundromat questions | — | — | can you get bed bugs from a laundromat (50), are laundromats clean (30) |
 | `/about` | best laundromat toronto | 20 | — | laundromat wychwood, laundromat forest hill (20) |
 | `/contact` | laundromat 150 kenwood ave | — | — | laundromat near st clair west |
@@ -126,14 +126,21 @@ signals below decide the ranking.
 
 - **Is there a change machine?** It is listed in amenities and in the price
   table on the strength of three Google reviews. It was never on the old site.
-- **Which trades does he want to take on?** Still open. What he has confirmed
-  is narrower: the shop does laundry and nothing else, there is no fixed weekly
-  collection, and there is no separate commercial rate. A business pays the
-  published price. `/commercial` is written as an enquiry page on that basis and
-  must not imply an account, a contract or a negotiated rate. Curbside Laundry
-  is the same owner's business, so linking it for pickup and delivery is
-  accurate. Once he says which trades he wants, the page can be sharpened to
-  sell to them by name.
+- ~~Which trades does he want to take on?~~ **Answered 2026-09-10.** All of
+  them: the brief is that anyone searching should find this business whatever
+  industry they are in, so `/commercial` names a broad set of sectors and
+  invites the ones it does not name. Condominium guest suites lead because
+  they are the most profitable segment. Commercial is charged well above the
+  walk-in rate, carries a minimum order, and is quoted per account, so no
+  commercial figure may ever be printed on the site and the $1.40 walk-in rate
+  must never be shown as what a business pays.
+
+  Worth knowing: "condo guest suite" has no search volume at all. That segment
+  is won by direct outreach to property managers and condo boards. The page
+  earns its keep on "commercial laundry toronto" (50/mo, CPC $5.80) and "linen
+  service toronto" (20/mo, CPC $9.69), where the high CPC says each lead is
+  worth a lot, and as the landing page outreach points at.
+
 - **The logo artwork reads "COIN LAUINDRY".** The typo is in the source image,
   not the code.
 

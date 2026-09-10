@@ -198,7 +198,7 @@ export default function SelfServePage() {
             {[
               { t: "Dryers", d: "$0.25 per 3 or 4 minute block" },
               { t: "Payment", d: "Cash, coin, Interac e-Transfer" },
-              { t: "Change machine", d: "Bills to quarters, on site" },
+              { t: "Change machine", d: "Change your bill to coins, on site" },
               { t: "Supplies", d: "Detergent and softener at the counter" },
             ].map((item) => (
               <div

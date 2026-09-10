@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     template: "%s | Washworld Coin Laundry",
   },
   description:
-    "Coin laundry, wash and fold from $1.65/lb and dry cleaning at 150 Kenwood Ave near St. Clair West. Open every day 8AM to 10PM, free parking and Wi-Fi.",
+    "Coin laundry, wash and fold from $1.40/lb and dry cleaning at 150 Kenwood Ave near St. Clair West. Open every day 8AM to 10PM, free parking and Wi-Fi.",
   alternates: { canonical: "/" },
   openGraph: {
     title: "Coin Laundry in Toronto | Washworld Coin Laundry",

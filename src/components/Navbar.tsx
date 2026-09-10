@@ -15,7 +15,7 @@ const SERVICE_LINKS = [
 
 const MAIN_LINKS = [
   { href: "/prices", label: "Prices" },
-  { href: "/commercial", label: "For business" },
+  { href: "/commercial", label: "Commercial" },
   { href: "/about", label: "About" },
   { href: "/faq", label: "FAQ" },
   { href: "/contact", label: "Contact" },

@@ -214,7 +214,7 @@ export const SELF_SERVE_PRICES = [
   },
   {
     label: "Change machine",
-    sub: "Bills to quarters",
+    sub: "Change your bill to coins",
     price: "Free",
     cycle: "On site",
     best: "Any time",
@@ -222,7 +222,7 @@ export const SELF_SERVE_PRICES = [
 ] as const;
 
 export const WASH_FOLD_PRICES = [
-  { label: "Clothes", sub: "Standard wash", price: "$1.65 / lb" },
+  { label: "Clothes", sub: "Standard wash", price: "$1.40 / lb" },
   { label: "Pillows", sub: null, price: "$5 - $9" },
   { label: "Blankets", sub: "Twin to California king", price: "$20 - $40" },
   { label: "Mattress topper", sub: null, price: "$30 - $50" },
@@ -243,8 +243,8 @@ export const DRY_CLEAN_PRICES = [
  * Amenities the shop actually offers.
  *
  * Verified against the previous site copy. "Flat screen TVs" was removed on the
- * owner's instruction. The change machine is not on the old site but three
- * separate Google reviewers mention it, so it is listed pending confirmation.
+ * owner's instruction. The change machine was confirmed by the owner on
+ * 2026-09-10; it was never on the old site, only in Google reviews.
  */
 export const AMENITIES = [
   { title: "Free high-speed Wi-Fi", desc: "Fast enough to actually work on", icon: "wifi" },
@@ -252,7 +252,7 @@ export const AMENITIES = [
   { title: "Snack & drink vending", desc: "Machines on site while you wait", icon: "vending" },
   { title: "Free customer parking", desc: "At the door, 2.5 hour limit", icon: "parking" },
   { title: "Detergent at the counter", desc: "Single use and full size, plus softener", icon: "detergent" },
-  { title: "Change machine on site", desc: "Turn bills into quarters any time", icon: "coin" },
+  { title: "Change machine on site", desc: "Change your bill to coins any time", icon: "coin" },
 ] as const;
 
 /** Short clips shown in the video tour. */
@@ -318,11 +318,11 @@ export const HOME_FAQ = [
   },
   {
     q: "How much does it cost to do laundry here?",
-    a: "Self-serve washers run from $2.25 for a standard load up to $8.00 for the largest machines, and dryers are $0.25 per cycle block. Wash, dry and fold is $1.65 per pound.",
+    a: "Self-serve washers run from $2.25 for a standard load up to $8.00 for the largest machines, and dryers are $0.25 per cycle block. Wash, dry and fold is $1.40 per pound.",
   },
   {
     q: "What payment methods do the machines accept?",
-    a: "Cash, coin and Interac e-Transfer. There is a change machine on site that turns bills into quarters, so you never get stuck mid-load.",
+    a: "Cash, coin and Interac e-Transfer. There is a change machine on site so you can change your bill to coins, and never get stuck mid-load.",
   },
   {
     q: "Do you have machines big enough for a duvet or comforter?",
@@ -393,11 +393,11 @@ export const WASH_FOLD_FAQ = [
   },
   {
     q: "Is wash and fold worth it?",
-    a: "Self-serve is cheaper per load, so it comes down to your hour. At $1.65 per pound a normal week of clothes for one person lands around $15 to $25, which is what most people decide their evening is worth. Bulky items like duvets are often worth it either way, because our machines take them and a home washer does not.",
+    a: "Self-serve is cheaper per load, so it comes down to your hour. At $1.40 per pound a normal week of clothes for one person lands around $15 to $25, which is what most people decide their evening is worth. Bulky items like duvets are often worth it either way, because our machines take them and a home washer does not.",
   },
   {
     q: "How much does wash and fold cost in Toronto?",
-    a: "Clothes are $1.65 per pound with no minimum order. Bulky items are priced individually: pillows $5 to $9, blankets $20 to $40, mattress toppers $30 to $50, sleeping bags $25 to $30 and bags $5 to $15.",
+    a: "Clothes are $1.40 per pound with no minimum order. Bulky items are priced individually: pillows $5 to $9, blankets $20 to $40, mattress toppers $30 to $50, sleeping bags $25 to $30 and bags $5 to $15.",
   },
   {
     q: "How long does wash and fold take?",
@@ -456,7 +456,7 @@ export const PRICES_FAQ = [
   },
   {
     q: "Is wash and fold cheaper than doing it yourself?",
-    a: "Self-serve is cheaper per load. Wash and fold at $1.65 per pound costs more but you drop the bag and leave, which is why most people use it for the weeks they cannot spare an hour.",
+    a: "Self-serve is cheaper per load. Wash and fold at $1.40 per pound costs more but you drop the bag and leave, which is why most people use it for the weeks they cannot spare an hour.",
   },
   {
     q: "Do you charge a minimum for wash and fold?",
@@ -464,7 +464,7 @@ export const PRICES_FAQ = [
   },
   {
     q: "What payment do you take?",
-    a: "Cash, coin and Interac e-Transfer. A change machine on site turns bills into quarters.",
+    a: "Cash, coin and Interac e-Transfer. A change machine on site lets you change your bill to coins.",
   },
   {
     q: "Are the prices on this page final?",
@@ -473,36 +473,44 @@ export const PRICES_FAQ = [
 ] as const;
 
 /**
- * Business page FAQ.
+ * Commercial page FAQ.
  *
- * IMPORTANT, read before editing. The previous washworld site had no business
- * or commercial page at all, so there is no source for a client list, and the
- * owner has confirmed there is no fixed weekly collection and no separate
- * commercial rate: a business pays the published price. Nothing here may state
- * that a business account exists, name a trade we "work with", or suggest a
- * rate is negotiable.
+ * Sourced from the owner, 2026-09-10. What he confirmed, in his words:
+ * commercial customers are charged a lot more per pound, there is a minimum,
+ * the stains are harder, delivery costs more, and the right move is to invite
+ * a custom quote. Condominium guest suites are the most profitable segment:
+ * buildings where residents own their units and the corporation keeps
+ * hotel-style suites for visiting family.
  *
- * What it may do is invite a business to call about volume and timing, which is
- * a real conversation, and point at Curbside Laundry for pickup and delivery,
- * which is the same owner's business. Once he says which trades he wants, these
- * answers can be sharpened to speak to them by name.
+ * So: no published commercial rate, ever. The walk-in $1.40 is the walk-in
+ * rate and must never be presented as what a business pays. Naming trades is
+ * fine here, because the question these answer is who the service is FOR, not
+ * who is already a client.
  */
 export const COMMERCIAL_FAQ = [
   {
-    q: "Can a business use Washworld for its laundry?",
-    a: "Yes. Anyone can drop a bag at the counter, business or not, and our wash, dry and fold service is $1.65 per pound with no minimum order. If you need towels or linen washed every week, call us and we will talk through what you need.",
+    q: "Do you offer commercial laundry service in Toronto?",
+    a: "Yes. We handle towels, bed linen, uniforms and guest suite bedding for businesses across Central Toronto, either dropped at the counter or collected from your door. Commercial work is quoted per account rather than charged at the walk-in rate.",
   },
   {
-    q: "How much laundry can you take at once?",
-    a: "Our largest washers hold king-size duvets and comforters, so bulk towels, sheets and aprons are no problem. Tell us your rough weekly volume when you call so we can plan the machines around it.",
+    q: "How much does commercial laundry cost?",
+    a: "It is quoted per account, and it costs more per pound than our walk-in wash and fold. Business laundry is not a household load: the soiling is heavier, the stains are harder to lift, the volume is larger and pickup and delivery adds to it. Tell us roughly what you go through in a week and we will come back with a firm number.",
   },
   {
-    q: "Do you charge businesses a different rate?",
-    a: "No. The prices on our prices page are the prices, whether you bring one bag a month or a bag every week. There is no separate commercial rate and no volume discount, which also means there is nothing to negotiate before you start. Call us about timing and how much we can turn around in a day, not about price.",
+    q: "Is there a minimum order?",
+    a: "Yes, commercial accounts carry a minimum, which is the main way they differ from walk-in wash and fold. The exact minimum depends on your volume and how often we collect, so it is set when we quote you.",
+  },
+  {
+    q: "Do you do laundry for condominium guest suites?",
+    a: "Yes, and it is the work we are best set up for. A guest suite turns over like a hotel room: sheets, duvet covers, pillowcases and towels have to come back clean, pressed and fast, often before the next booking that week. We can hold a stock rotation so the suite is never waiting on a wash.",
+  },
+  {
+    q: "What kinds of businesses do you work with?",
+    a: "Anywhere that goes through linen, towels or uniforms. Condominium guest suites, short-term rental hosts, salons and spas, gyms and studios, restaurants and cafes, clinics and offices. If your trade is not on that list it is still worth asking, because the answer is usually yes.",
   },
   {
     q: "Can you collect and deliver?",
-    a: "We also run Curbside Laundry, our own pickup and delivery service in Toronto. It is built for household laundry, so for a regular business collection call us first and we will tell you honestly whether we can cover it.",
+    a: "Yes. We run Curbside Laundry ourselves, so collection and delivery is our own service rather than a third party. For a commercial account it is quoted along with the laundry, since a regular collection route costs more than a one-off pickup.",
   },
 ] as const;
 
@@ -532,7 +540,7 @@ export const FAQ_CATEGORIES: readonly {
       },
       {
         q: "What payment methods do you accept?",
-        a: "Cash, coin and Interac e-Transfer. There is a change machine on site so you can turn bills into quarters.",
+        a: "Cash, coin and Interac e-Transfer. There is a change machine on site so you can change your bill to coins.",
       },
       {
         q: "Do you pick up and deliver laundry?",

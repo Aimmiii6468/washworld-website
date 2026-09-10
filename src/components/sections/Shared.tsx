@@ -478,7 +478,7 @@ const ALL_SERVICES = [
     href: "/services/wash-and-fold",
     icon: "basket" as IconName,
     title: "Wash, dry & fold",
-    desc: "Drop the bag at the counter, $1.65 per pound",
+    desc: "Drop the bag at the counter, $1.40 per pound",
   },
   {
     href: "/services/dry-cleaning",

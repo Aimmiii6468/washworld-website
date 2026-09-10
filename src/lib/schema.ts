@@ -188,7 +188,7 @@ export function businessSchema() {
         "@type": "Offer",
         itemOffered: { "@type": "Service", name: "Wash, dry and fold" },
         priceCurrency: "CAD",
-        price: "1.65",
+        price: "1.40",
         description: "Per pound, no minimum order",
         url: `${SITE_URL}/services/wash-and-fold`,
       },

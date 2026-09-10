@@ -55,7 +55,7 @@ export default function FaqPage() {
         highlight="questions"
         image="/images/facility/facility-1.jpg"
         imageAlt="Inside Washworld Coin Laundry at 150 Kenwood Ave Toronto"
-        badge={{ value: "8-10", label: "Open every day" }}
+        badge={{ value: "8AM-10PM", label: "Open every day" }}
         actions={
           <>
             <ButtonLink href="/prices">

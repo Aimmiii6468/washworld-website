@@ -24,7 +24,7 @@ import { breadcrumbSchema, faqSchema, jsonLd } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "Laundromat Prices in Toronto",
   description:
-    "Laundromat prices in Toronto: self-serve washers from $2.25, dryers $0.25, wash and fold $1.65 per pound, dry cleaning from $4. No membership, no minimum.",
+    "Laundromat prices in Toronto: self-serve washers from $2.25, dryers $0.25, wash and fold $1.40 per pound, dry cleaning from $4. No membership, no minimum.",
   alternates: { canonical: "/prices" },
   openGraph: {
     title: "Laundromat Prices in Toronto | Washworld Coin Laundry",

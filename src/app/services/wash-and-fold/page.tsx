@@ -23,12 +23,12 @@ import { breadcrumbSchema, faqSchema, jsonLd, serviceSchema } from "@/lib/schema
 export const metadata: Metadata = {
   title: "Wash, Dry & Fold Service in Toronto",
   description:
-    "Drop-off wash and fold laundry in Toronto. $1.65 per pound, no minimum order, bedding priced per item, and most orders are back the same day.",
+    "Drop-off wash and fold laundry in Toronto. $1.40 per pound, no minimum order, bedding priced per item, and most orders are back the same day.",
   alternates: { canonical: "/services/wash-and-fold" },
   openGraph: {
     title: "Wash, Dry & Fold Service in Toronto | Washworld",
     description:
-      "Drop the bag at the counter and collect it sorted, washed, dried and folded. $1.65 per pound, no minimum.",
+      "Drop the bag at the counter and collect it sorted, washed, dried and folded. $1.40 per pound, no minimum.",
     url: `${SITE_URL}/services/wash-and-fold`,
     type: "website",
     images: [OG_IMAGE],
@@ -60,10 +60,10 @@ export default function WashAndFoldPage() {
     serviceSchema({
       name: "Wash, dry and fold laundry service",
       description:
-        "Drop-off laundry service in Toronto. Sorted, washed, dried and folded at $1.65 per pound with no minimum order, most orders back the same day.",
+        "Drop-off laundry service in Toronto. Sorted, washed, dried and folded at $1.40 per pound with no minimum order, most orders back the same day.",
       path: "/services/wash-and-fold",
       offers: [
-        { name: "Clothes, per pound", price: "1.65", note: "No minimum order" },
+        { name: "Clothes, per pound", price: "1.40", note: "No minimum order" },
         { name: "Pillows", price: "5.00", note: "From, priced per item" },
         { name: "Blankets and duvets", price: "20.00", note: "From, twin to California king" },
         { name: "Mattress topper", price: "30.00", note: "From, priced per item" },
@@ -87,9 +87,9 @@ export default function WashAndFoldPage() {
         eyebrow="Drop off, walk away"
         title="Wash, dry and fold service in"
         highlight="Toronto"
-        image="/images/services/service-2.jpg"
-        imageAlt="Wash, dry and fold laundry service at Washworld Coin Laundry Toronto"
-        badge={{ value: "$1.65", label: "Per pound" }}
+        image="/images/facility/facility-4.jpg"
+        imageAlt="Stainless steel washers used for wash, dry and fold at Washworld Coin Laundry Toronto"
+        badge={{ value: "$1.40", label: "Per pound" }}
         actions={
           <>
             <ButtonLink href={BUSINESS.mapsUrl} external>
@@ -102,7 +102,7 @@ export default function WashAndFoldPage() {
         }
       >
         Leave your bag at the counter and collect it sorted, washed, dried and
-        folded. $1.65 per pound with no minimum order, at {BUSINESS.streetAddress}{" "}
+        folded. $1.40 per pound with no minimum order, at {BUSINESS.streetAddress}{" "}
         near {BUSINESS.nearby}.
       </PageHero>
 

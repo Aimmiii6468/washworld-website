@@ -30,7 +30,7 @@ import { faqSchema, jsonLd } from "@/lib/schema";
 export const metadata: Metadata = {
   title: "Coin Laundry & Laundromat in Toronto | Washworld",
   description:
-    "Coin laundry, wash and fold from $1.65/lb and dry cleaning at 150 Kenwood Ave near St. Clair West. Open every day 8AM to 10PM, free parking and Wi-Fi.",
+    "Coin laundry, wash and fold from $1.40/lb and dry cleaning at 150 Kenwood Ave near St. Clair West. Open every day 8AM to 10PM, free parking and Wi-Fi.",
   alternates: { canonical: "/" },
 };
 
@@ -49,18 +49,24 @@ const SERVICES = [
     icon: "basket" as const,
     title: "Wash, dry & fold",
     href: "/services/wash-and-fold",
-    img: "/images/services/service-2.jpg",
-    alt: "Wash, dry and fold service in Toronto",
+    // service-2.jpg was the blue Wascomat row, the oldest machines in the shop.
+    // Waiting on a photo of the folding counter, which is what this service
+    // actually is. Until then, the stainless row.
+    img: "/images/facility/facility-4.jpg",
+    alt: "Stainless steel washers at Washworld Coin Laundry, 150 Kenwood Ave Toronto",
     copy: "Drop your bag at the counter and pick it up sorted, washed, dried and folded. Priced by the pound with no minimum order.",
     fromLabel: "Per pound",
-    from: "$1.65",
+    from: "$1.40",
   },
   {
     icon: "hanger" as const,
     title: "Dry cleaning",
     href: "/services/dry-cleaning",
-    img: "/images/facility/facility-5.jpg",
-    alt: "Dry cleaning service in Toronto",
+    // Placeholder. facility-5.jpg was here and it is a photo of the dryers, so
+    // the card claimed dry cleaning and showed something else entirely. Swap
+    // this for the garment rail as soon as the client sends it.
+    img: "/images/facility/facility-2.jpg",
+    alt: "Inside Washworld Coin Laundry, where dry cleaning is dropped off and collected",
     copy: "Shirts, blouses, suits, dresses and winter coats, cleaned and pressed. Twelve item types, each priced individually with no hidden fees.",
     fromLabel: "Shirts from",
     from: "$4.00",
@@ -144,7 +150,7 @@ export default function Home() {
             </div>
             <div className="absolute -right-2 top-6 rounded-[18px] border border-white/90 bg-white/90 px-4 py-3.5 shadow-card-lg backdrop-blur-md sm:-right-3">
               <b className="block font-heading text-2xl leading-none">
-                $1.65<small className="text-[0.76rem] font-medium">/lb</small>
+                $1.40<small className="text-[0.76rem] font-medium">/lb</small>
               </b>
               <small className="text-[0.76rem] text-muted-foreground">
                 Wash, dry &amp; fold
