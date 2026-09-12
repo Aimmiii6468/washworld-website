@@ -81,13 +81,21 @@ signals below decide the ranking.
 
 ### Before launch
 
-1. **Point `NEXT_PUBLIC_SITE_URL` at the real domain.** Everything canonical,
-   every schema `@id`, the sitemap and robots all derive from it. Until it is
-   set, the whole site canonicalises to the vercel.app preview host.
-2. **Set `RESEND_API_KEY`** or the contact form silently fails.
-3. **Decide the domain.** The business has directory listings but no website of
-   its own indexed anywhere, so there is no history to preserve and no
-   redirects to write. That is unusual and it is good news: a clean start.
+1. ~~Point `NEXT_PUBLIC_SITE_URL` at the real domain.~~ **Done 2026-09-12.**
+   The domain is `https://www.washworldcoinlaundry.ca` and it is now the
+   default in `src/lib/site.ts`, so it holds even with no environment variable
+   set. This matters more than it looks: every canonical tag, every schema
+   `@id`, the sitemap and the Host line in robots.txt derive from that single
+   value. For a few hours after launch the live .ca site was canonicalising
+   every page to the vercel.app alias, which tells Google the real copy lives
+   elsewhere and is the one mistake that stops a new domain ranking at all.
+2. **Set `RESEND_API_KEY`** or the contact form silently fails. Still open.
+3. ~~Decide the domain.~~ Done. The business had directory listings but no
+   website of its own indexed anywhere, so there was no history to preserve and
+   no redirects to write. A clean start.
+4. **The vercel.app alias 308s to the real domain**, configured in
+   `next.config.ts` and matched on that exact hostname so preview deployments
+   still work for client review.
 
 ### Week one
 
@@ -97,10 +105,12 @@ signals below decide the ranking.
    fill in the attributes the site already claims — free Wi-Fi, free parking,
    air conditioning, on-site change machine — and set the hours to match
    8:00 AM to 10:00 PM daily.
-5. **Search Console.** Add the property, set `GOOGLE_SITE_VERIFICATION` in
-   Vercel (the meta tag only renders when that variable is set), submit
-   `/sitemap.xml`, and request indexing for the homepage and the three service
-   pages.
+5. **Search Console.** Verify the `www.washworldcoinlaundry.ca` property. The
+   verification token is committed in `src/lib/site.ts`, so the tag is already
+   live. Submit `sitemap.xml` under Indexing, Sitemaps, then request indexing
+   for the homepage and the three service pages. Verify the property on the
+   real domain, not the vercel.app alias: they are separate properties and only
+   the real one reports traffic that matters.
 6. **Bing Webmaster Tools.** Import from Search Console, it takes a minute and
    Bing still reads the sitemap priorities.
 7. **Check the citations in `BUSINESS.citations`.** Yellow Pages, Canpages,

@@ -9,9 +9,21 @@
 // runtime dependency on the component layer.
 import type { IconName } from "@/components/ui/Icon";
 
-/** Production origin. Never point this at a preview deployment. */
+/**
+ * Production origin. Never point this at a preview deployment.
+ *
+ * The default is the real domain, not the vercel.app alias, because everything
+ * that decides which URL Google indexes derives from this one value: every
+ * canonical tag, every schema @id, the sitemap and the Host line in robots.txt.
+ * When it pointed at the vercel.app alias, the live .ca site was telling Google
+ * that the canonical copy of every page lived somewhere else, which is the one
+ * mistake that stops a new domain ranking at all.
+ *
+ * Keep the www. The site answers on www and the apex redirects to it, so a
+ * canonical without www would point at a URL that redirects.
+ */
 export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://washworld-website.vercel.app";
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.washworldcoinlaundry.ca";
 
 /**
  * True only for the real production deployment.
