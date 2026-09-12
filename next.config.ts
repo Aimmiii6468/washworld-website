@@ -16,12 +16,13 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
 
   /**
-   * Send the vercel.app alias to the real domain.
+   * Fallback redirect from the vercel.app alias to the production domain.
    *
-   * Both hostnames serve the same site, so without this Google sees two full
-   * copies and has to pick one. Canonical tags already point at the .ca domain,
-   * but a 308 is a harder signal than a hint, and it stops anyone sharing a
-   * vercel.app link that quietly competes with the site it came from.
+   * Vercel now does this at the edge, in the project's domain settings, so in
+   * normal operation a request never reaches this rule. It stays because a
+   * domain setting is a checkbox in a dashboard that someone can change
+   * without noticing what depends on it, and the failure mode is silent: two
+   * fully crawlable copies of the site competing with each other.
    *
    * Matched on the exact production alias only. Preview deployments get
    * generated hostnames with a hash in them, so they are untouched and stay
@@ -37,7 +38,7 @@ const nextConfig: NextConfig = {
             value: "washworld-website.vercel.app",
           },
         ],
-        destination: "https://www.washworldcoinlaundry.ca/:path*",
+        destination: "https://washworldcoinlaundry.ca/:path*",
         permanent: true,
       },
     ];

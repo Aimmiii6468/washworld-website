@@ -19,11 +19,16 @@ import type { IconName } from "@/components/ui/Icon";
  * that the canonical copy of every page lived somewhere else, which is the one
  * mistake that stops a new domain ranking at all.
  *
- * Keep the www. The site answers on www and the apex redirects to it, so a
- * canonical without www would point at a URL that redirects.
+ * No www. The apex is the production hostname and both www and the vercel.app
+ * alias 308 to it, so this must stay the bare domain: a canonical pointing at
+ * a URL that redirects is a canonical Google has to second-guess.
+ *
+ * Search engines treat www and non-www identically, so this was a readability
+ * call, not an SEO one. A laundromat prints its address on a sign, a flyer and
+ * a van, and the short form is the one people can read from across the street.
  */
 export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.washworldcoinlaundry.ca";
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://washworldcoinlaundry.ca";
 
 /**
  * True only for the real production deployment.

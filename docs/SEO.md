@@ -82,7 +82,7 @@ signals below decide the ranking.
 ### Before launch
 
 1. ~~Point `NEXT_PUBLIC_SITE_URL` at the real domain.~~ **Done 2026-09-12.**
-   The domain is `https://www.washworldcoinlaundry.ca` and it is now the
+   The domain is `https://washworldcoinlaundry.ca` and it is now the
    default in `src/lib/site.ts`, so it holds even with no environment variable
    set. This matters more than it looks: every canonical tag, every schema
    `@id`, the sitemap and the Host line in robots.txt derive from that single
@@ -93,9 +93,11 @@ signals below decide the ranking.
 3. ~~Decide the domain.~~ Done. The business had directory listings but no
    website of its own indexed anywhere, so there was no history to preserve and
    no redirects to write. A clean start.
-4. **The vercel.app alias 308s to the real domain**, configured in
-   `next.config.ts` and matched on that exact hostname so preview deployments
-   still work for client review.
+4. **One hostname, everything else redirects.** The apex is production. Both
+   `www` and the vercel.app alias 308 to it, set in Vercel's domain settings,
+   with a fallback rule in `next.config.ts` in case those settings are ever
+   changed. Non-www was a readability choice, not an SEO one: Google treats the
+   two identically, but a laundromat prints its address on a sign and a van.
 
 ### Week one
 
@@ -105,7 +107,10 @@ signals below decide the ranking.
    fill in the attributes the site already claims — free Wi-Fi, free parking,
    air conditioning, on-site change machine — and set the hours to match
    8:00 AM to 10:00 PM daily.
-5. **Search Console.** Verify the `www.washworldcoinlaundry.ca` property. The
+5. **Search Console.** Use a **Domain** property, not URL-prefix. A Domain
+   property is DNS-verified and reports apex, www, http, https and every
+   subdomain in one place, which is exactly the confusion a URL-prefix property
+   creates. The
    verification token is committed in `src/lib/site.ts`, so the tag is already
    live. Submit `sitemap.xml` under Indexing, Sitemaps, then request indexing
    for the homepage and the three service pages. Verify the property on the
