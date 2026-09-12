@@ -3,7 +3,12 @@ import { Plus_Jakarta_Sans, Public_Sans, Outfit } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { SITE_URL, IS_PRODUCTION, OG_IMAGE } from "@/lib/site";
+import {
+  SITE_URL,
+  IS_PRODUCTION,
+  OG_IMAGE,
+  GOOGLE_SITE_VERIFICATION,
+} from "@/lib/site";
 import { businessSchema, websiteSchema, jsonLd } from "@/lib/schema";
 
 const jakarta = Plus_Jakarta_Sans({
@@ -56,16 +61,9 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     images: [OG_IMAGE.url],
   },
-  // Google Search Console site verification. Set GOOGLE_SITE_VERIFICATION in
-  // Vercel and the meta tag appears; leave it unset and nothing is rendered,
-  // so the tag can never end up pointing at the wrong property.
-  ...(process.env.GOOGLE_SITE_VERIFICATION
-    ? {
-        verification: {
-          google: process.env.GOOGLE_SITE_VERIFICATION,
-        },
-      }
-    : {}),
+  // Google Search Console. The token lives in site.ts, see the note there for
+  // why it is committed rather than held in an environment variable.
+  verification: { google: GOOGLE_SITE_VERIFICATION },
   // Preview deployments must never compete with the live site in search.
   robots: IS_PRODUCTION
     ? { index: true, follow: true }

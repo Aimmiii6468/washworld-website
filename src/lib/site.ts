@@ -85,6 +85,22 @@ export const BUSINESS = {
 } as const;
 
 /**
+ * Google Search Console verification token.
+ *
+ * Committed rather than left to an environment variable. The token is not a
+ * secret: it is a public meta tag whose whole purpose is to be readable by
+ * anyone who views the page source. Keeping it in the repo means verification
+ * survives a Vercel project being recreated or an env var being dropped, which
+ * is exactly when a missing token goes unnoticed for weeks.
+ *
+ * GOOGLE_SITE_VERIFICATION still overrides it, so a second property can be
+ * verified from a different deployment without a code change.
+ */
+export const GOOGLE_SITE_VERIFICATION =
+  process.env.GOOGLE_SITE_VERIFICATION ??
+  "IzTkIpGKaXTLzxRjnGDqBQkdUMhUw6qli51Rzrgn8ro";
+
+/**
  * Share card image, used for Open Graph and Twitter on every page.
  *
  * Next's opengraph-image file convention only applies to pages that do not
