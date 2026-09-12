@@ -84,13 +84,18 @@ export default function DryCleaningPage() {
         />
       ))}
 
+      {/* Hero photo is stock, Unsplash licence, free for commercial use with no
+          attribution required. Swap for the client's own garment rail when it
+          arrives. The alt text describes the picture generically on purpose:
+          saying a stock image was taken at 150 Kenwood Ave would be a false
+          statement about the premises. */}
       <PageHero
         breadcrumbs={CRUMBS}
         eyebrow="Garment care"
         title="Dry cleaning in"
         highlight="Toronto"
-        image="/images/facility/facility-2.jpg"
-        imageAlt="Dry cleaning drop-off at Washworld Coin Laundry Toronto"
+        image="/images/services/dry-cleaning.jpg"
+        imageAlt="Freshly pressed shirts hanging on a dry cleaning rail"
         badge={{ value: "$4", label: "Shirts, wash & press" }}
         actions={
           <>

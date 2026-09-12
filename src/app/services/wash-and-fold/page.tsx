@@ -82,13 +82,16 @@ export default function WashAndFoldPage() {
         />
       ))}
 
+      {/* Hero photo is stock, Unsplash licence, free for commercial use with no
+          attribution required. Swap for the client's own folding counter when
+          it arrives, and keep the alt text generic: this is not our shop. */}
       <PageHero
         breadcrumbs={CRUMBS}
         eyebrow="Drop off, walk away"
         title="Wash, dry and fold service in"
         highlight="Toronto"
-        image="/images/facility/facility-4.jpg"
-        imageAlt="Stainless steel washers used for wash, dry and fold at Washworld Coin Laundry Toronto"
+        image="/images/services/wash-and-fold.jpg"
+        imageAlt="Stacks of freshly folded laundry on a folding table in a laundromat"
         badge={{ value: "$1.40", label: "Per pound" }}
         actions={
           <>
